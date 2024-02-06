@@ -11,7 +11,8 @@
     "prisma:prototype": "prisma db push && yarn prisma:generate",
     "prisma:migrate": "prisma migrate dev && yarn prisma:generate",
     "prisma:studio": "prisma studio --browser=none",
-    "prisma:deploy": "prisma migrate deploy"
+    "prisma:deploy": "prisma migrate deploy",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.9.1",
