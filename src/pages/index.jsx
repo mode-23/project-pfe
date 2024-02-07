@@ -120,7 +120,7 @@ export default function Home() {
         onChange={(e) => setLoginPw(e.target.value)}
       />
       <button type="button" onClick={handleLogin}>
-        login
+        log in
       </button>
       <button
         type="button"
