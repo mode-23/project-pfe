@@ -26,6 +26,7 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.9.1"
   }
 }

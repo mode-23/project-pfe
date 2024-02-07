@@ -13,7 +13,6 @@ export default function Home() {
   const [isClientRender, setIsClientRender] = useState(false);
   const [userToEditId, setUserToEditId] = useState(null);
   const [userToEditEmail, setUserToEditEmail] = useState("");
-  const setMe = useMeStore((state) => state.setMe);
   const me = useMeStore((state) => ({ id: state.id, email: state.email }));
 
   const fetchUsers = async () => {
@@ -55,7 +54,7 @@ export default function Home() {
       if (res.token) {
         localStorage.setItem("@PFE_PROJECT/AUTH_TOKEN", res.token);
 
-        // window.location.reload();
+        window.location.reload();
       } else {
         console.log("error");
       }
@@ -63,16 +62,6 @@ export default function Home() {
       console.log("password or email is wrong");
     }
   };
-  useEffect(() => {
-    (async () => {
-      const res = await apiCall("me");
-      setMe(res);
-    })();
-
-    return () => {
-      prisma.$disconnect();
-    };
-  }, []);
 
   const handleUpdate = async () => {
     try {
@@ -137,7 +126,7 @@ export default function Home() {
         type="button"
         onClick={() => {
           localStorage.removeItem("@PFE_PROJECT/AUTH_TOKEN");
-          // window.location.reload();
+          window.location.reload();
         }}
       >
         log out
