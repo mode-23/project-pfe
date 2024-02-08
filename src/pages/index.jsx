@@ -2,7 +2,8 @@ import { prisma } from "@/prisma_setup";
 import { useMeStore } from "@/store/useMeStore";
 import { apiCall } from "@/utils/apiCall";
 import { useEffect, useState } from "react";
-
+import { AUTH_TOKEN } from "@/constants/localstorage";
+import Login from "@/components/account-login/Login";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
@@ -52,7 +53,7 @@ export default function Home() {
         }),
       });
       if (res.token) {
-        localStorage.setItem("@PFE_PROJECT/AUTH_TOKEN", res.token);
+        localStorage.setItem(AUTH_TOKEN, res.token);
 
         window.location.reload();
       } else {
@@ -88,8 +89,44 @@ export default function Home() {
   }, []);
   return (
     <div>
-      {me?.email}
-      <h2>register</h2>
+      {!isClientRender ? null : (
+        <>
+          {localStorage.getItem(AUTH_TOKEN) ? (
+            <>
+              {me?.email}
+              <button
+                type="button"
+                onClick={() => {
+                  localStorage.removeItem(AUTH_TOKEN);
+                  window.location.reload();
+                }}
+              >
+                log out
+              </button>
+            </>
+          ) : (
+            <Login />
+          )}
+        </>
+      )}
+      {/* {me?.id ? (
+        <>
+          {me?.email}
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.removeItem(AUTH_TOKEN);
+              window.location.reload();
+            }}
+          >
+            log out
+          </button>
+        </>
+      ) : (
+        <Login />
+      )} */}
+
+      {/* <h2>register</h2>
       <input
         type="text"
         placeholder="email"
@@ -125,21 +162,16 @@ export default function Home() {
       <button
         type="button"
         onClick={() => {
-          localStorage.removeItem("@PFE_PROJECT/AUTH_TOKEN");
+          localStorage.removeItem(AUTH_TOKEN);
           window.location.reload();
         }}
       >
         log out
       </button>
       {!isClientRender ? null : (
-        <>
-          {localStorage.getItem("@PFE_PROJECT/AUTH_TOKEN")
-            ? "logged in"
-            : "logged out"}
-        </>
-      )}
-
-      {users?.map((item) => (
+        <>{localStorage.getItem(AUTH_TOKEN) ? "logged in" : "logged out"}</>
+      )} */}
+      {/* {users?.map((item) => (
         <div key={item.id}>
           <h4>{item.email}</h4>
           <h4>{item.password}</h4>
@@ -165,7 +197,7 @@ export default function Home() {
           <button>delete</button>
           <hr />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

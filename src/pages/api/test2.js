@@ -4,9 +4,8 @@ const handler = async (req, res) => {
   const { email, pw } = JSON.parse(req.body);
   const SALT_ROUNDS = 10;
   const hashedPassword = await hash(pw, SALT_ROUNDS);
-  let user;
   try {
-    user = await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         email,
         password: hashedPassword,

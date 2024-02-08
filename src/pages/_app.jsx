@@ -2,6 +2,7 @@ import { prisma } from "@/prisma_setup";
 import { useMeStore } from "@/store/useMeStore";
 import { apiCall } from "@/utils/apiCall";
 import { useEffect } from "react";
+import "./page.css";
 
 const App = ({ Component, pageProps }) => {
   const setMe = useMeStore((state) => state.setMe);
@@ -24,7 +25,13 @@ const App = ({ Component, pageProps }) => {
       prisma.$disconnect();
     };
   }, []);
-  return <Component {...pageProps} />;
+  return (
+    <>
+      {/* <header>header</header> */}
+      <Component {...pageProps} />
+      {/* <footer>footer</footer> */}
+    </>
+  );
 };
 
 export default App;

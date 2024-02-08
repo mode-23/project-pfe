@@ -11,12 +11,14 @@ const handler = async (req, res) => {
   });
 
   if (!user) {
-    throw new Error("bad request");
+    // throw new Error("bad request");
+    res.status(500).json({ message: "wrong email" });
   }
 
   const matchFound = await compare(loginPw, user.password);
   if (!matchFound) {
-    throw new Error("bad request");
+    // throw new Error("bad request");
+    res.status(500).json({ message: "wrong password" });
   }
 
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);

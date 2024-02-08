@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   if (isLoading) return <div>loading...</div>;
 
   if (!me.id) {
-    router.replace("/");
+    router.replace("/login");
     return null;
   }
   return <>{children}</>;
