@@ -17,9 +17,3 @@ model User {
   createdAt DateTime  @default(now())
   deletedAt DateTime?
 }
-
-model Customer {
-  id        String   @id @default(cuid())
-  email     String
-  createdAt DateTime @default(now())
-}

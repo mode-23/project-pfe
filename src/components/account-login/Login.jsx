@@ -12,6 +12,7 @@ const Login = () => {
   const [loginPw, setLoginPw] = useState("");
   const [errorFinder, seterrorFinder] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [loginState, setLoginState] = useState("login");
   const [isClientRender, setIsClientRender] = useState(false);
   const handleSubmit = async () => {
     try {
@@ -69,6 +70,18 @@ const Login = () => {
     <div className={styles.login}>
       <div className={styles.loginHolder}>
         <div className={styles.loginLeft}>
+          <div
+            className={styles.registerBtn}
+            onClick={() => {
+              if (loginState === "login") {
+                setLoginState("register");
+              } else {
+                setLoginState("login");
+              }
+            }}
+          >
+            {loginState === "login" ? "create an account" : "sign in"}
+          </div>
           <div className={styles.logoHolder}>
             <Image
               src="/orange-logo.png"
@@ -76,84 +89,121 @@ const Login = () => {
               fill={true}
             />
           </div>
-          {/* <div className={styles.inputWrapper}>
-            <h2 className={styles.inputTitle}>register</h2>
-            <input
-              type="text"
-              placeholder="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="password"
-              value={pw}
-              onChange={(e) => setPw(e.target.value)}
-            />
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className={styles.submitBtn}
-            >
-              submit
-            </button>
-          </div> */}
-          {errorFinder ? "error" : ""}
-          <div className={styles.inputWrapper}>
-            <h2 className={styles.inputTitle}>authenticate</h2>
-            <div className={styles.inputContent}>
-              <h3>email</h3>
-              <div className={styles.inputHolder}>
-                <FiUser />
-                <input
-                  type="text"
-                  placeholder="Example@gmail.com"
-                  value={loginEmail}
-                  onChange={(e) => setLoginEmail(e.target.value)}
-                  className={`${styles.input} ${
-                    loginError === "email" ? styles.error : null
-                  }`}
-                />
-              </div>
-              {!isClientRender ? null : (
-                <>
-                  {loginError === "email" ? (
-                    <p className={styles.wrong}>wrong email</p>
-                  ) : null}
-                </>
-              )}
-            </div>
-            <div className={styles.inputContent}>
-              <h3>password</h3>
-              <div className={styles.inputHolder}>
-                <FiLock />
-                <input
-                  type="password"
-                  placeholder="Your password"
-                  value={loginPw}
-                  onChange={(e) => setLoginPw(e.target.value)}
-                  className={`${styles.input} ${
-                    loginError === "password" ? styles.error : null
-                  }`}
-                />
-              </div>
-              {!isClientRender ? null : (
-                <>
-                  {loginError === "password" ? (
-                    <p className={styles.wrong}>wrong password</p>
-                  ) : null}
-                </>
-              )}
-            </div>
+          {loginState === "login" ? (
+            <>
+              <div className={styles.inputWrapper}>
+                <h2 className={styles.inputTitle}>
+                  please enter your account details
+                </h2>
+                <div className={styles.inputContent}>
+                  <h3>email</h3>
+                  <div className={styles.inputHolder}>
+                    <FiUser />
+                    <input
+                      type="email"
+                      placeholder="Example@gmail.com"
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      className={`${styles.input} ${
+                        loginError === "email" ? styles.error : null
+                      }`}
+                    />
+                  </div>
+                  {!isClientRender ? null : (
+                    <>
+                      {loginError === "email" ? (
+                        <p className={styles.wrong}>wrong email</p>
+                      ) : null}
+                    </>
+                  )}
+                </div>
+                <div className={styles.inputContent}>
+                  <h3>password</h3>
+                  <div className={styles.inputHolder}>
+                    <FiLock />
+                    <input
+                      type="password"
+                      placeholder="Your password"
+                      value={loginPw}
+                      onChange={(e) => setLoginPw(e.target.value)}
+                      className={`${styles.input} ${
+                        loginError === "password" ? styles.error : null
+                      }`}
+                    />
+                  </div>
+                  {!isClientRender ? null : (
+                    <>
+                      {loginError === "password" ? (
+                        <p className={styles.wrong}>wrong password</p>
+                      ) : null}
+                    </>
+                  )}
+                </div>
 
-            <button
-              type="button"
-              onClick={handleLogin}
-              className={styles.submitBtn}
-            >
-              sign in
-            </button>
-          </div>
+                <button
+                  type="button"
+                  onClick={handleLogin}
+                  className={styles.submitBtn}
+                >
+                  sign in
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={styles.inputWrapper}>
+                <h2 className={styles.inputTitle}>create your account</h2>
+                <div className={styles.inputContent}>
+                  <h3>email</h3>
+                  <div className={styles.inputHolder}>
+                    <FiUser />
+                    <input
+                      type="email"
+                      placeholder="example@gmail.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+                  {/* error */}
+                </div>
+                <div className={styles.inputContent}>
+                  <h3>password</h3>
+                  <div className={styles.inputHolder}>
+                    <FiLock />
+                    <input
+                      type="password"
+                      placeholder="Your password"
+                      value={pw}
+                      onChange={(e) => setPw(e.target.value)}
+                      className={styles.input}
+                    />
+                  </div>
+                  {/* error */}
+                </div>
+                <div className={styles.inputContent}>
+                  <h3>password</h3>
+                  <div className={styles.inputHolder}>
+                    <FiLock />
+                    <input
+                      type="password"
+                      placeholder="Confirm your password"
+                      className={styles.input}
+                    />
+                  </div>
+                  {/* error */}
+                </div>
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className={styles.submitBtn}
+                >
+                  submit
+                </button>
+              </div>
+            </>
+          )}
+          {/* {errorFinder ? "error" : ""} */}
         </div>
         <div className={styles.loginRight}>
           <Image

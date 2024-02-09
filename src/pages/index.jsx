@@ -4,6 +4,7 @@ import { apiCall } from "@/utils/apiCall";
 import { useEffect, useState } from "react";
 import { AUTH_TOKEN } from "@/constants/localstorage";
 import Login from "@/components/account-login/Login";
+import Dashboard from "@/components/dashboard/Dashboard";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
@@ -93,16 +94,7 @@ export default function Home() {
         <>
           {localStorage.getItem(AUTH_TOKEN) ? (
             <>
-              {me?.email}
-              <button
-                type="button"
-                onClick={() => {
-                  localStorage.removeItem(AUTH_TOKEN);
-                  window.location.reload();
-                }}
-              >
-                log out
-              </button>
+              <Dashboard />
             </>
           ) : (
             <Login />

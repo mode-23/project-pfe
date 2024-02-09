@@ -6,6 +6,15 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
-  background-color: #0c0c0c;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+::selection {
+  background-color: var(--style-color);
   color: #ffffff;
+}
+:root {
+  --bg-color: #1e1e1e;
+  --text-color: #f1e7dd;
+  --style-color: #ff602c;
 }
