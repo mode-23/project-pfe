@@ -12,15 +12,21 @@ const handler = async (req, res) => {
   if (!token) throw new Error("unvalid token");
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  if (!decoded.userId) throw new Error("unathorized token");
 
-  if (!decoded.userId) throw new Error("unathorized");
   const user = await prisma.user.findUnique({
     where: {
       id: decoded.userId,
     },
   });
   if (!user) throw new Error("me: the user was not found");
-  res.status(200).json({ email: user.email, id: user.id });
+  // console.log(user);
+  res.status(200).json({
+    email: user.email,
+    id: user.id,
+    createdAt: user.createdAt,
+    deletedAt: user.deletedAt,
+  });
 };
 
 export default handler;

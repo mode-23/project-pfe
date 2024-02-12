@@ -4,20 +4,19 @@ import { useMeStore } from "@/store/useMeStore";
 import { AUTH_TOKEN } from "@/constants/localstorage";
 
 const Dashboard = () => {
-  const me = useMeStore((state) => ({ id: state.id, email: state.email }));
-
+  const me = useMeStore((state) => ({
+    id: state.id,
+    email: state.email,
+    createdAt: state.createdAt,
+    deletedAt: state.deletedAt,
+  }));
+  const isLoading = useMeStore((state) => state.isLoading);
+  if (isLoading) return <div>loading...</div>;
   return (
     <div className={styles.dashboard}>
-      {me?.email}
-      <button
-        type="button"
-        onClick={() => {
-          localStorage.removeItem(AUTH_TOKEN);
-          window.location.reload();
-        }}
-      >
-        log out
-      </button>
+      user id : {me.id} <br />
+      user email : {me.email} <br />
+      created at : {me.createdAt} <br />
     </div>
   );
 };

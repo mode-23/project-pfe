@@ -3,13 +3,18 @@ import React from "react";
 import { useRouter } from "next/router";
 const ProtectedRoute = ({ children }) => {
   const isLoading = useMeStore((state) => state.isLoading);
-  const me = useMeStore((state) => ({ id: state.id, email: state.email }));
+  const me = useMeStore((state) => ({
+    id: state.id,
+    email: state.email,
+    createdAt: state.createdAt,
+    deletedAt: state.deletedAt,
+  }));
   const router = useRouter();
 
   if (isLoading) return <div>loading...</div>;
 
   if (!me.id) {
-    router.replace("/login");
+    router.replace("/");
     return null;
   }
   return <>{children}</>;

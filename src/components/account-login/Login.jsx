@@ -4,6 +4,7 @@ import { apiCall } from "@/utils/apiCall";
 import styles from "./login.module.css";
 import Image from "next/image";
 import { FiUser, FiLock } from "react-icons/fi";
+import { useMeStore } from "@/store/useMeStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,13 @@ const Login = () => {
   const [loginError, setLoginError] = useState("");
   const [loginState, setLoginState] = useState("login");
   const [isClientRender, setIsClientRender] = useState(false);
+  const isLoading = useMeStore((state) => state.isLoading);
+  const me = useMeStore((state) => ({
+    id: state.id,
+    email: state.email,
+    createdAt: state.createdAt,
+    deletedAt: state.deletedAt,
+  }));
   const handleSubmit = async () => {
     try {
       const res = await apiCall("test2", {
@@ -25,6 +33,7 @@ const Login = () => {
       });
       setEmail("");
       setPw("");
+      setLoginState("login");
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -48,7 +57,6 @@ const Login = () => {
         localStorage.setItem(AUTH_TOKEN, res.token);
 
         window.location.reload();
-        //    router.replace("/");
         // window.location.pathname = "/";
       } else {
         console.log("error");
@@ -68,6 +76,20 @@ const Login = () => {
 
   return (
     <div className={styles.login}>
+      <Image
+        src="/blob1.png"
+        alt="Picture of blob"
+        width={450}
+        height={450}
+        className={styles.blob1}
+      />
+      <Image
+        src="/blob2.png"
+        alt="Picture of blob"
+        width={450}
+        height={450}
+        className={styles.blob2}
+      />
       <div className={styles.loginHolder}>
         <div className={styles.loginLeft}>
           <div
@@ -90,7 +112,7 @@ const Login = () => {
             />
           </div>
           {loginState === "login" ? (
-            <>
+            <form onSubmit={(e) => e.preventDefault()} className={styles.form}>
               <div className={styles.inputWrapper}>
                 <h2 className={styles.inputTitle}>
                   please enter your account details
@@ -100,8 +122,10 @@ const Login = () => {
                   <div className={styles.inputHolder}>
                     <FiUser />
                     <input
+                      required
                       type="email"
                       placeholder="Example@gmail.com"
+                      // pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                       value={loginEmail}
                       onChange={(e) => setLoginEmail(e.target.value)}
                       className={`${styles.input} ${
@@ -122,6 +146,7 @@ const Login = () => {
                   <div className={styles.inputHolder}>
                     <FiLock />
                     <input
+                      required
                       type="password"
                       placeholder="Your password"
                       value={loginPw}
@@ -141,16 +166,16 @@ const Login = () => {
                 </div>
 
                 <button
-                  type="button"
+                  type="submit"
                   onClick={handleLogin}
                   className={styles.submitBtn}
                 >
                   sign in
                 </button>
               </div>
-            </>
+            </form>
           ) : (
-            <>
+            <form onSubmit={(e) => e.preventDefault()} className={styles.form}>
               <div className={styles.inputWrapper}>
                 <h2 className={styles.inputTitle}>create your account</h2>
                 <div className={styles.inputContent}>
@@ -158,6 +183,7 @@ const Login = () => {
                   <div className={styles.inputHolder}>
                     <FiUser />
                     <input
+                      required
                       type="email"
                       placeholder="example@gmail.com"
                       value={email}
@@ -172,6 +198,7 @@ const Login = () => {
                   <div className={styles.inputHolder}>
                     <FiLock />
                     <input
+                      required
                       type="password"
                       placeholder="Your password"
                       value={pw}
@@ -186,6 +213,7 @@ const Login = () => {
                   <div className={styles.inputHolder}>
                     <FiLock />
                     <input
+                      required
                       type="password"
                       placeholder="Confirm your password"
                       className={styles.input}
@@ -194,14 +222,14 @@ const Login = () => {
                   {/* error */}
                 </div>
                 <button
-                  type="button"
+                  type="submit"
                   onClick={handleSubmit}
                   className={styles.submitBtn}
                 >
                   submit
                 </button>
               </div>
-            </>
+            </form>
           )}
           {/* {errorFinder ? "error" : ""} */}
         </div>
