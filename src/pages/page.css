@@ -16,11 +16,12 @@ body {
   color: var(--main-color);
 }
 :root {
-  --bg-color: #171717;
-  --main-color: #0d0d0d;
+  --bg-color: #1b1d21;
+  --main-color: #363636;
   --text-color: #f9f9f9;
-  --style-color: #ff8e2a;
-  --padding: 15px;
+  --style-color: #f3821f;
+  --error-color: #e4002b;
+  --padding: 25px;
 }
 .app_wrapper {
   height: 100svh;
@@ -28,6 +29,12 @@ body {
 }
 .loggedin {
   display: grid;
-  grid-template-columns: 1fr 3.5fr 1.5fr;
-  gap: 20px;
+  grid-template-columns: 1.2fr 3.5fr 1.5fr;
+}
+ul {
+  list-style: none;
+}
+a {
+  color: var(--text-color);
+  text-decoration: none;
 }

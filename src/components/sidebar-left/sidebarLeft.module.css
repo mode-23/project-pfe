@@ -1,0 +1,95 @@
+.leftSideBar {
+  padding: var(--padding);
+  position: relative;
+}
+.sideBarLogo {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+}
+.sideBarLogo img {
+  object-fit: contain;
+  filter: invert(1);
+  left: 15px !important;
+  height: 60% !important;
+  width: 60% !important;
+}
+.leftSideBar ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dropDown a,
+.link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  text-transform: capitalize;
+  background-color: transparent;
+  transition: 250ms ease-in-out;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.link svg {
+  font-size: 20px;
+}
+.link.active {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+.dropDown a.active,
+.dropDown a:hover,
+.link:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+.logoutBtn {
+  background-color: transparent;
+  outline: 0;
+  border: 1px solid transparent;
+  width: calc(100% - (var(--padding) * 2));
+  padding: 10px 15px;
+  transition: 250ms ease-in-out;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 12px;
+  color: var(--error-color);
+  position: absolute;
+  bottom: var(--padding);
+  left: var(--padding);
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.logoutBtn:hover {
+  border-color: var(--error-color);
+  background-color: var(--error-color);
+  color: var(--text-color);
+}
+.logoutBtn svg {
+  font-size: 20px;
+}
+.dropDown li {
+  width: 80%;
+  margin-left: 20%;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dropDown {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  transition: 300ms ease-in;
+}
+.dropDown.active {
+  padding: 10px 0;
+  height: 92.4px;
+  background-color: transparent;
+}
