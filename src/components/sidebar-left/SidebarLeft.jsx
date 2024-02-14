@@ -17,6 +17,7 @@ import {
   IoSettingsOutline,
   IoSettings,
   IoLogOut,
+  IoChevronDownSharp,
 } from "react-icons/io5";
 import { FaRegUser, FaUser, FaPlus } from "react-icons/fa";
 import { RiFilePaper2Fill, RiFilePaper2Line } from "react-icons/ri";
@@ -24,7 +25,32 @@ import { RiFilePaper2Fill, RiFilePaper2Line } from "react-icons/ri";
 const SidebarLeft = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  console.log(pathname === "/");
+  // const data = [
+  //   {
+  //     name: "dashboard",
+  //     url: "/",
+  //     icon: <IoGridOutline />,
+  //     activeIcon: <IoGrid />,
+  //   },
+  //   {
+  //     name: "process",
+  //     url: "/process",
+  //     icon: <IoGridOutline />,
+  //     activeIcon: <IoGrid />,
+  //   },
+  //   {
+  //     name: "analytics",
+  //     url: "/analytics",
+  //     icon: <IoGridOutline />,
+  //     activeIcon: <IoGrid />,
+  //   },
+  //   {
+  //     name: "dashboard",
+  //     url: "/",
+  //     icon: <IoGridOutline />,
+  //     activeIcon: <IoGrid />,
+  //   },
+  // ];
   return (
     <div className={styles.leftSideBar}>
       <div className={styles.sideBarLogo}>
@@ -57,8 +83,19 @@ const SidebarLeft = () => {
                 : `${styles.notActive} ${styles.link}`
             }
           >
-            {open ? <BsSdCardFill /> : <BsSdCard />}
+            {open || pathname.includes("process") ? (
+              <BsSdCardFill />
+            ) : (
+              <BsSdCard />
+            )}
             process
+            <IoChevronDownSharp
+              className={
+                open
+                  ? `${styles.chevron} ${styles.active}`
+                  : `${styles.chevron}`
+              }
+            />
           </div>
           <ul
             className={

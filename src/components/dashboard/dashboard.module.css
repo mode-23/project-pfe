@@ -1,3 +1,134 @@
 .dashboard {
-  padding: var(--padding);
+  padding: 0;
+  position: relative;
+  height: 100svh;
+  max-height: 100svh;
+  overflow-y: auto;
+  padding-bottom: var(--padding);
+}
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 99;
+  padding: var(--padding) 0;
+}
+.inputHolder {
+  position: relative;
+  width: calc(50% - (var(--padding) / 2));
+  height: 36px;
+}
+.inputHolder svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  z-index: 1;
+}
+.inputHolder input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  border: 1px solid transparent;
+  outline: 0;
+  padding: 15px 30px;
+  padding-left: 45px;
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.75;
+  transition: 250ms ease-in;
+}
+.inputHolder input::placeholder {
+  font-weight: 200;
+}
+.inputHolder input:focus {
+  opacity: 1;
+}
+.dashboardHeader button {
+  background-color: transparent;
+  height: 36px;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  outline: 0;
+  border: 1px dashed var(--text-color);
+  color: var(--text-color);
+  transition: 250ms ease-in;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+}
+.dashboardHeader button:hover {
+  opacity: 1;
+}
+.dashboardBoxs {
+  height: 35svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--padding);
+  margin-bottom: var(--padding);
+}
+.dashboardBox {
+  background-color: var(--style-color);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.dashboardBox:hover img {
+  scale: 1.05;
+  rotate: 2deg;
+}
+.dashboardBox img {
+  filter: grayscale(100%);
+  opacity: 0.2;
+  object-fit: cover;
+  transition: 350ms ease-in;
+}
+.dashboardBox h3 {
+  font-size: 65px;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-style: italic;
+}
+.dashboardBox svg {
+  font-size: 65px;
+}
+.dashboardBox::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -110%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(30deg);
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  cursor: pointer;
+  transition-property: left, top, opacity;
+  transition-duration: 0.7s, 0.7s, 0.15s;
+  transition-timing-function: ease;
+}
+.dashboardBox:hover::after {
+  opacity: 1;
+  top: -30%;
+  left: -30%;
 }
