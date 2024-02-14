@@ -19,7 +19,7 @@ const handler = async (req, res) => {
       id: decoded.userId,
     },
   });
-  if (!user) throw new Error("me: the user was not found");
+  if (!user) throw new Error("user was not found");
   // console.log(user);
   res.status(200).json({
     email: user.email,

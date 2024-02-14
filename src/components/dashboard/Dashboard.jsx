@@ -27,14 +27,14 @@ const Dashboard = () => {
           <HiOutlinePlus />
         </button>
       </header>
-      <Link href={"/analytics"} className={styles.dashboardBoxs}>
-        <div className={styles.dashboardBox}>
+      <div className={styles.dashboardBoxs}>
+        <Link href={"/analytics"} className={styles.dashboardBox}>
           <Image src="/analytics.jpg" fill={true} alt="image of analytics" />
           <SiGoogleanalytics />
           {/* <h3>analytics</h3> */}
-        </div>
+        </Link>
         <div className={styles.dashboardBox}>{/* <h3>add process</h3> */}</div>
-      </Link>
+      </div>
       user id : {me.id} <br />
       user email : {me.email} <br />
       created at : {me.createdAt} <br />
