@@ -6,6 +6,7 @@ import { HiOutlinePlus } from "react-icons/hi2";
 import { SiGoogleanalytics } from "react-icons/si";
 import Image from "next/image";
 import Link from "next/link";
+import Chart from "../Chart";
 
 const Dashboard = () => {
   const me = useMeStore((state) => ({
@@ -35,7 +36,14 @@ const Dashboard = () => {
         </Link>
         <div className={styles.dashboardBox}>{/* <h3>add process</h3> */}</div>
       </div>
-      user id : {me.id} <br />
+      <div className={styles.chartTab}>
+        <ul>
+          <li>test</li>
+          <li>test</li>
+        </ul>
+      </div>
+      <Chart />
+      {/* user id : {me.id} <br />
       user email : {me.email} <br />
       created at : {me.createdAt} <br />
       <br />
@@ -99,7 +107,7 @@ const Dashboard = () => {
         rerum aspernatur vero, facilis delectus perspiciatis explicabo illo modi
         laudantium perferendis asperiores tenetur voluptates? Omnis, laboriosam
         adipisci.
-      </p>
+      </p> */}
     </div>
   );
 };

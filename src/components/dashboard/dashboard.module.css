@@ -71,7 +71,7 @@
   opacity: 1;
 }
 .dashboardBoxs {
-  height: 35svh;
+  height: 30.9svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--padding);
@@ -85,6 +85,12 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+.dashboardBox:nth-child(1) {
+  background-color: #82ca9d;
+}
+.dashboardBox:nth-child(2) {
+  background-color: #8884d8;
 }
 .dashboardBox:hover img {
   scale: 1.05;
@@ -131,4 +137,19 @@
   opacity: 1;
   top: -30%;
   left: -30%;
+}
+.chartTab ul {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.chartTab ul li {
+  padding: 8px 15px;
+  border-radius: 8px;
+  background-color: var(--main-color);
+  cursor: pointer;
+}
+.chartTab ul li.active {
+  background-color: #999;
 }
