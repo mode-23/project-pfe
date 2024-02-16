@@ -79,18 +79,23 @@
 }
 .dashboardBox {
   background-color: var(--style-color);
+  color: #fff;
   border-radius: 12px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 10px;
   overflow: hidden;
 }
 .dashboardBox:nth-child(1) {
   background-color: #82ca9d;
+  background-color: #e27a2f;
 }
 .dashboardBox:nth-child(2) {
   background-color: #8884d8;
+  background-color: #ec9b50;
 }
 .dashboardBox:hover img {
   scale: 1.05;
@@ -103,10 +108,9 @@
   transition: 350ms ease-in;
 }
 .dashboardBox h3 {
-  font-size: 65px;
+  font-size: 30px;
   text-transform: uppercase;
-  font-weight: 100;
-  font-style: italic;
+  font-weight: 400;
 }
 .dashboardBox svg {
   font-size: 65px;
@@ -138,6 +142,16 @@
   top: -30%;
   left: -30%;
 }
+.chartTab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chartTabHeader {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .chartTab ul {
   display: flex;
   align-items: center;
@@ -149,7 +163,12 @@
   border-radius: 8px;
   background-color: var(--main-color);
   cursor: pointer;
+  transition: 300ms ease-in-out;
+  font-weight: 600;
+  text-transform: capitalize;
 }
+.chartTab ul li:hover,
 .chartTab ul li.active {
-  background-color: #999;
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }

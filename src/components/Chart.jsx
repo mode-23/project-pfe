@@ -12,43 +12,43 @@ import {
 const Chart = () => {
   const data = [
     {
-      name: "Page A",
+      name: "Sunday",
       uv: 4000,
       pv: 2400,
       amt: 2400,
     },
     {
-      name: "Page B",
+      name: "Monday",
       uv: 3000,
       pv: 1398,
       amt: 2210,
     },
     {
-      name: "Page C",
+      name: "Tuesday",
       uv: 2000,
       pv: 9800,
       amt: 2290,
     },
     {
-      name: "Page D",
+      name: "Wednesday",
       uv: 2780,
       pv: 3908,
       amt: 2000,
     },
     {
-      name: "Page E",
+      name: "Thursday",
       uv: 1890,
       pv: 4800,
       amt: 2181,
     },
     {
-      name: "Page F",
+      name: "Friday",
       uv: 2390,
       pv: 3800,
       amt: 2500,
     },
     {
-      name: "Page G",
+      name: "Saturday",
       uv: 3490,
       pv: 4300,
       amt: 2100,
@@ -65,29 +65,33 @@ const Chart = () => {
         >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              <stop offset="5%" stopColor="#ec9b50" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ec9b50" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+              <stop offset="5%" stopColor="#e27a2f" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#e27a2f" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
-          {/* <YAxis /> */}
+          <YAxis />
           <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
+          {/* <Tooltip /> */}
+          <Tooltip
+            content={<CustomTooltip />}
+            // cursor={{ fill: "transparent" }}
+          />
           <Area
             type="monotone"
             dataKey="uv"
-            stroke="#8884d8"
+            stroke="#ec9b50"
             fillOpacity={1}
             fill="url(#colorUv)"
           />
           <Area
             type="monotone"
             dataKey="pv"
-            stroke="#82ca9d"
+            stroke="#e27a2f"
             fillOpacity={1}
             fill="url(#colorPv)"
           />
@@ -96,5 +100,22 @@ const Chart = () => {
     </div>
   );
 };
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <h4>{label}</h4>
+        {payload.map((item, index) => (
+          <div className="label" key={index}>
+            <span style={{ backgroundColor: item.color }}>{item.dataKey}</span>{" "}
+            {item.value}
+          </div>
+        ))}
+        {/* <p className="desc">Anything you want can be displayed here.</p> */}
+      </div>
+    );
+  }
 
+  return null;
+};
 export default Chart;

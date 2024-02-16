@@ -38,13 +38,13 @@
   position: relative;
   height: 120px;
   aspect-ratio: 1/1;
-  border-radius: 50%;
+  border-radius: 30px;
   overflow: hidden;
   background-color: var(--main-color);
 }
 .imgHolder img {
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: inherit;
 }
 .history {
   height: 60svh;
@@ -75,7 +75,8 @@
   width: 35px;
   aspect-ratio: 1/1;
   border-radius: 12px;
-  background-color: #3f3f3f;
+  background-color: var(--second-color);
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,12 +90,23 @@
   opacity: 0.8;
 }
 .status {
-  background-color: rgb(113, 184, 7);
+  background-color: #22222280;
+  border: 1px solid #222;
+  color: #fff;
   border-radius: 10px;
   font-size: 12px;
   padding: 5px 8px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 71px;
 }
-.status.active {
-  background-color: rgb(113, 184, 7);
+.status.viable {
+  background-color: #49a94280;
+  border: 1px solid #49a942;
+}
+.status.error {
+  background-color: #e4002b80;
+  border: 1px solid #e4002b;
 }

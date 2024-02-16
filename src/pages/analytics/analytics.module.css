@@ -1,0 +1,9 @@
+.analytics {
+  padding: var(--padding) 0;
+}
+.analytics {
+  position: relative;
+  height: 100svh;
+  max-height: 100svh;
+  overflow-y: auto;
+}

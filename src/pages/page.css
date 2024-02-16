@@ -18,10 +18,20 @@ body {
 :root {
   --bg-color: #1b1d21;
   --main-color: #292c31;
+  --second-color: #3f3f3f;
   --text-color: #f9f9f9;
-  --style-color: #f3821f;
+  --style-color: #e27a2f;
   --error-color: #e4002b;
   --padding: 25px;
+}
+.light {
+  --bg-color: #f9f9f9;
+  --main-color: #e9eff5;
+  --text-color: #1b1d21;
+  --second-color: #ced6de;
+}
+.light img {
+  filter: invert(0) !important;
 }
 ::-webkit-scrollbar {
   width: 0px;
@@ -49,4 +59,24 @@ ul {
 a {
   color: var(--text-color);
   text-decoration: none;
+}
+.custom-tooltip {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.label {
+  font-weight: 500;
+}
+.label:nth-child(1) {
+  margin-bottom: 15px;
+}
+.label span {
+  color: var(--text-color);
+  padding: 5px;
+  border-radius: 4px;
 }

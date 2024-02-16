@@ -82,7 +82,7 @@
 .logoutBtn:hover {
   border-color: var(--error-color);
   background-color: var(--error-color);
-  color: var(--text-color);
+  color: #fff;
 }
 .logoutBtn svg {
   font-size: 20px;

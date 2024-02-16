@@ -86,6 +86,9 @@ export default function Home() {
   useEffect(() => {
     setIsClientRender(true);
   }, []);
+  useEffect(() => {
+    // document.body.classList.add("light");
+  }, []);
   return (
     <div>
       {!isClientRender ? null : (

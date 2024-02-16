@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useMeStore } from "@/store/useMeStore";
 import { RiFilePaperFill } from "react-icons/ri";
+import Link from "next/link";
 
 const SidebarRight = () => {
   const me = useMeStore((state) => ({
@@ -17,9 +18,9 @@ const SidebarRight = () => {
     <div className={styles.rightSideBar}>
       <div className={styles.header}>
         <h3>Profile</h3>
-        <div className={styles.icon}>
+        <Link href={"/settings"} className={styles.icon}>
           <IoSettingsOutline />
-        </div>
+        </Link>
       </div>
       <div className={styles.userHolder}>
         <div className={styles.imgHolder}>
@@ -38,7 +39,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -50,7 +51,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -62,7 +63,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.error}`}>unactive</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -74,7 +75,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -86,7 +87,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.error}`}>unactive</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -98,7 +99,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.error}`}>unactive</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -110,7 +111,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -122,7 +123,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -134,7 +135,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
         <div className={styles.historyBox}>
           <div className={styles.df}>
@@ -146,7 +147,7 @@ const SidebarRight = () => {
               <p>26m ago</p>
             </span>
           </div>
-          <div className={styles.status}>active</div>
+          <div className={`${styles.status} ${styles.viable}`}>active</div>
         </div>
       </div>
     </div>
