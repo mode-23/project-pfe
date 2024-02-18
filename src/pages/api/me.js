@@ -2,10 +2,9 @@ import { prisma } from "../../prisma_setup";
 import jwt from "jsonwebtoken";
 
 const handler = async (req, res) => {
-  // console.log(req.headers);
+  console.log(req.headers);
 
   const authHeader = req.headers["x_authorization"];
-
   if (!authHeader) throw new Error("unathorized");
 
   const token = authHeader.replace("Bearer ", "");
