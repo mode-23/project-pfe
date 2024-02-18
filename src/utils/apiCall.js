@@ -1,14 +1,14 @@
-import { AUTH_TOKEN } from "@/constants/localstorage"
+import { AUTH_TOKEN } from "@/constants/localstorage";
 
 export const apiCall = async (route, options) => {
-       const token = localStorage.getItem(AUTH_TOKEN)
+  const token = localStorage.getItem(AUTH_TOKEN);
 
-       const res =  await fetch(`/api/${route}`, {
-          ...options,
-          headers: {
-               authorization: token ? `Bearer ${token}` : undefined
-          }
-     })
+  const res = await fetch(`/api/${route}`, {
+    ...options,
+    headers: {
+      Authorization: token ? `Bearer ${token}` : undefined,
+    },
+  });
 
-     return await res.json();
-}
+  return await res.json();
+};
