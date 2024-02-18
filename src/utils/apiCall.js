@@ -6,7 +6,7 @@ export const apiCall = async (route, options) => {
   const res = await fetch(`/api/${route}`, {
     ...options,
     headers: {
-      Authorization: token ? `Bearer ${token}` : undefined,
+      x_authorization: token ? `Bearer ${token}` : undefined,
     },
   });
 

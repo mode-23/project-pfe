@@ -4,8 +4,7 @@ import jwt from "jsonwebtoken";
 const handler = async (req, res) => {
   // console.log(req.headers);
 
-  const authHeader =
-    req.headers["authorization"] || req.headers["Authorization"];
+  const authHeader = req.headers["x_authorization"];
 
   if (!authHeader) throw new Error("unathorized");
 
