@@ -90,7 +90,7 @@ export default function Home() {
     // document.body.classList.add("light");
   }, []);
   return (
-    <div>
+    <>
       {!isClientRender ? null : (
         <>
           {localStorage.getItem(AUTH_TOKEN) ? (
@@ -102,6 +102,6 @@ export default function Home() {
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

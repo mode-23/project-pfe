@@ -12,7 +12,7 @@
   justify-content: space-between;
   position: sticky;
   top: 0;
-  background-color: var(--bg-color);
+  /* background-color: var(--bg-color); */
   z-index: 99;
   padding: var(--padding) 0;
 }
@@ -21,7 +21,7 @@
   width: calc(50% - (var(--padding) / 2));
   height: 36px;
 }
-.inputHolder svg {
+.inputHolder .searchIcon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -46,6 +46,7 @@
 }
 .inputHolder input::placeholder {
   font-weight: 200;
+  text-transform: capitalize;
 }
 .inputHolder input:focus {
   opacity: 1;
@@ -90,11 +91,9 @@
   overflow: hidden;
 }
 .dashboardBox:nth-child(1) {
-  background-color: #82ca9d;
   background-color: #e27a2f;
 }
 .dashboardBox:nth-child(2) {
-  background-color: #8884d8;
   background-color: #ec9b50;
 }
 .dashboardBox:hover img {

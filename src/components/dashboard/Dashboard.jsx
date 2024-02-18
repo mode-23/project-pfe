@@ -24,7 +24,7 @@ const Dashboard = () => {
     >
       <header className={styles.dashboardHeader}>
         <div className={styles.inputHolder}>
-          <LuSearch />
+          <LuSearch className={styles.searchIcon} />
           <input type="text" placeholder="search" />
         </div>
         <button>

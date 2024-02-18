@@ -65,22 +65,24 @@ const Chart = () => {
         >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#ec9b50" stopOpacity={0.8} />
+              <stop offset="5%" stopColor="#ec9b50" stopOpacity={0.4} />
               <stop offset="95%" stopColor="#ec9b50" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#e27a2f" stopOpacity={0.8} />
+              <stop offset="5%" stopColor="#e27a2f" stopOpacity={0.4} />
               <stop offset="95%" stopColor="#e27a2f" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" />
           <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          {/* <Tooltip /> */}
-          <Tooltip
-            content={<CustomTooltip />}
-            // cursor={{ fill: "transparent" }}
+          <CartesianGrid
+            strokeDasharray="4 8"
+            opacity={".4"}
+            horizontal={true}
+            vertical={false}
           />
+          {/* <Tooltip /> */}
+          <Tooltip content={<CustomTooltip />} />
           <Area
             type="monotone"
             dataKey="uv"
