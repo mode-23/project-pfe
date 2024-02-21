@@ -5,6 +5,9 @@
   max-height: 100svh;
   overflow-y: auto;
   padding-bottom: var(--padding);
+  padding: var(--padding);
+  padding-top: 0;
+  background-color: var(--text-color);
 }
 .dashboardHeader {
   display: flex;
@@ -15,37 +18,50 @@
   /* background-color: var(--bg-color); */
   z-index: 99;
   padding: var(--padding) 0;
+  height: 86px;
 }
 .inputHolder {
   position: relative;
   width: calc(50% - (var(--padding) / 2));
   height: 36px;
+  z-index: 2;
+}
+.inputHolder::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--second-color);
+  z-index: -1;
 }
 .inputHolder .searchIcon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 15px;
-  z-index: 1;
+  right: 15px;
+  z-index: 21;
+  color: var(--main-color) !important;
 }
 .inputHolder input {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
-  background-color: var(--main-color);
-  color: var(--text-color);
-  border: 1px solid transparent;
+  /* border-radius: 12px; */
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 1px solid var(--main-color);
   outline: 0;
-  padding: 15px 30px;
-  padding-left: 45px;
+  padding: 15px;
+  padding-right: 45px;
   font-size: 16px;
   font-weight: 600;
-  opacity: 0.75;
   transition: 250ms ease-in;
+  z-index: 1;
 }
 .inputHolder input::placeholder {
-  font-weight: 200;
+  font-weight: 100;
   text-transform: capitalize;
 }
 .inputHolder input:focus {
@@ -57,8 +73,8 @@
   aspect-ratio: 1/1;
   border-radius: 12px;
   outline: 0;
-  border: 1px dashed var(--text-color);
-  color: var(--text-color);
+  border: 1px dashed var(--main-color);
+  color: var(--main-color);
   transition: 250ms ease-in;
   cursor: pointer;
   font-size: 26px;
@@ -72,7 +88,7 @@
   opacity: 1;
 }
 .dashboardBoxs {
-  height: 30.9svh;
+  height: 27svh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--padding);
@@ -80,8 +96,9 @@
 }
 .dashboardBox {
   background-color: var(--style-color);
+  background-color: var(--bg-color);
+  color: var(--style-color);
   color: #fff;
-  border-radius: 12px;
   position: relative;
   display: flex;
   align-items: center;
@@ -90,11 +107,16 @@
   gap: 10px;
   overflow: hidden;
 }
+.dashboardBox svg {
+  color: var(--style-color);
+}
 .dashboardBox:nth-child(1) {
   background-color: #e27a2f;
+  background-color: var(--bg-color);
 }
 .dashboardBox:nth-child(2) {
   background-color: #ec9b50;
+  background-color: var(--bg-color);
 }
 .dashboardBox:hover img {
   scale: 1.05;
@@ -102,7 +124,7 @@
 }
 .dashboardBox img {
   filter: grayscale(100%);
-  opacity: 0.2;
+  opacity: 0.05;
   object-fit: cover;
   transition: 350ms ease-in;
 }
@@ -141,15 +163,32 @@
   top: -30%;
   left: -30%;
 }
+.dashboardBox::before {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+  width: 30px;
+  aspect-ratio: 1/1;
+  background-color: var(--text-color);
+  transform: rotate(140deg);
+  pointer-events: none;
+}
 .chartTab {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--second-color);
+  margin-bottom: var(--padding);
 }
 .chartTabHeader {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   gap: 5px;
+  color: var(--bg-color);
+}
+.chartTabHeader svg {
+  color: var(--style-color);
 }
 .chartTab ul {
   display: flex;
@@ -161,6 +200,8 @@
   padding: 8px 15px;
   border-radius: 8px;
   background-color: var(--main-color);
+  background-color: var(--text-color);
+  color: var(--bg-color);
   cursor: pointer;
   transition: 300ms ease-in-out;
   font-weight: 600;
@@ -168,6 +209,6 @@
 }
 .chartTab ul li:hover,
 .chartTab ul li.active {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  background-color: var(--main-color);
+  color: var(--text-color);
 }

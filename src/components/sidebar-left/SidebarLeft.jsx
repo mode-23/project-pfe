@@ -10,8 +10,12 @@ import {
   BsSdCardFill,
   BsSdCard,
   BsPlusCircleDotted,
+  BsCaretRightFill,
+  BsCaretRight,
 } from "react-icons/bs";
 import {
+  IoTimeOutline,
+  IoTime,
   IoGridOutline,
   IoGrid,
   IoSettingsOutline,
@@ -21,6 +25,14 @@ import {
 } from "react-icons/io5";
 import { FaRegUser, FaUser, FaPlus } from "react-icons/fa";
 import { RiFilePaper2Fill, RiFilePaper2Line } from "react-icons/ri";
+import {
+  PiRecycleLight,
+  PiRecycleBold,
+  PiRecycleDuotone,
+  PiCaretDoubleRightDuotone,
+  PiCaretDoubleRightFill,
+} from "react-icons/pi";
+import { TiWarningOutline, TiWarning } from "react-icons/ti";
 
 const SidebarLeft = () => {
   const [open, setOpen] = useState(false);
@@ -55,7 +67,7 @@ const SidebarLeft = () => {
     <div className={styles.leftSideBar}>
       <div className={styles.sideBarLogo}>
         <Image
-          src="/orange-logo.png"
+          src="/logo-orange.png"
           alt="Picture of Orange logo"
           fill={true}
         />
@@ -67,7 +79,7 @@ const SidebarLeft = () => {
             className={
               pathname === "/"
                 ? `${styles.active} ${styles.link}`
-                : `${styles.notActive} ${styles.link}`
+                : ` ${styles.link}`
             }
           >
             {pathname === "/" ? <IoGrid /> : <IoGridOutline />}
@@ -78,17 +90,17 @@ const SidebarLeft = () => {
           <div
             onClick={() => setOpen((prev) => !prev)}
             className={
-              open || pathname.includes("process")
+              open || pathname.includes("projects")
                 ? `${styles.active} ${styles.link}`
-                : `${styles.notActive} ${styles.link}`
+                : `${styles.link}`
             }
           >
-            {open || pathname.includes("process") ? (
+            {open || pathname.includes("projects") ? (
               <BsSdCardFill />
             ) : (
               <BsSdCard />
             )}
-            process
+            projects
             <IoChevronDownSharp
               className={
                 open
@@ -106,39 +118,103 @@ const SidebarLeft = () => {
           >
             <li>
               <Link
-                href={"/process"}
+                href={"/projects/apc"}
                 className={
-                  pathname === "/process"
-                    ? `${styles.active}`
-                    : `${styles.notActive}`
+                  pathname === "/projects/apc" ? `${styles.active}` : null
                 }
               >
-                <RiFilePaper2Line />
-                process list
+                {pathname === "/projects/apc" ? (
+                  <PiCaretDoubleRightFill className={styles.smallSvg} />
+                ) : (
+                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
+                )}
+                APC
               </Link>
             </li>
             <li>
               <Link
-                href={"/process/add"}
+                href={"/projects/lte"}
                 className={
-                  pathname === "/process/add"
-                    ? `${styles.active}`
-                    : `${styles.notActive}`
+                  pathname === "/projects/lte" ? `${styles.active}` : null
                 }
               >
-                <BsPlusCircleDotted />
-                added process
+                {pathname === "/projects/lte" ? (
+                  <PiCaretDoubleRightFill className={styles.smallSvg} />
+                ) : (
+                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
+                )}
+                LTE
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"/projects/reengagement"}
+                className={
+                  pathname === "/projects/reengagement"
+                    ? `${styles.active}`
+                    : null
+                }
+              >
+                {pathname === "/projects/reengagement" ? (
+                  <PiCaretDoubleRightFill className={styles.smallSvg} />
+                ) : (
+                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
+                )}
+                REENGAGEMENT
               </Link>
             </li>
           </ul>
         </li>
         <li>
           <Link
+            href={"/history"}
+            className={
+              pathname === "/history"
+                ? `${styles.active} ${styles.link}`
+                : ` ${styles.link}`
+            }
+          >
+            {pathname === "/history" ? <IoTime /> : <IoTimeOutline />}
+            history
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={"/failed"}
+            className={
+              pathname === "/failed"
+                ? `${styles.active} ${styles.link}`
+                : ` ${styles.link}`
+            }
+          >
+            {pathname === "/failed" ? <TiWarning /> : <TiWarningOutline />}
+            failed
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={"/recycle"}
+            className={
+              pathname === "/recycle"
+                ? `${styles.active} ${styles.link}`
+                : ` ${styles.link}`
+            }
+          >
+            {pathname === "/recycle" ? (
+              <PiRecycleDuotone />
+            ) : (
+              <PiRecycleLight />
+            )}
+            recycle
+          </Link>
+        </li>
+        {/* <li>
+          <Link
             href={"/analytics"}
             className={
               pathname === "/analytics"
                 ? `${styles.active} ${styles.link}`
-                : `${styles.notActive} ${styles.link}`
+                : ` ${styles.link}`
             }
           >
             {pathname === "/analytics" ? <BsBarChartFill /> : <BsBarChart />}
@@ -151,13 +227,13 @@ const SidebarLeft = () => {
             className={
               pathname === "/settings"
                 ? `${styles.active} ${styles.link}`
-                : `${styles.notActive} ${styles.link}`
+                : ` ${styles.link}`
             }
           >
             {pathname === "/settings" ? <IoSettings /> : <IoSettingsOutline />}
             settings
           </Link>
-        </li>
+        </li> */}
       </ul>
       <button
         type="button"

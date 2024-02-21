@@ -4,7 +4,7 @@ import { useMeStore } from "@/store/useMeStore";
 import { LuSearch } from "react-icons/lu";
 import { HiOutlinePlus } from "react-icons/hi2";
 import { SiGoogleanalytics } from "react-icons/si";
-import { FaDatabase, FaLink, FaPlus } from "react-icons/fa";
+import { FaChartPie, FaLink, FaPlus, FaProjectDiagram } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import Chart from "../Chart";
@@ -34,13 +34,13 @@ const Dashboard = () => {
       <div className={styles.dashboardBoxs}>
         <Link href={"/analytics"} className={styles.dashboardBox}>
           <Image src="/analytics.jpg" fill={true} alt="image of analytics" />
-          <SiGoogleanalytics />
+          <FaChartPie />
           <h3>analytics</h3>
         </Link>
         <Link href={"/process"} className={styles.dashboardBox}>
           <Image src="/data.jpg" fill={true} alt="image of data" />
-          <FaDatabase />
-          <h3>process</h3>
+          <FaProjectDiagram />
+          <h3>Projects</h3>
         </Link>
       </div>
       <div className={styles.chartTab}>

@@ -6,21 +6,21 @@
   box-sizing: border-box;
 }
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--text-color);
+  color: var(--bg-color);
   font-family: "Montserrat", sans-serif;
   font-family: "Epilogue", sans-serif;
 }
 ::selection {
-  background-color: var(--text-color);
-  color: var(--main-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 :root {
-  --bg-color: #1b1d21;
-  --main-color: #292c31;
-  --second-color: #3f3f3f;
-  --text-color: #f9f9f9;
-  --style-color: #e27a2f;
+  --bg-color: #000;
+  --main-color: #161616;
+  --second-color: #333;
+  --text-color: #fff;
+  --style-color: #ff7900;
   --error-color: #e4002b;
   --padding: 25px;
 }
@@ -49,7 +49,7 @@ body {
   height: 100svh;
   overflow: hidden;
   max-height: 100svh;
-  background-color: var(--bg-color);
+  background-color: var(--text-color);
   position: relative;
   z-index: 12;
   overflow: hidden;
@@ -66,10 +66,10 @@ a {
   text-decoration: none;
 }
 .custom-tooltip {
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   padding: 15px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -88,4 +88,5 @@ a {
 .recharts-cartesian-axis line,
 .recharts-yAxis line {
   opacity: 0;
+  stroke: var(--main-color);
 }
