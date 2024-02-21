@@ -17,3 +17,13 @@ model User {
   createdAt DateTime  @default(now())
   deletedAt DateTime?
 }
+
+model Project {
+  id        Int       @id @default(autoincrement())
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  status    String
+  deletedAt DateTime?
+  updatedAt DateTime?
+}

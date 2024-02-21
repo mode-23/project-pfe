@@ -33,16 +33,28 @@
   left: 2.8px;
   width: 100%;
   height: 100%;
-  background-color: var(--main-color);
-  border: 1px solid var(--bg-color);
   z-index: -1;
   transition: 300ms ease-in;
 }
-.orangeBtn:hover {
+.orangeBtn:not(:disabled)::after {
+  background-color: var(--main-color);
+  border: 1px solid var(--bg-color);
+}
+.orangeBtn:disabled::after {
+  background-color: #a1a0a0;
+  border: 1px solid #a1a0a0;
+}
+.orangeBtn:disabled {
+  background-color: #a1a0a0;
+  border-color: #fff;
+  color: #fff;
+  cursor: no-drop;
+}
+.orangeBtn:not(:disabled):hover {
   background-color: var(--main-color);
   color: var(--text-color);
 }
-.orangeBtn:hover::after {
+.orangeBtn:not(:disabled):hover::after {
   background-color: var(--text-color);
 }
 .title {
@@ -54,4 +66,7 @@
 }
 .title svg {
   color: var(--style-color);
+}
+.projectHolderList {
+  height: 100%;
 }
