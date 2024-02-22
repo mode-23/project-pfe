@@ -169,6 +169,7 @@ a {
   align-items: center;
   gap: 12px;
   color: var(--style-color);
+
   font-weight: 500;
   cursor: pointer;
 }
