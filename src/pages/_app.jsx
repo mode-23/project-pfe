@@ -6,6 +6,11 @@ import "./page.css";
 import SidebarLeft from "@/components/sidebar-left/SidebarLeft";
 import SidebarRight from "@/components/sidebar-right/SidebarRight";
 import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { IoHomeSharp, IoLockOpen } from "react-icons/io5";
+import Link from "next/link";
+import { AUTH_TOKEN } from "@/constants/localstorage";
 
 const App = ({ Component, pageProps }) => {
   const setMe = useMeStore((state) => state.setMe);
@@ -34,18 +39,51 @@ const App = ({ Component, pageProps }) => {
       prisma.$disconnect();
     };
   }, []);
+  const { query } = useRouter();
 
   return (
-    <div className={me.id ? "app_wrapper loggedin" : "app_wrapper"}>
+    <>
       <Head>
+        <link rel="icon" type="image/svg+xml" href="/logo-orange.png" />
         <title>Stage PFE</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      {me.id && <SidebarLeft />}
-      <Component {...pageProps} />
-      {me.id && <SidebarRight />}
-    </div>
+      {me.id && (
+        <header className="header">
+          <div className="df">
+            <div className="header_logo">
+              <Image src={"/logo-orange.png"} fill={true} />
+            </div>
+            <h2>{query?.name}</h2>
+          </div>
+          <ul className="df header_ul">
+            <li>
+              <Link href={"/"} className="header_a">
+                <IoHomeSharp />
+                <p>Home</p>
+              </Link>
+            </li>
+            <li
+              className="header_a"
+              onClick={() => {
+                localStorage.removeItem(AUTH_TOKEN);
+                window.location.reload();
+              }}
+            >
+              <IoLockOpen />
+              <p>Log out</p>
+            </li>
+          </ul>
+        </header>
+      )}
+      <div className={me.id ? "app_wrapper loggedin" : "app_wrapper"}>
+        {me.id && <SidebarLeft />}
+        <Component {...pageProps} />
+        {me.id && <SidebarRight />}
+      </div>
+      {/* <footer className="footer">footer</footer> */}
+    </>
   );
 };
 

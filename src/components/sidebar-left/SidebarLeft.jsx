@@ -65,13 +65,13 @@ const SidebarLeft = () => {
   // ];
   return (
     <div className={styles.leftSideBar}>
-      <div className={styles.sideBarLogo}>
+      {/* <div className={styles.sideBarLogo}>
         <Image
           src="/logo-orange.png"
           alt="Picture of Orange logo"
           fill={true}
         />
-      </div>
+      </div> */}
       <ul>
         <li>
           <Link
@@ -90,12 +90,12 @@ const SidebarLeft = () => {
           <div
             onClick={() => setOpen((prev) => !prev)}
             className={
-              open || pathname.includes("projects")
+              open || pathname?.includes("projects")
                 ? `${styles.active} ${styles.link}`
                 : `${styles.link}`
             }
           >
-            {open || pathname.includes("projects") ? (
+            {open || pathname?.includes("projects") ? (
               <BsSdCardFill />
             ) : (
               <BsSdCard />
@@ -120,10 +120,14 @@ const SidebarLeft = () => {
               <Link
                 href={"/projects/apc"}
                 className={
-                  pathname === "/projects/apc" ? `${styles.active}` : null
+                  pathname === "/projects/apc" ||
+                  pathname?.includes("projects/apc")
+                    ? `${styles.active}`
+                    : null
                 }
               >
-                {pathname === "/projects/apc" ? (
+                {pathname === "/projects/apc" ||
+                pathname?.includes("projects/apc") ? (
                   <PiCaretDoubleRightFill className={styles.smallSvg} />
                 ) : (
                   <PiCaretDoubleRightDuotone className={styles.smallSvg} />
@@ -135,10 +139,14 @@ const SidebarLeft = () => {
               <Link
                 href={"/projects/lte"}
                 className={
-                  pathname === "/projects/lte" ? `${styles.active}` : null
+                  pathname === "/projects/lte" ||
+                  pathname?.includes("projects/lte")
+                    ? `${styles.active}`
+                    : null
                 }
               >
-                {pathname === "/projects/lte" ? (
+                {pathname === "/projects/lte" ||
+                pathname?.includes("projects/lte") ? (
                   <PiCaretDoubleRightFill className={styles.smallSvg} />
                 ) : (
                   <PiCaretDoubleRightDuotone className={styles.smallSvg} />
@@ -150,12 +158,14 @@ const SidebarLeft = () => {
               <Link
                 href={"/projects/reengagement"}
                 className={
-                  pathname === "/projects/reengagement"
+                  pathname === "/projects/reengagement" ||
+                  pathname?.includes("projects/reengagement")
                     ? `${styles.active}`
                     : null
                 }
               >
-                {pathname === "/projects/reengagement" ? (
+                {pathname === "/projects/reengagement" ||
+                pathname?.includes("projects/reengagement") ? (
                   <PiCaretDoubleRightFill className={styles.smallSvg} />
                 ) : (
                   <PiCaretDoubleRightDuotone className={styles.smallSvg} />
@@ -235,7 +245,7 @@ const SidebarLeft = () => {
           </Link>
         </li> */}
       </ul>
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           localStorage.removeItem(AUTH_TOKEN);
@@ -245,7 +255,7 @@ const SidebarLeft = () => {
       >
         <IoLogOut />
         log out
-      </button>
+      </button> */}
     </div>
   );
 };

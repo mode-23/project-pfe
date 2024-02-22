@@ -19,6 +19,7 @@ body {
   --bg-color: #000;
   --main-color: #161616;
   --second-color: #333;
+  --soft-color: #dedede;
   --text-color: #fff;
   --style-color: #ff7900;
   --error-color: #e4002b;
@@ -46,15 +47,17 @@ body {
   background: #555;
 }
 .app_wrapper {
-  height: 100svh;
+  height: calc(100svh);
   overflow: hidden;
-  max-height: 100svh;
+  max-height: calc(100svh);
   background-color: var(--text-color);
   position: relative;
   z-index: 12;
   overflow: hidden;
 }
 .loggedin {
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
   display: grid;
   grid-template-columns: 1.4fr 3.5fr 2fr;
 }
@@ -102,10 +105,11 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  bottom: -6px;
-  left: 6px;
+  bottom: -5px;
+  left: 5px;
   z-index: -15;
   background-color: var(--second-color);
+  background-color: #c6c6c6;
   opacity: 0.9;
 }
 .react-calendar__navigation {
@@ -139,4 +143,52 @@ a {
 }
 .react-calendar__month-view__days__day--neighboringMonth {
   background-color: #090909 !important;
+}
+.df {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.df h2 {
+  text-transform: uppercase;
+}
+.header {
+  background-color: black;
+  color: white;
+  padding: 15px var(--padding);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_ul .header_a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--style-color);
+  font-weight: 500;
+  cursor: pointer;
+}
+.header_ul li p {
+  margin-top: 1px;
+  align-self: flex-end;
+}
+.header_ul li svg {
+  color: var(--text-color);
+  align-self: flex-start;
+}
+.header_logo {
+  height: 100%;
+  min-height: 100%;
+  width: 68px;
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.footer {
+  min-height: 40svh;
+  background-color: #000;
+  color: white;
 }
