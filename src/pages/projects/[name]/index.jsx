@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "./project.module.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -15,21 +15,20 @@ const project = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const { query } = useRouter();
-  const router = useRouter();
-  let formattedDateStart = `${valueTochange.getFullYear()}-${
-    valueTochange.getMonth() + 1 > 9
-      ? valueTochange.getMonth() + 1
-      : "0" + (valueTochange.getMonth() + 1)
-  }-${valueTochange.getDate()}`;
-  let formattedDateEnd = `${value1Tochange.getFullYear()}-${
-    value1Tochange.getMonth() + 1 > 9
-      ? value1Tochange.getMonth() + 1
-      : "0" + (value1Tochange.getMonth() + 1)
-  }-${
-    value1Tochange.getDate() > 9
-      ? value1Tochange.getDate()
-      : "0" + value1Tochange.getDate()
-  }`;
+  // let formattedDateStart = `${valueTochange.getFullYear()}-${
+  //   valueTochange.getMonth() + 1 > 9
+  //     ? valueTochange.getMonth() + 1
+  //     : "0" + (valueTochange.getMonth() + 1)
+  // }-${valueTochange.getDate()}`;
+  // let formattedDateEnd = `${value1Tochange.getFullYear()}-${
+  //   value1Tochange.getMonth() + 1 > 9
+  //     ? value1Tochange.getMonth() + 1
+  //     : "0" + (value1Tochange.getMonth() + 1)
+  // }-${
+  //   value1Tochange.getDate() > 9
+  //     ? value1Tochange.getDate()
+  //     : "0" + value1Tochange.getDate()
+  // }`;
 
   const changeDateStart = (value, event) => {
     onChange(value);
@@ -77,8 +76,8 @@ const project = () => {
             <PiCaretDoubleRightDuotone /> {query.name}
           </h4>
           <div className={styles.calendarsHolder}>
-            <Calendar onChange={changeDateStart} value={valueTochange} />
-            <Calendar onChange={changeDateEnd} value={value1Tochange} />
+            <Calendar onChange={onChange} value={valueTochange} />
+            <Calendar onChange={onChange1} value={value1Tochange} />
           </div>
           <button
             className={styles.orangeBtn}
