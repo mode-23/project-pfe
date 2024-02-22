@@ -9,7 +9,7 @@ import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
-const project = () => {
+const Project = () => {
   const [valueTochange, onChange] = useState(new Date());
   const [value1Tochange, onChange1] = useState(new Date());
   const [data, setData] = useState([]);
@@ -97,4 +97,4 @@ const project = () => {
   );
 };
 
-export default project;
+export default Project;
