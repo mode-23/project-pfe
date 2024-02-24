@@ -7,7 +7,9 @@ const handler = async (req, res) => {
     where: {
       status,
       project,
-      name: name || undefined,
+      name: {
+        contains: name,
+      },
       id: id || undefined,
       date: {
         gte: startDate ? new Date(startDate) : undefined, //start of the date

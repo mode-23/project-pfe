@@ -53,7 +53,7 @@ const App = ({ Component, pageProps }) => {
         <header className="header">
           <div className="df">
             <div className="header_logo">
-              <Image src={"/logo-orange.png"} fill={true} />
+              <Image src={"/logo-orange.png"} fill={true} alt="orange logo" />
             </div>
             <h2>{query?.name}</h2>
           </div>

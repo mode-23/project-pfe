@@ -13,29 +13,30 @@ const Project = () => {
   const [valueTochange, onChange] = useState(new Date());
   const [value1Tochange, onChange1] = useState(new Date());
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { query } = useRouter();
-  // let formattedDateStart = `${valueTochange.getFullYear()}-${
-  //   valueTochange.getMonth() + 1 > 9
-  //     ? valueTochange.getMonth() + 1
-  //     : "0" + (valueTochange.getMonth() + 1)
-  // }-${valueTochange.getDate()}`;
-  // let formattedDateEnd = `${value1Tochange.getFullYear()}-${
-  //   value1Tochange.getMonth() + 1 > 9
-  //     ? value1Tochange.getMonth() + 1
-  //     : "0" + (value1Tochange.getMonth() + 1)
-  // }-${
-  //   value1Tochange.getDate() > 9
-  //     ? value1Tochange.getDate()
-  //     : "0" + value1Tochange.getDate()
-  // }`;
+  let formattedDateStart = `${valueTochange.getFullYear()}-${
+    valueTochange.getMonth() + 1 > 9
+      ? valueTochange.getMonth() + 1
+      : "0" + (valueTochange.getMonth() + 1)
+  }-${valueTochange.getDate()}`;
+  let formattedDateEnd = `${value1Tochange.getFullYear()}-${
+    value1Tochange.getMonth() + 1 > 9
+      ? value1Tochange.getMonth() + 1
+      : "0" + (value1Tochange.getMonth() + 1)
+  }-${
+    value1Tochange.getDate() > 9
+      ? value1Tochange.getDate()
+      : "0" + value1Tochange.getDate()
+  }`;
 
-  const changeDateStart = (value, event) => {
-    onChange(value);
-  };
-  const changeDateEnd = (value, event) => {
-    onChange1(value);
-  };
+  // const changeDateStart = (value, event) => {
+  //   onChange(value);
+  // };
+  // const changeDateEnd = (value, event) => {
+  //   onChange1(value);
+  // };
   useEffect(() => {
     if (valueTochange >= value1Tochange) {
       setError(true);
@@ -43,24 +44,26 @@ const Project = () => {
       setError(false);
     }
   }, [query.name, value1Tochange, valueTochange]);
+  const fetchProcess = async () => {
+    try {
+      const res = await apiCall("process", {
+        method: "POST",
+        body: JSON.stringify({
+          name: undefined,
+          project: query?.name,
+          // status: "active",
+        }),
+      });
+      console.log(res);
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await apiCall("process", {
-          method: "POST",
-          body: JSON.stringify({
-            name: undefined,
-            project: query?.name,
-            status: "active",
-          }),
-        });
-        console.log(res);
-        setData(res);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    fetchProcess();
   }, [query.name]);
+
   return (
     <ProtectedRoute>
       <motion.div
@@ -75,7 +78,7 @@ const Project = () => {
           <h4 className={styles.title}>
             <PiCaretDoubleRightDuotone /> {query.name}
           </h4>
-          <div className={styles.calendarsHolder}>
+          {/* <div className={styles.calendarsHolder}>
             <Calendar onChange={onChange} value={valueTochange} />
             <Calendar onChange={onChange1} value={value1Tochange} />
           </div>
@@ -89,8 +92,12 @@ const Project = () => {
             // }
           >
             send
-          </button>
-          <ProjectTable data={data} />
+          </button> */}
+          <ProjectTable
+            data={data}
+            loading={loading}
+            fetchProcess={fetchProcess}
+          />
         </div>
       </motion.div>
     </ProtectedRoute>
