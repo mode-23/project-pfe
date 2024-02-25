@@ -104,6 +104,7 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
           </span>
         </div>
       ))}
+      {/* <button onClick={handleUpdateStatus}>apply</button> */}
     </div>
   );
 };

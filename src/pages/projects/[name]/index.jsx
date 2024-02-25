@@ -16,27 +16,7 @@ const Project = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { query } = useRouter();
-  let formattedDateStart = `${valueTochange.getFullYear()}-${
-    valueTochange.getMonth() + 1 > 9
-      ? valueTochange.getMonth() + 1
-      : "0" + (valueTochange.getMonth() + 1)
-  }-${valueTochange.getDate()}`;
-  let formattedDateEnd = `${value1Tochange.getFullYear()}-${
-    value1Tochange.getMonth() + 1 > 9
-      ? value1Tochange.getMonth() + 1
-      : "0" + (value1Tochange.getMonth() + 1)
-  }-${
-    value1Tochange.getDate() > 9
-      ? value1Tochange.getDate()
-      : "0" + value1Tochange.getDate()
-  }`;
 
-  // const changeDateStart = (value, event) => {
-  //   onChange(value);
-  // };
-  // const changeDateEnd = (value, event) => {
-  //   onChange1(value);
-  // };
   useEffect(() => {
     if (valueTochange >= value1Tochange) {
       setError(true);
@@ -75,9 +55,55 @@ const Project = () => {
         key={query.name}
       >
         <div className={styles.projectHolder}>
-          <h4 className={styles.title}>
+          <div className={styles.filter}>
+            <div className={styles.filter_tab}>
+              <label className={styles.label} htmlFor="dateStart">
+                start date
+              </label>
+              <input
+                type="date"
+                name=""
+                id="dateStart"
+                className={styles.calendar_tab}
+              />
+            </div>
+            <div className={styles.filter_tab}>
+              <label className={styles.label} htmlFor="dateEnd">
+                end date
+              </label>
+              <input
+                type="date"
+                name=""
+                id="dateEnd"
+                className={styles.calendar_tab}
+              />
+            </div>
+            <div className={styles.filter_tab}>
+              <label className={styles.label} htmlFor="processId">
+                process id
+              </label>
+              <input
+                type="text"
+                name=""
+                id="processId"
+                className={styles.calendar_tab}
+              />
+            </div>
+            <div className={styles.filter_tab}>
+              <label className={styles.label} htmlFor="processName">
+                process name
+              </label>
+              <input
+                type="text"
+                name=""
+                id="processName"
+                className={styles.calendar_tab}
+              />
+            </div>
+          </div>
+          {/* <h4 className={styles.title}>
             <PiCaretDoubleRightDuotone /> {query.name}
-          </h4>
+          </h4> */}
           {/* <div className={styles.calendarsHolder}>
             <Calendar onChange={onChange} value={valueTochange} />
             <Calendar onChange={onChange1} value={value1Tochange} />

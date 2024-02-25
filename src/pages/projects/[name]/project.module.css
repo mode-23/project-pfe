@@ -16,6 +16,21 @@
   flex-direction: column;
   gap: var(--padding);
 }
+.filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--padding);
+}
+.filter_tab {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.calendar_tab {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--bg-color);
+}
 .orangeBtn {
   width: fit-content;
   padding: 15px 30px;
