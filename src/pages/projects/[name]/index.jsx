@@ -8,13 +8,16 @@ import { PiCaretDoubleRightDuotone } from "react-icons/pi";
 import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import { IoMdClose } from "react-icons/io";
 
 const Project = () => {
   const [valueTochange, onChange] = useState(new Date());
   const [value1Tochange, onChange1] = useState(new Date());
   const [data, setData] = useState([]);
+  const [selectedName, setName] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [open, setOpen] = useState(false);
   const { query } = useRouter();
 
   useEffect(() => {
@@ -25,6 +28,7 @@ const Project = () => {
     }
   }, [query.name, value1Tochange, valueTochange]);
   const fetchProcess = async () => {
+    setLoading(true);
     try {
       const res = await apiCall("process", {
         method: "POST",
@@ -35,6 +39,7 @@ const Project = () => {
         }),
       });
       console.log(res);
+      setLoading(false);
       setData(res);
     } catch (error) {
       console.log(error);
@@ -44,6 +49,18 @@ const Project = () => {
     fetchProcess();
   }, [query.name]);
 
+  function removeDuplicates(array, key) {
+    return array.filter(
+      (obj, index, self) => index === self.findIndex((o) => o[key] === obj[key])
+    );
+  }
+
+  let uniqueArray = removeDuplicates(data, "name");
+  console.log(uniqueArray);
+  useEffect(() => {
+    setOpen(false);
+    setName(null);
+  }, [query.name]);
   return (
     <ProtectedRoute>
       <motion.div
@@ -62,7 +79,6 @@ const Project = () => {
               </label>
               <input
                 type="date"
-                name=""
                 id="dateStart"
                 className={styles.calendar_tab}
               />
@@ -71,12 +87,7 @@ const Project = () => {
               <label className={styles.label} htmlFor="dateEnd">
                 end date
               </label>
-              <input
-                type="date"
-                name=""
-                id="dateEnd"
-                className={styles.calendar_tab}
-              />
+              <input type="date" id="dateEnd" className={styles.calendar_tab} />
             </div>
             <div className={styles.filter_tab}>
               <label className={styles.label} htmlFor="processId">
@@ -84,22 +95,37 @@ const Project = () => {
               </label>
               <input
                 type="text"
-                name=""
                 id="processId"
                 className={styles.calendar_tab}
               />
             </div>
-            <div className={styles.filter_tab}>
-              <label className={styles.label} htmlFor="processName">
-                process name
-              </label>
-              <input
-                type="text"
-                name=""
-                id="processName"
-                className={styles.calendar_tab}
-              />
+            <div className={styles.dropDownHolder}>
+              <div className={styles.filter_tab}>
+                <span className={styles.label}>process name</span>
+                <div className={styles.calendar_tab}>
+                  <small onClick={() => setOpen((prev) => !prev)}>
+                    {selectedName ? selectedName : "Select a name"}
+                  </small>
+                  <IoMdClose onClick={() => setName(null)} />
+                </div>
+              </div>
+              {open && (
+                <div className={styles.dropDown}>
+                  <ul>
+                    {uniqueArray.map(({ name, id }) => (
+                      <li
+                        key={id}
+                        onClick={() => setName(name)}
+                        className={name === selectedName ? styles.active : null}
+                      >
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
+            <button>search</button>
           </div>
           {/* <h4 className={styles.title}>
             <PiCaretDoubleRightDuotone /> {query.name}

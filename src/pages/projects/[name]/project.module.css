@@ -21,6 +21,19 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--padding);
 }
+.label {
+  width: fit-content;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.filter button {
+  background-color: var(--text-color);
+  outline: 0;
+  border: 1px solid var(--bg-color);
+  width: fit-content;
+  padding: 10px 35px;
+  cursor: pointer;
+}
 .filter_tab {
   display: flex;
   flex-direction: column;
@@ -30,7 +43,60 @@
   width: 100%;
   padding: 10px;
   border: 1px solid var(--bg-color);
+  outline: 0;
+  background-color: var(--text-color);
+  position: relative;
+  overflow: visible;
+  accent-color: var(--style-color);
+  height: 37.6px;
 }
+.calendar_tab small {
+  cursor: pointer;
+}
+.calendar_tab svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  z-index: 2;
+}
+.dropDownHolder {
+  position: relative;
+}
+.dropDown {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  top: calc(100% + 5px);
+  left: 0;
+  border: 1px solid var(--bg-color);
+  background-color: var(--text-color);
+}
+.dropDown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+}
+.dropDown ul li {
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.dropDown ul li.active,
+.dropDown ul li:hover {
+  background-color: #dadada;
+}
+/* .calendar_tab::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-color);
+  z-index: -1;
+} */
 .orangeBtn {
   width: fit-content;
   padding: 15px 30px;

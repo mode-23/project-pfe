@@ -52,6 +52,7 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
       console.log(error);
     }
   };
+
   return (
     <div className={`${styles.table}`}>
       <div className={`${styles.tableHeader} ${styles.grid}`}>
@@ -69,41 +70,47 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
         <span>date</span>
         <span>status</span>
       </div>
-      {data?.map((item) => (
-        <div className={`${styles.tableTab} ${styles.grid}`} key={item.id}>
-          <span className={styles.checkBox}>
-            <input
-              type="checkbox"
-              id={+item.id}
-              name={+item.id}
-              onChange={(e) => checkBoxSelected(e, data)}
-              checked={
-                selectedItems.includes(+item.id) ||
-                selectedItems.includes("selectAll")
-              }
-            />
-          </span>
-          <span>{item.id}</span>
-          <span>
-            <input
-              type="text"
-              readOnly
-              className={styles.input}
-              value={item.name}
-            />
-          </span>
-          <span>{formatDate(item.date)}</span>
-          <span>
-            <p
-              className={`${styles.status} ${
-                item.status === "active" ? styles.active : styles.unactive
-              }`}
-            >
-              {item.status}
-            </p>
-          </span>
-        </div>
-      ))}
+      {loading ? (
+        <>loading...</>
+      ) : (
+        <>
+          {data?.map((item) => (
+            <div className={`${styles.tableTab} ${styles.grid}`} key={item.id}>
+              <span className={styles.checkBox}>
+                <input
+                  type="checkbox"
+                  id={+item.id}
+                  name={+item.id}
+                  onChange={(e) => checkBoxSelected(e, data)}
+                  checked={
+                    selectedItems.includes(+item.id) ||
+                    selectedItems.includes("selectAll")
+                  }
+                />
+              </span>
+              <span>{item.id}</span>
+              <span>
+                <input
+                  type="text"
+                  readOnly
+                  className={styles.input}
+                  value={item.name}
+                />
+              </span>
+              <span>{formatDate(item.date)}</span>
+              <span>
+                <p
+                  className={`${styles.status} ${
+                    item.status === "active" ? styles.active : styles.unactive
+                  }`}
+                >
+                  {item.status}
+                </p>
+              </span>
+            </div>
+          ))}
+        </>
+      )}
       {/* <button onClick={handleUpdateStatus}>apply</button> */}
     </div>
   );
