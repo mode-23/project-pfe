@@ -27,3 +27,9 @@ model Process {
   updatedAt DateTime?
   project   String
 }
+
+model Projects {
+  id          String   @id @default(cuid())
+  name        String
+  processList String[]
+}

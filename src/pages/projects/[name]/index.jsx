@@ -35,7 +35,7 @@ const Project = () => {
         body: JSON.stringify({
           name: selectedName ? selectedName : undefined,
           project: query?.name,
-          // status: "active",
+          status: "active",
         }),
       });
       console.log(res);
