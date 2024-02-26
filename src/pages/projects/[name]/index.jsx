@@ -14,7 +14,7 @@ const Project = () => {
   const [valueTochange, onChange] = useState(new Date());
   const [value1Tochange, onChange1] = useState(new Date());
   const [data, setData] = useState([]);
-  const [selectedName, setName] = useState(null);
+  const [selectedName, setName] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
@@ -33,7 +33,7 @@ const Project = () => {
       const res = await apiCall("process", {
         method: "POST",
         body: JSON.stringify({
-          name: undefined,
+          name: selectedName ? selectedName : undefined,
           project: query?.name,
           // status: "active",
         }),
@@ -47,7 +47,7 @@ const Project = () => {
   };
   useEffect(() => {
     fetchProcess();
-  }, [query.name]);
+  }, [query.name, selectedName]);
 
   function removeDuplicates(array, key) {
     return array.filter(
