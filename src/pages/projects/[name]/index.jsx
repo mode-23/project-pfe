@@ -9,6 +9,8 @@ import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { IoMdClose } from "react-icons/io";
+import { IoFilterSharp } from "react-icons/io5";
+import { LuRefreshCcw } from "react-icons/lu";
 import {
   useSearchParams,
   useRouter as navigationRouter,
@@ -19,7 +21,8 @@ const Project = () => {
   // const [value1Tochange, onChange1] = useState(new Date());
   // const [error, setError] = useState(false);
   const [data, setData] = useState([]);
-  const [selectedName, setName] = useState(undefined);
+  const [selectedName, setName] = useState("");
+  const [selectedId, setSelectedId] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { query } = useRouter();
@@ -31,35 +34,15 @@ const Project = () => {
   //     setError(false);
   //   }
   // }, [query.name, value1Tochange, valueTochange]);
-  useEffect(() => {
-    if (selectedName) {
-      router.push(`${query.name}?name=${selectedName}`);
+
+  const handleSearch = () => {
+    if (selectedName || selectedId) {
+      router.push(`${query.name}?name=${selectedName}&id=${selectedId}`);
     }
-  }, [selectedName]);
+  };
   const searchParams = useSearchParams();
   const searchName = searchParams.get("name");
-  // const fetchProcess = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const res = await apiCall("process", {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         name: searchName ? searchName : undefined,
-  //         project: query?.name,
-  //         status: "active",
-  //       }),
-  //     });
-  //     setLoading(false);
-  //     setData(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   if (query?.name) {
-  //     fetchProcess();
-  //   }
-  // }, [query.name, selectedName, searchName]);
+  const searchId = searchParams.get("id");
 
   function removeDuplicates(array, key) {
     return array.filter(
@@ -70,19 +53,21 @@ const Project = () => {
   let uniqueArray = removeDuplicates(data, "name");
   useEffect(() => {
     setOpen(false);
-    setName(null);
+    setName("");
+    setSelectedId("");
   }, [query.name]);
   const params = [
     { key: "project", value: query?.name },
     { key: "name", value: searchName || "" },
-    { key: "id", value: "" },
+    { key: "id", value: +searchId || "" },
   ];
   const paramsStr = params.map((item) => `${item.key}=${item.value}`).join("&");
   const fetchProject = async () => {
+    setLoading(true);
     try {
       const res = await apiCall("getProject?" + paramsStr);
       setData(res);
-      console.log(res);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +76,7 @@ const Project = () => {
     if (query.name) {
       fetchProject();
     }
-  }, [query?.name, searchName]);
+  }, [query?.name, searchName, searchId]);
 
   return (
     <ProtectedRoute>
@@ -104,6 +89,21 @@ const Project = () => {
         key={query.name}
       >
         <div className={styles.projectHolder}>
+          <div className={styles.projectHeader}>
+            <button className={styles.projectFilter}>
+              <IoFilterSharp />
+            </button>
+            <button
+              className={styles.projectFilter}
+              onClick={() => {
+                router.push(`/projects/${query.name}/`);
+                setSelectedId("");
+                setName("");
+              }}
+            >
+              <LuRefreshCcw />
+            </button>
+          </div>
           <div className={styles.filter}>
             <div className={styles.filter_tab}>
               <label className={styles.label} htmlFor="dateStart">
@@ -129,6 +129,8 @@ const Project = () => {
                 type="text"
                 id="processId"
                 className={styles.calendar_tab}
+                value={selectedId}
+                onChange={(e) => setSelectedId(e.target.value)}
               />
             </div>
             <div className={styles.dropDownHolder}>
@@ -136,14 +138,14 @@ const Project = () => {
                 <span className={styles.label}>process name</span>
                 <div className={styles.calendar_tab}>
                   <small onClick={() => setOpen((prev) => !prev)}>
-                    {searchName ? searchName : "Select a name"}
+                    {selectedName ? selectedName : "Select a name"}
                   </small>
-                  <IoMdClose
+                  {/* <IoMdClose
                     onClick={() => {
-                      setName(null);
+                      // setName("");
                       router.push(`/projects/${query.name}/`);
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
               {open && (
@@ -162,7 +164,7 @@ const Project = () => {
                 </div>
               )}
             </div>
-            <button>search</button>
+            <button onClick={handleSearch}>search</button>
           </div>
           {/* <h4 className={styles.title}>
             <PiCaretDoubleRightDuotone /> {query.name}
