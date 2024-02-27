@@ -28,11 +28,18 @@
 }
 .filter button {
   background-color: var(--text-color);
+  color: var(--bg-color);
   outline: 0;
   border: 1px solid var(--bg-color);
   width: fit-content;
   padding: 10px 35px;
   cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-transform: capitalize;
+}
+.filter button:hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 .filter_tab {
   display: flex;
@@ -90,7 +97,7 @@
 }
 .dropDown ul li.active,
 .dropDown ul li:hover {
-  background-color: #dadada;
+  background-color: var(--soft-color);
 }
 /* .calendar_tab::after {
   content: "";
@@ -144,7 +151,8 @@
   color: var(--text-color);
 }
 .orangeBtn:not(:disabled):hover::after {
-  background-color: var(--text-color);
+  background-color: var(--soft-color);
+  border: 1px solid var(--soft-color);
 }
 .title {
   font-size: 3svw;

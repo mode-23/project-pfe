@@ -36,9 +36,7 @@ const Project = () => {
   // }, [query.name, value1Tochange, valueTochange]);
 
   const handleSearch = () => {
-    if (selectedName || selectedId) {
-      router.push(`${query.name}?name=${selectedName}&id=${selectedId}`);
-    }
+    router.push(`${query.name}?name=${selectedName}&id=${selectedId}`);
   };
   const searchParams = useSearchParams();
   const searchName = searchParams.get("name");
@@ -113,13 +111,19 @@ const Project = () => {
                 type="date"
                 id="dateStart"
                 className={styles.calendar_tab}
+                onChange={(e) => console.log(e.target.value)}
               />
             </div>
             <div className={styles.filter_tab}>
               <label className={styles.label} htmlFor="dateEnd">
                 end date
               </label>
-              <input type="date" id="dateEnd" className={styles.calendar_tab} />
+              <input
+                type="date"
+                id="dateEnd"
+                className={styles.calendar_tab}
+                onChange={(e) => console.log(e.target.value)}
+              />
             </div>
             <div className={styles.filter_tab}>
               <label className={styles.label} htmlFor="processId">
@@ -164,7 +168,9 @@ const Project = () => {
                 </div>
               )}
             </div>
-            <button onClick={handleSearch}>search</button>
+            <button onClick={handleSearch} className={styles.orangeBtn}>
+              search
+            </button>
           </div>
           {/* <h4 className={styles.title}>
             <PiCaretDoubleRightDuotone /> {query.name}

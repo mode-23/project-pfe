@@ -7,6 +7,10 @@ const handler = async (req, res) => {
       project,
       name: name || undefined,
       id: +id || undefined,
+      // date: {
+      //   gte: new Date("2024-01-08"),
+      //   lte: undefined,
+      // },
     },
     orderBy: {
       date: "desc",
