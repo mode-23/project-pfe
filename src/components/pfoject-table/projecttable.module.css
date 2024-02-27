@@ -30,7 +30,7 @@
   justify-content: center;
   accent-color: var(--style-color);
 }
-.tableTab:nth-child(even) {
+.tableTab:nth-child(odd) {
   background-color: var(--soft-color);
 }
 .tableTab span {

@@ -9,45 +9,57 @@ import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { IoMdClose } from "react-icons/io";
+import {
+  useSearchParams,
+  useRouter as navigationRouter,
+} from "next/navigation";
 
 const Project = () => {
-  const [valueTochange, onChange] = useState(new Date());
-  const [value1Tochange, onChange1] = useState(new Date());
+  // const [valueTochange, onChange] = useState(new Date());
+  // const [value1Tochange, onChange1] = useState(new Date());
+  // const [error, setError] = useState(false);
   const [data, setData] = useState([]);
   const [selectedName, setName] = useState(undefined);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
   const { query } = useRouter();
-
+  const router = navigationRouter();
+  // useEffect(() => {
+  //   if (valueTochange >= value1Tochange) {
+  //     setError(true);
+  //   } else {
+  //     setError(false);
+  //   }
+  // }, [query.name, value1Tochange, valueTochange]);
   useEffect(() => {
-    if (valueTochange >= value1Tochange) {
-      setError(true);
-    } else {
-      setError(false);
+    if (selectedName) {
+      router.push(`${query.name}?name=${selectedName}`);
     }
-  }, [query.name, value1Tochange, valueTochange]);
-  const fetchProcess = async () => {
-    setLoading(true);
-    try {
-      const res = await apiCall("process", {
-        method: "POST",
-        body: JSON.stringify({
-          name: selectedName ? selectedName : undefined,
-          project: query?.name,
-          status: "active",
-        }),
-      });
-      console.log(res);
-      setLoading(false);
-      setData(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    fetchProcess();
-  }, [query.name, selectedName]);
+  }, [selectedName]);
+  const searchParams = useSearchParams();
+  const searchName = searchParams.get("name");
+  // const fetchProcess = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await apiCall("process", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         name: searchName ? searchName : undefined,
+  //         project: query?.name,
+  //         status: "active",
+  //       }),
+  //     });
+  //     setLoading(false);
+  //     setData(res);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (query?.name) {
+  //     fetchProcess();
+  //   }
+  // }, [query.name, selectedName, searchName]);
 
   function removeDuplicates(array, key) {
     return array.filter(
@@ -56,11 +68,31 @@ const Project = () => {
   }
 
   let uniqueArray = removeDuplicates(data, "name");
-  console.log(uniqueArray);
   useEffect(() => {
     setOpen(false);
     setName(null);
   }, [query.name]);
+  const params = [
+    { key: "project", value: query?.name },
+    { key: "name", value: searchName || "" },
+    { key: "id", value: "" },
+  ];
+  const paramsStr = params.map((item) => `${item.key}=${item.value}`).join("&");
+  const fetchProject = async () => {
+    try {
+      const res = await apiCall("getProject?" + paramsStr);
+      setData(res);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (query.name) {
+      fetchProject();
+    }
+  }, [query?.name, searchName]);
+
   return (
     <ProtectedRoute>
       <motion.div
@@ -104,9 +136,14 @@ const Project = () => {
                 <span className={styles.label}>process name</span>
                 <div className={styles.calendar_tab}>
                   <small onClick={() => setOpen((prev) => !prev)}>
-                    {selectedName ? selectedName : "Select a name"}
+                    {searchName ? searchName : "Select a name"}
                   </small>
-                  <IoMdClose onClick={() => setName(null)} />
+                  <IoMdClose
+                    onClick={() => {
+                      setName(null);
+                      router.push(`/projects/${query.name}/`);
+                    }}
+                  />
                 </div>
               </div>
               {open && (
@@ -148,7 +185,8 @@ const Project = () => {
           <ProjectTable
             data={data}
             loading={loading}
-            fetchProcess={fetchProcess}
+            // fetchProcess={fetchProcess}
+            fetchProject={fetchProject}
           />
         </div>
       </motion.div>

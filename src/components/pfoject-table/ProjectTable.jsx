@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./projecttable.module.css";
 import { apiCall } from "@/utils/apiCall";
-const ProjectTable = ({ data, loading, fetchProcess }) => {
+const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
     const { name } = e.target;
@@ -24,7 +24,6 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
       }
     }
   };
-  console.log(selectedItems);
   const formatDate = (value) => {
     const formattedValue = new Date(value);
     let format = `${formattedValue.getFullYear()}-${
@@ -46,8 +45,8 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
           array: selectedItems,
         }),
       });
-      console.log(res);
-      fetchProcess();
+      // fetchProcess();
+      fetchProject();
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +72,7 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
       {loading ? (
         <>loading...</>
       ) : (
-        <>
+        <div>
           {data?.map((item) => (
             <div className={`${styles.tableTab} ${styles.grid}`} key={item.id}>
               <span className={styles.checkBox}>
@@ -109,7 +108,7 @@ const ProjectTable = ({ data, loading, fetchProcess }) => {
               </span>
             </div>
           ))}
-        </>
+        </div>
       )}
       {/* <button onClick={handleUpdateStatus}>apply</button> */}
     </div>
