@@ -80,7 +80,7 @@ const Project = () => {
   useEffect(() => {
     const fetchSingleProject = async () => {
       try {
-        const res = await apiCall("getProjects", {
+        const res = await apiCall("getCurrentProject", {
           method: "POST",
           body: JSON.stringify({
             name: query?.name,
