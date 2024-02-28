@@ -1,224 +1,169 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./sidebarLeft.module.css";
-import { AUTH_TOKEN } from "@/constants/localstorage";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BsBarChart,
-  BsBarChartFill,
-  BsSdCardFill,
-  BsSdCard,
-  BsPlusCircleDotted,
-  BsCaretRightFill,
-  BsCaretRight,
-} from "react-icons/bs";
+import { BsSdCardFill, BsSdCard } from "react-icons/bs";
 import {
   IoTimeOutline,
   IoTime,
   IoGridOutline,
   IoGrid,
-  IoSettingsOutline,
-  IoSettings,
-  IoLogOut,
   IoChevronDownSharp,
 } from "react-icons/io5";
-import { FaRegUser, FaUser, FaPlus } from "react-icons/fa";
-import { RiFilePaper2Fill, RiFilePaper2Line } from "react-icons/ri";
 import {
   PiRecycleLight,
-  PiRecycleBold,
   PiRecycleDuotone,
   PiCaretDoubleRightDuotone,
   PiCaretDoubleRightFill,
 } from "react-icons/pi";
 import { TiWarningOutline, TiWarning } from "react-icons/ti";
+import ProtectedRoute from "../ProtectedRoute";
+import { apiCall } from "@/utils/apiCall";
+import { useRouter } from "next/router";
 
-const SidebarLeft = () => {
+const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
+  const { query } = useRouter();
   const [open, setOpen] = useState(false);
+  const [projects, setProjects] = useState([]);
+  // const [currentProject, setCurrentProjects] = useState("");
+  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
-  // const data = [
-  //   {
-  //     name: "dashboard",
-  //     url: "/",
-  //     icon: <IoGridOutline />,
-  //     activeIcon: <IoGrid />,
-  //   },
-  //   {
-  //     name: "process",
-  //     url: "/process",
-  //     icon: <IoGridOutline />,
-  //     activeIcon: <IoGrid />,
-  //   },
-  //   {
-  //     name: "analytics",
-  //     url: "/analytics",
-  //     icon: <IoGridOutline />,
-  //     activeIcon: <IoGrid />,
-  //   },
-  //   {
-  //     name: "dashboard",
-  //     url: "/",
-  //     icon: <IoGridOutline />,
-  //     activeIcon: <IoGrid />,
-  //   },
-  // ];
+  useEffect(() => {
+    const fetchProjects = async () => {
+      setLoading(true);
+      try {
+        const res = await apiCall("getProjectList");
+        setProjects(res);
+        setCurrentProjects(res?.[0]?.name);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    fetchProjects();
+  }, []);
+
   return (
-    <div className={styles.leftSideBar}>
-      {/* <div className={styles.sideBarLogo}>
-        <Image
-          src="/logo-orange.png"
-          alt="Picture of Orange logo"
-          fill={true}
-        />
-      </div> */}
-      <ul>
-        <li>
-          <Link
-            href={"/"}
-            className={
-              pathname === "/"
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname === "/" ? <IoGrid /> : <IoGridOutline />}
-            dashboard
-          </Link>
-        </li>
-        <li>
-          <div
-            onClick={() => setOpen((prev) => !prev)}
-            className={
-              open || pathname?.includes("projects")
-                ? `${styles.active} ${styles.link}`
-                : `${styles.link}`
-            }
-          >
-            {open || pathname?.includes("projects") ? (
-              <BsSdCardFill />
-            ) : (
-              <BsSdCard />
-            )}
-            projects
-            <IoChevronDownSharp
+    <ProtectedRoute>
+      <div className={styles.leftSideBar}>
+        <ul>
+          <li>
+            <Link
+              href={"/"}
+              className={
+                pathname === "/"
+                  ? `${styles.active} ${styles.link}`
+                  : ` ${styles.link}`
+              }
+            >
+              {pathname === "/" ? <IoGrid /> : <IoGridOutline />}
+              dashboard
+            </Link>
+          </li>
+          <li>
+            <div
+              onClick={() => setOpen((prev) => !prev)}
+              className={
+                open || pathname?.includes("projects")
+                  ? `${styles.active} ${styles.link}`
+                  : `${styles.link}`
+              }
+            >
+              {open || pathname?.includes("projects") ? (
+                <BsSdCardFill />
+              ) : (
+                <BsSdCard />
+              )}
+              projects
+              <IoChevronDownSharp
+                className={
+                  open
+                    ? `${styles.chevron} ${styles.active}`
+                    : `${styles.chevron}`
+                }
+              />
+            </div>
+            <ul
               className={
                 open
-                  ? `${styles.chevron} ${styles.active}`
-                  : `${styles.chevron}`
+                  ? `${styles.dropDown} ${styles.active}`
+                  : `${styles.dropDown}`
               }
-            />
-          </div>
-          <ul
-            className={
-              open
-                ? `${styles.dropDown} ${styles.active}`
-                : `${styles.dropDown}`
-            }
-          >
-            <li>
-              <Link
-                href={"/projects/apc"}
-                className={
-                  pathname === "/projects/apc" ||
-                  pathname?.includes("projects/apc")
-                    ? `${styles.active}`
-                    : null
-                }
-              >
-                {pathname === "/projects/apc" ||
-                pathname?.includes("projects/apc") ? (
-                  <PiCaretDoubleRightFill className={styles.smallSvg} />
-                ) : (
-                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
-                )}
-                APC
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/projects/lte"}
-                className={
-                  pathname === "/projects/lte" ||
-                  pathname?.includes("projects/lte")
-                    ? `${styles.active}`
-                    : null
-                }
-              >
-                {pathname === "/projects/lte" ||
-                pathname?.includes("projects/lte") ? (
-                  <PiCaretDoubleRightFill className={styles.smallSvg} />
-                ) : (
-                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
-                )}
-                LTE
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={"/projects/reengagement"}
-                className={
-                  pathname === "/projects/reengagement" ||
-                  pathname?.includes("projects/reengagement")
-                    ? `${styles.active}`
-                    : null
-                }
-              >
-                {pathname === "/projects/reengagement" ||
-                pathname?.includes("projects/reengagement") ? (
-                  <PiCaretDoubleRightFill className={styles.smallSvg} />
-                ) : (
-                  <PiCaretDoubleRightDuotone className={styles.smallSvg} />
-                )}
-                REENGAGEMENT
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <Link
-            href={"/history"}
-            className={
-              pathname === "/history"
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname === "/history" ? <IoTime /> : <IoTimeOutline />}
-            history
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/failed"}
-            className={
-              pathname === "/failed"
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname === "/failed" ? <TiWarning /> : <TiWarningOutline />}
-            failed
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/recyclage/apc"}
-            className={
-              pathname.includes("recyclage")
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname.includes("recyclage") ? (
-              <PiRecycleDuotone />
-            ) : (
-              <PiRecycleLight />
-            )}
-            recycle
-          </Link>
-        </li>
-        {/* <li>
+            >
+              {projects?.map((item) => (
+                <li key={item.id}>
+                  <div
+                    onClick={() => setCurrentProjects(item.name)}
+                    className={
+                      currentProject === item.name
+                        ? `${styles.active} ${styles.underLink}`
+                        : `${styles.underLink}`
+                    }
+                  >
+                    {currentProject === item.name ? (
+                      <PiCaretDoubleRightFill className={styles.smallSvg} />
+                    ) : (
+                      <PiCaretDoubleRightDuotone className={styles.smallSvg} />
+                    )}
+                    {item.name}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </li>
+          {currentProject && (
+            <>
+              <li>
+                <Link
+                  href={`/history/${currentProject}`}
+                  className={
+                    pathname === "/history"
+                      ? `${styles.active} ${styles.link}`
+                      : ` ${styles.link}`
+                  }
+                >
+                  {pathname === "/history" ? <IoTime /> : <IoTimeOutline />}
+                  history
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/failed/${currentProject}`}
+                  className={
+                    pathname === "/failed"
+                      ? `${styles.active} ${styles.link}`
+                      : ` ${styles.link}`
+                  }
+                >
+                  {pathname === "/failed" ? (
+                    <TiWarning />
+                  ) : (
+                    <TiWarningOutline />
+                  )}
+                  failed
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/recyclage/${currentProject}`}
+                  className={
+                    pathname.includes("recyclage")
+                      ? `${styles.active} ${styles.link}`
+                      : ` ${styles.link}`
+                  }
+                >
+                  {pathname.includes("recyclage") ? (
+                    <PiRecycleDuotone />
+                  ) : (
+                    <PiRecycleLight />
+                  )}
+                  recycle
+                </Link>
+              </li>
+            </>
+          )}
+
+          {/* <li>
           <Link
             href={"/analytics"}
             className={
@@ -244,8 +189,8 @@ const SidebarLeft = () => {
             settings
           </Link>
         </li> */}
-      </ul>
-      {/* <button
+        </ul>
+        {/* <button
         type="button"
         onClick={() => {
           localStorage.removeItem(AUTH_TOKEN);
@@ -256,7 +201,8 @@ const SidebarLeft = () => {
         <IoLogOut />
         log out
       </button> */}
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 };
 

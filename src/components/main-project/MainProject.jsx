@@ -75,6 +75,7 @@ const MainProject = () => {
       fetchSingleProject();
     }
   }, [query.name]);
+
   return (
     <ProtectedRoute>
       <motion.div

@@ -1,7 +1,7 @@
 import { prisma } from "@/prisma_setup";
 import { useMeStore } from "@/store/useMeStore";
 import { apiCall } from "@/utils/apiCall";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./page.css";
 import SidebarLeft from "@/components/sidebar-left/SidebarLeft";
 import SidebarRight from "@/components/sidebar-right/SidebarRight";
@@ -11,8 +11,9 @@ import { useRouter } from "next/router";
 import { IoHomeSharp, IoLockOpen } from "react-icons/io5";
 import Link from "next/link";
 import { AUTH_TOKEN } from "@/constants/localstorage";
-
 const App = ({ Component, pageProps }) => {
+  const [currentProject, setCurrentProjects] = useState("");
+
   const setMe = useMeStore((state) => state.setMe);
   const me = useMeStore((state) => ({
     id: state.id,
@@ -78,8 +79,13 @@ const App = ({ Component, pageProps }) => {
         </header>
       )}
       <div className={me.id ? "app_wrapper loggedin" : "app_wrapper"}>
-        {me.id && <SidebarLeft />}
-        <Component {...pageProps} />
+        {me.id && (
+          <SidebarLeft
+            currentProject={currentProject}
+            setCurrentProjects={setCurrentProjects}
+          />
+        )}
+        <Component {...pageProps} currentProject={currentProject} />
         {me.id && <SidebarRight />}
       </div>
       {/* <footer className="footer">footer</footer> */}
