@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import styles from "./project.module.css";
+import styles from "../../projects/[name]/project.module.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { AnimatePresence, motion } from "framer-motion";
@@ -116,7 +116,7 @@ const Project = () => {
             <button
               className={styles.projectFilter}
               onClick={() => {
-                router.push(`/projects/${query.name}/`);
+                router.push(`/recyclage/${query.name}/`);
                 setSelectedId("");
                 setName("");
               }}

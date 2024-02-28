@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./projecttable.module.css";
 import { apiCall } from "@/utils/apiCall";
+import * as XLSX from "xlsx/xlsx.mjs";
+
 const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
@@ -51,7 +53,12 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
       console.log(error);
     }
   };
-
+  const handleExport = () => {
+    let wb = XLSX.utils.book_new(),
+      ws = XLSX.utils.json_to_sheet(data);
+    XLSX.utils.book_append_sheet(wb, ws, "filetest");
+    XLSX.writeFile(wb, "exceltest.xlsx");
+  };
   return (
     <div className={`${styles.table}`}>
       <div className={`${styles.tableHeader} ${styles.grid}`}>
@@ -121,6 +128,7 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
           )}
         </div>
       )}
+      <button onClick={handleExport}>export</button>
       {/* <button onClick={handleUpdateStatus}>apply</button> */}
     </div>
   );

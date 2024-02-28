@@ -1,9 +1,9 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  //   console.log(req.query);
   const { name, id, project } = req.query;
   const user = await prisma.process.findMany({
     where: {
+      status: "active",
       project,
       name: name || undefined,
       id: +id || undefined,

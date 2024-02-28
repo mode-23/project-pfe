@@ -203,14 +203,14 @@ const SidebarLeft = () => {
         </li>
         <li>
           <Link
-            href={"/recycle"}
+            href={"/recyclage/apc"}
             className={
-              pathname === "/recycle"
+              pathname.includes("recyclage")
                 ? `${styles.active} ${styles.link}`
                 : ` ${styles.link}`
             }
           >
-            {pathname === "/recycle" ? (
+            {pathname.includes("recyclage") ? (
               <PiRecycleDuotone />
             ) : (
               <PiRecycleLight />
