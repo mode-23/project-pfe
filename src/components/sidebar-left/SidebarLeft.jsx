@@ -25,7 +25,6 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
   const { query } = useRouter();
   const [open, setOpen] = useState(false);
   const [projects, setProjects] = useState([]);
-  // const [currentProject, setCurrentProjects] = useState("");
   const [loading, setLoading] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
@@ -64,17 +63,13 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
             <div
               onClick={() => setOpen((prev) => !prev)}
               className={
-                open || pathname?.includes("projects")
-                  ? `${styles.active} ${styles.link}`
-                  : `${styles.link}`
+                open ? `${styles.active} ${styles.link}` : `${styles.link}`
               }
             >
-              {open || pathname?.includes("projects") ? (
-                <BsSdCardFill />
-              ) : (
-                <BsSdCard />
-              )}
-              projects
+              {open ? <BsSdCardFill /> : <BsSdCard />}
+              {currentProject
+                ? `project: ${currentProject}`
+                : "Select a Project"}
               <IoChevronDownSharp
                 className={
                   open
