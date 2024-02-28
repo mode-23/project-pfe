@@ -3,7 +3,7 @@ const handler = async (req, res) => {
   const { name, id, project } = req.query;
   const user = await prisma.process.findMany({
     where: {
-      status: "active",
+      status: "ready",
       project,
       name: name || undefined,
       id: +id || undefined,

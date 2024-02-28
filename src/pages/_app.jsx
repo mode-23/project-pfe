@@ -72,7 +72,7 @@ const App = ({ Component, pageProps }) => {
               }}
             >
               <IoLockOpen />
-              <p>Log out</p>
+              <p>Log out: {me.email}</p>
             </li>
           </ul>
         </header>

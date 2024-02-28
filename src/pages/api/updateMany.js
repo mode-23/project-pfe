@@ -8,7 +8,7 @@ const handler = async (req, res) => {
       },
     },
     data: {
-      status: "unactive",
+      status: "en cours",
     },
   });
   res.status(200).json(process);

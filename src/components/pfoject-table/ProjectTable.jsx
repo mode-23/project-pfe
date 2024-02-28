@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./projecttable.module.css";
 import { apiCall } from "@/utils/apiCall";
 import * as XLSX from "xlsx/xlsx.mjs";
+import UnderTable from "./UnderTable";
 
 const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -39,20 +40,7 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
     }`;
     return format;
   };
-  const handleUpdateStatus = async () => {
-    try {
-      const res = await apiCall("updateMany", {
-        method: "POST",
-        body: JSON.stringify({
-          array: selectedItems,
-        }),
-      });
-      // fetchProcess();
-      fetchProject();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const handleExport = () => {
     let wb = XLSX.utils.book_new(),
       ws = XLSX.utils.json_to_sheet(data);
@@ -71,9 +59,9 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
             checked={selectedItems.length === data?.length && data?.length > 0}
           />
         </span>
-        <span>id</span>
-        <span>name</span>
-        <span>date</span>
+        <span>process id</span>
+        <span>process name</span>
+        <span>failure date</span>
         <span>status</span>
       </div>
       {loading ? (
@@ -128,8 +116,12 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
           )}
         </div>
       )}
-      <button onClick={handleExport}>export</button>
-      {/* <button onClick={handleUpdateStatus}>apply</button> */}
+      <UnderTable
+        fetchProject={fetchProject}
+        data={data}
+        selectedItems={selectedItems}
+        setSelectedItems={setSelectedItems}
+      />
     </div>
   );
 };
