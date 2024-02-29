@@ -4,13 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { IoMdClose } from "react-icons/io";
-import { IoFilterSharp } from "react-icons/io5";
+import { VscSettings } from "react-icons/vsc";
+import { IoChevronDownSharp } from "react-icons/io5";
 import { LuRefreshCcw } from "react-icons/lu";
-import {
-  useSearchParams,
-  useRouter as navigationRouter,
-} from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import styles from "./mainproject.module.css";
 
 const MainProject = () => {
@@ -100,7 +97,7 @@ const MainProject = () => {
               className={styles.projectFilter}
               onClick={() => setOpenFilter((prev) => !prev)}
             >
-              {openFilter ? <IoMdClose /> : <IoFilterSharp />}
+              {openFilter ? <IoChevronDownSharp /> : <VscSettings />}
             </button>
             <button
               className={styles.projectFilter}
@@ -167,6 +164,7 @@ const MainProject = () => {
                       <small onClick={() => setOpen((prev) => !prev)}>
                         {selectedName ? selectedName : "Select a name"}
                       </small>
+                      <IoChevronDownSharp />
                     </div>
                   </div>
                   {open && (

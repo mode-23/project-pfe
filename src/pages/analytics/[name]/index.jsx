@@ -1,7 +1,7 @@
 import React from "react";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Chart from "@/components/Chart";
-import styles from "./analytics.module.css";
+import styles from "../analytics.module.css";
 import { motion } from "framer-motion";
 
 const Analytics = () => {

@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./sidebarLeft.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsSdCardFill, BsSdCard } from "react-icons/bs";
+import {
+  BsSdCardFill,
+  BsSdCard,
+  BsBarChartFill,
+  BsBarChart,
+} from "react-icons/bs";
 import {
   IoTimeOutline,
   IoTime,
@@ -155,9 +160,25 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
                   failed
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`/analytics/${currentProject}`}
+                  className={
+                    pathname.includes("analytics")
+                      ? `${styles.active} ${styles.link}`
+                      : ` ${styles.link}`
+                  }
+                >
+                  {pathname.includes("analytics") ? (
+                    <BsBarChartFill />
+                  ) : (
+                    <BsBarChart />
+                  )}
+                  analytics
+                </Link>
+              </li>
             </>
           )}
-
           {/* <li>
           <Link
             href={"/analytics"}

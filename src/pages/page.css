@@ -4,6 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scrollbar-width: none !important;
 }
 body {
   background-color: var(--text-color);
@@ -16,6 +17,8 @@ body {
   color: var(--text-color);
 }
 :root {
+  scrollbar-color: rgb(210, 210, 210) rgb(46, 54, 69);
+  scrollbar-width: thin;
   --bg-color: #000;
   --main-color: #161616;
   --second-color: #333;
