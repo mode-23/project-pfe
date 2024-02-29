@@ -30,15 +30,16 @@ const UnderTable = ({
     XLSX.writeFile(wb, "exceltest.xlsx");
   };
   return (
-    <>
-      <div className={styles.underHolder}>
-        <button
-          className={styles.recycleBtn}
-          disabled={!selectedItems.length}
-          // onClick={handleUpdateStatus}
-        >
-          Recycle
-        </button>
+    <div className={styles.underHolder}>
+      <button
+        className={styles.recycleBtn}
+        disabled={!selectedItems.length}
+        onClick={handleUpdateStatus}
+      >
+        Recycle
+      </button>
+      <div className={styles.exportHolder}>
+        <h4>export data</h4>
         <div className={styles.underHolderBtn}>
           <button className={styles.underBtn}>
             <Image src="/pdf.png" alt="Picture of pdf" width={25} height={25} />
@@ -53,7 +54,7 @@ const UnderTable = ({
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

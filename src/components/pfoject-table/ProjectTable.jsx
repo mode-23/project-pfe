@@ -4,8 +4,9 @@ import { apiCall } from "@/utils/apiCall";
 import * as XLSX from "xlsx/xlsx.mjs";
 import UnderTable from "./UnderTable";
 import Pagination from "./Pagination";
+import EmptyTable from "./EmptyTable";
 
-const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
+const ProjectTable = ({ data, loading, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
     const { name } = e.target;
@@ -115,23 +116,27 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
               ))}
             </>
           ) : (
-            <div>no data ...</div>
+            <EmptyTable />
           )}
         </div>
       )}
-      <Pagination
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-        totalRows={data?.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
-      <UnderTable
-        fetchProject={fetchProject}
-        data={data}
-        selectedItems={selectedItems}
-        setSelectedItems={setSelectedItems}
-      />
+      {data?.length > 0 && (
+        <>
+          <Pagination
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={setRowsPerPage}
+            totalRows={data?.length}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+          <UnderTable
+            fetchProject={fetchProject}
+            data={data}
+            selectedItems={selectedItems}
+            setSelectedItems={setSelectedItems}
+          />
+        </>
+      )}
     </div>
   );
 };

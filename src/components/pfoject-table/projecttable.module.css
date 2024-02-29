@@ -70,11 +70,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .underHolderBtn {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 2px;
 }
 .recycleBtn {
@@ -115,9 +116,10 @@
   justify-content: center;
   border: 0;
   outline: 0;
-  background-color: var(--text-color);
+  background-color: var(--soft-color);
   color: var(--second-color);
   border: 1px solid var(--second-color);
+  border: 0;
   width: 30px;
   aspect-ratio: 1/1;
   font-weight: 600;
@@ -134,14 +136,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
   position: absolute;
   bottom: calc(100% + 10px);
   width: 100%;
   background-color: var(--text-color);
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  padding: 8px;
+  padding: 5px;
 }
 .dropDownPagination button {
   width: 100%;
@@ -178,4 +180,28 @@
 }
 .tableHolder {
   min-height: calc(38.4px * 5);
+}
+.exportHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.exportHolder h4 {
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.emptyTable {
+  height: calc(38.4px * 5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 10px;
+  /* background-color: #e6e6e6; */
+}
+.emptyTable h3 {
+  font-weight: 600;
+  color: var(--second-color);
 }
