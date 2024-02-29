@@ -3,6 +3,7 @@ import styles from "./projecttable.module.css";
 import { apiCall } from "@/utils/apiCall";
 import * as XLSX from "xlsx/xlsx.mjs";
 import UnderTable from "./UnderTable";
+import Pagination from "./Pagination";
 
 const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -41,11 +42,13 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
     return format;
   };
 
-  const handleExport = () => {
-    let wb = XLSX.utils.book_new(),
-      ws = XLSX.utils.json_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "filetest");
-    XLSX.writeFile(wb, "exceltest.xlsx");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexofFirsRow = indexOfLastRow - rowsPerPage;
+  const currentRows = data?.slice(indexofFirsRow, indexOfLastRow);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
   return (
     <div className={`${styles.table}`}>
@@ -70,7 +73,7 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
         <div>
           {data?.length ? (
             <>
-              {data?.map((item) => (
+              {currentRows?.map((item) => (
                 <div
                   className={`${styles.tableTab} ${styles.grid}`}
                   key={item.id}
@@ -110,6 +113,13 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
                   </span>
                 </div>
               ))}
+              <Pagination
+                rowsPerPage={rowsPerPage}
+                setRowsPerPage={setRowsPerPage}
+                totalRows={data?.length}
+                paginate={paginate}
+                currentPage={currentPage}
+              />
             </>
           ) : (
             <div>no data ...</div>

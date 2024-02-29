@@ -21,11 +21,10 @@ const MainProject = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [openFilter, setOpenFilter] = useState(true);
-  const { query } = useRouter();
-  const router = navigationRouter();
+  const { query, push } = useRouter();
 
   const handleSearch = () => {
-    router.push(`${query.name}?name=${selectedName}&id=${selectedId}`);
+    push(`${query.name}?name=${selectedName}&id=${selectedId}`);
   };
   const searchParams = useSearchParams();
   const searchName = searchParams.get("name");
@@ -97,7 +96,7 @@ const MainProject = () => {
             <button
               className={styles.projectFilter}
               onClick={() => {
-                router.push(`/recyclage/${query.name}/`);
+                push(`/recyclage/${query.name}/`);
                 setSelectedId("");
                 setName("");
               }}
