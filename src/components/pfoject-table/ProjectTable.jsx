@@ -70,7 +70,7 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
       {loading ? (
         <>loading...</>
       ) : (
-        <div>
+        <div className={styles.tableHolder}>
           {data?.length ? (
             <>
               {currentRows?.map((item) => (
@@ -113,19 +113,19 @@ const ProjectTable = ({ data, loading, fetchProcess, fetchProject }) => {
                   </span>
                 </div>
               ))}
-              <Pagination
-                rowsPerPage={rowsPerPage}
-                setRowsPerPage={setRowsPerPage}
-                totalRows={data?.length}
-                paginate={paginate}
-                currentPage={currentPage}
-              />
             </>
           ) : (
             <div>no data ...</div>
           )}
         </div>
       )}
+      <Pagination
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        totalRows={data?.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
       <UnderTable
         fetchProject={fetchProject}
         data={data}

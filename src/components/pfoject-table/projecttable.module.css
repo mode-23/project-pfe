@@ -98,12 +98,11 @@
   color: var(--text-color);
   cursor: pointer;
 }
-.pagi.active {
-  background-color: var(--style-color);
-}
 .paginationBtns {
   display: flex;
+  align-items: center;
   gap: 2px;
+  position: relative;
 }
 .paginationBtns button {
   display: flex;
@@ -113,43 +112,56 @@
   outline: 0;
   background-color: var(--text-color);
   color: var(--bg-color);
-  border: 1px solid var(--bg-color);
+  border: 1px solid var(--second-color);
   width: 30px;
   aspect-ratio: 1/1;
   font-weight: 600;
   transition: 250ms ease-in-out;
   cursor: pointer;
 }
+.paginationBtns button.active,
 .paginationBtns button:hover {
   background-color: var(--second-color);
   color: var(--text-color);
 }
-.pageNumbers {
-  position: relative;
-  display: flex;
-  gap: 2px;
-}
-.pageNumbers button {
+.dropDownPagination {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0;
-  outline: 0;
-  background-color: var(--text-color);
-  color: var(--bg-color);
-  border: 1px solid var(--bg-color);
-  width: 30px;
-  aspect-ratio: 1/1;
-  font-weight: 600;
-  transition: 250ms ease-in-out;
-  cursor: pointer;
-}
-.pageNumbers ul {
+  flex-direction: column;
+  gap: 2px;
   position: absolute;
-  bottom: calc(100% + 5px);
-  left: 0;
+  bottom: calc(100% + 10px);
   width: 100%;
-  height: fit-content;
-  background-color: var(--bg-color);
-  z-index: 99;
+  background-color: var(--text-color);
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 8px;
+}
+.dropDownPagination button {
+  width: 100%;
+  padding: 5px;
+  aspect-ratio: unset;
+  height: fit-content !important;
+}
+.paginationBtns span {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--second-color);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  transition: 250ms ease-in-out;
+}
+.paginationBtns span:hover,
+.paginationBtns span.active {
+  background-color: var(--second-color);
+  color: var(--text-color);
+}
+.tableHolder {
+  min-height: calc(38.4px * 5);
 }

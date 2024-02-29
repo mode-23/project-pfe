@@ -110,6 +110,23 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
             <>
               <li>
                 <Link
+                  href={`/recyclage/${currentProject}`}
+                  className={
+                    pathname.includes("recyclage")
+                      ? `${styles.active} ${styles.link}`
+                      : ` ${styles.link}`
+                  }
+                >
+                  {pathname.includes("recyclage") ? (
+                    <PiRecycleDuotone />
+                  ) : (
+                    <PiRecycleLight />
+                  )}
+                  recycle
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/history/${currentProject}`}
                   className={
                     pathname === "/history"
@@ -136,23 +153,6 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
                     <TiWarningOutline />
                   )}
                   failed
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/recyclage/${currentProject}`}
-                  className={
-                    pathname.includes("recyclage")
-                      ? `${styles.active} ${styles.link}`
-                      : ` ${styles.link}`
-                  }
-                >
-                  {pathname.includes("recyclage") ? (
-                    <PiRecycleDuotone />
-                  ) : (
-                    <PiRecycleLight />
-                  )}
-                  recycle
                 </Link>
               </li>
             </>
