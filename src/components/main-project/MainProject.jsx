@@ -18,27 +18,36 @@ const MainProject = () => {
   const [projectData, setProjectData] = useState([]);
   const [selectedName, setName] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [openFilter, setOpenFilter] = useState(true);
   const { query, push } = useRouter();
 
   const handleSearch = () => {
-    push(`${query.name}?name=${selectedName}&id=${selectedId}`);
+    push(
+      `${query.name}?name=${selectedName}&id=${selectedId}&startDate=${selectedStartDate}&endDate=${selectedEndDate}`
+    );
   };
   const searchParams = useSearchParams();
   const searchName = searchParams.get("name");
   const searchId = searchParams.get("id");
-
+  const searchStartDate = searchParams.get("startDate");
+  const searchEndDate = searchParams.get("endDate");
   useEffect(() => {
     setOpen(false);
     setName("");
     setSelectedId("");
+    setSelectedStartDate("");
+    setSelectedEndDate("");
   }, [query.name]);
   const params = [
     { key: "project", value: query?.name },
     { key: "name", value: searchName || "" },
     { key: "id", value: +searchId || "" },
+    { key: "startDate", value: searchStartDate || "" },
+    { key: "endDate", value: searchEndDate || "" },
   ];
   const paramsStr = params.map((item) => `${item.key}=${item.value}`).join("&");
   const fetchProject = async () => {
@@ -55,7 +64,7 @@ const MainProject = () => {
     if (query.name) {
       fetchProject();
     }
-  }, [query?.name, searchName, searchId]);
+  }, [query?.name, searchName, searchId, searchStartDate, searchEndDate]);
   useEffect(() => {
     const fetchSingleProject = async () => {
       try {
@@ -99,6 +108,8 @@ const MainProject = () => {
                 push(`/recyclage/${query.name}/`);
                 setSelectedId("");
                 setName("");
+                setSelectedStartDate("");
+                setSelectedEndDate("");
               }}
             >
               <LuRefreshCcw />
@@ -121,7 +132,8 @@ const MainProject = () => {
                     type="date"
                     id="dateStart"
                     className={styles.calendar_tab}
-                    onChange={(e) => console.log(e.target.value)}
+                    onChange={(e) => setSelectedStartDate(e.target.value)}
+                    value={selectedStartDate}
                   />
                 </div>
                 <div className={styles.filter_tab}>
@@ -132,7 +144,8 @@ const MainProject = () => {
                     type="date"
                     id="dateEnd"
                     className={styles.calendar_tab}
-                    onChange={(e) => console.log(e.target.value)}
+                    onChange={(e) => setSelectedEndDate(e.target.value)}
+                    value={selectedEndDate}
                   />
                 </div>
                 <div className={styles.filter_tab}>

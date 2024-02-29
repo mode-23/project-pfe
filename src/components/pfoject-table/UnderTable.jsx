@@ -39,14 +39,19 @@ const UnderTable = ({
         >
           Recycle
         </button>
-        <button onClick={handleExport} className={styles.underBtn}>
-          <Image
-            src="/excel.png"
-            alt="Picture of excel"
-            width={20}
-            height={20}
-          />
-        </button>
+        <div className={styles.underHolderBtn}>
+          <button className={styles.underBtn}>
+            <Image src="/pdf.png" alt="Picture of pdf" width={25} height={25} />
+          </button>
+          <button onClick={handleExport} className={styles.underBtn}>
+            <Image
+              src="/xls.png"
+              alt="Picture of excel"
+              width={25}
+              height={25}
+            />
+          </button>
+        </div>
       </div>
     </>
   );

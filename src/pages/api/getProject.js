@@ -1,16 +1,16 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  const { name, id, project } = req.query;
+  const { name, id, project, startDate, endDate } = req.query;
   const user = await prisma.process.findMany({
     where: {
       status: "ready",
       project,
       name: name || undefined,
       id: +id || undefined,
-      // date: {
-      //   gte: new Date("2024-01-08"),
-      //   lte: undefined,
-      // },
+      date: {
+        gte: startDate ? new Date(startDate) : undefined,
+        lte: endDate ? new Date(endDate) : undefined,
+      },
     },
     orderBy: {
       date: "desc",

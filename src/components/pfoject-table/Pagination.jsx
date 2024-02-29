@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./projecttable.module.css";
+import { IoChevronDown } from "react-icons/io5";
+
 const Pagination = ({
   rowsPerPage,
   setRowsPerPage,
@@ -38,7 +40,8 @@ const Pagination = ({
           onClick={() => setOpen((prev) => !prev)}
           className={open ? `${styles.active}` : null}
         >
-          rows: {rowsPerPage}
+          {rowsPerPage}
+          <IoChevronDown />
         </span>
         {open && (
           <div className={styles.dropDownPagination}>

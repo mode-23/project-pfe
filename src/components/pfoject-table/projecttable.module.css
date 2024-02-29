@@ -72,6 +72,11 @@
   justify-content: space-between;
   margin: 10px 0;
 }
+.underHolderBtn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
 .recycleBtn {
   padding: 10px 15px;
   border: 1px solid var(--bg-color);
@@ -111,7 +116,7 @@
   border: 0;
   outline: 0;
   background-color: var(--text-color);
-  color: var(--bg-color);
+  color: var(--second-color);
   border: 1px solid var(--second-color);
   width: 30px;
   aspect-ratio: 1/1;
@@ -155,12 +160,21 @@
   align-items: center;
   justify-content: center;
   height: 30px;
-  transition: 250ms ease-in-out;
+  transition: 150ms ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 .paginationBtns span:hover,
 .paginationBtns span.active {
   background-color: var(--second-color);
   color: var(--text-color);
+}
+.paginationBtns span svg {
+  transition: 150ms ease-in-out;
+}
+.paginationBtns span.active svg {
+  rotate: 180deg;
 }
 .tableHolder {
   min-height: calc(38.4px * 5);
