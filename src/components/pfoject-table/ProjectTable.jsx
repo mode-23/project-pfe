@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import styles from "./projecttable.module.css";
-import { apiCall } from "@/utils/apiCall";
-import * as XLSX from "xlsx/xlsx.mjs";
 import UnderTable from "./UnderTable";
 import Pagination from "./Pagination";
 import EmptyTable from "./EmptyTable";
-
+import { motion, AnimatePresence } from "framer-motion";
 const ProjectTable = ({ data, loading, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
@@ -71,11 +69,15 @@ const ProjectTable = ({ data, loading, fetchProject }) => {
       {loading ? (
         <>loading...</>
       ) : (
-        <div className={styles.tableHolder}>
+        <motion.div className={styles.tableHolder} layout layoutRoot>
           {data?.length ? (
             <>
               {currentRows?.map((item) => (
-                <div
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  exit={{ opacity: 0 }}
+                  layout
                   className={`${styles.tableTab} ${styles.grid}`}
                   key={item.id}
                 >
@@ -112,13 +114,13 @@ const ProjectTable = ({ data, loading, fetchProject }) => {
                       {item.status}
                     </p>
                   </span>
-                </div>
+                </motion.div>
               ))}
             </>
           ) : (
             <EmptyTable />
           )}
-        </div>
+        </motion.div>
       )}
       {data?.length > 0 && (
         <>

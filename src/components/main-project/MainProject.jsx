@@ -19,6 +19,7 @@ const MainProject = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [dateError, setDateError] = useState(true);
   const [openFilter, setOpenFilter] = useState(true);
   const { query, push } = useRouter();
 
@@ -80,6 +81,19 @@ const MainProject = () => {
       fetchSingleProject();
     }
   }, [query.name]);
+
+  let diff = Math.abs(new Date(selectedStartDate) - new Date(selectedEndDate));
+  // console.log(new Date(selectedEndDate) >= new Date(selectedStartDate));
+  let diffInDays = diff / (24 * 60 * 60 * 1000);
+  useEffect(() => {
+    if (diffInDays > 0 && diffInDays <= 5) {
+      setDateError(false);
+      console.log("correct");
+    } else {
+      setDateError(true);
+      console.log("wrong");
+    }
+  }, [selectedStartDate, selectedEndDate]);
 
   return (
     <ProtectedRoute>
