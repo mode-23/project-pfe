@@ -3,7 +3,7 @@ import styles from "./projecttable.module.css";
 import UnderTable from "./UnderTable";
 import Pagination from "./Pagination";
 import EmptyTable from "./EmptyTable";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 const ProjectTable = ({ data, loading, fetchProject }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
