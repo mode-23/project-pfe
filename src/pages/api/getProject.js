@@ -5,7 +5,15 @@ const handler = async (req, res) => {
     where: {
       status: "ready",
       project,
-      name: name || undefined,
+      AND: [
+        {
+          name: {
+            endsWith: "failure",
+          },
+        },
+        { name: name || undefined },
+      ],
+      // name: name || undefined,
       id: +id || undefined,
       date: {
         gte: startDate ? new Date(startDate) : undefined,
