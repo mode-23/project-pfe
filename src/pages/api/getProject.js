@@ -13,7 +13,6 @@ const handler = async (req, res) => {
         },
         { name: name || undefined },
       ],
-      // name: name || undefined,
       id: +id || undefined,
       date: {
         gte: startDate ? new Date(startDate) : undefined,
