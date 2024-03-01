@@ -83,7 +83,7 @@ const MainProject = () => {
   }, [query.name]);
 
   let diff = Math.abs(new Date(selectedStartDate) - new Date(selectedEndDate));
-  // console.log(new Date(selectedEndDate) >= new Date(selectedStartDate));
+  // new Date(selectedEndDate) >= new Date(selectedStartDate);
   let diffInDays = diff / (24 * 60 * 60 * 1000);
   useEffect(() => {
     if (diffInDays > 0 && diffInDays <= 5) {
