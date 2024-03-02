@@ -67,7 +67,7 @@ const ProjectTable = ({ data, loading, fetchProject }) => {
         <span>status</span>
       </div>
       {loading ? (
-        <>loading...</>
+        <div className={styles.emptyTable}>loading...</div>
       ) : (
         <motion.div className={styles.tableHolder} layout layoutRoot>
           {data?.length ? (
@@ -132,6 +132,7 @@ const ProjectTable = ({ data, loading, fetchProject }) => {
             currentPage={currentPage}
           />
           <UnderTable
+            formatDate={formatDate}
             fetchProject={fetchProject}
             data={data}
             selectedItems={selectedItems}

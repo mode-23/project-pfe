@@ -86,7 +86,7 @@ const App = ({ Component, pageProps }) => {
           />
         )}
         <Component {...pageProps} currentProject={currentProject} />
-        {me.id && <SidebarRight />}
+        {/* {me.id && <SidebarRight />} */}
       </div>
       {/* <footer className="footer">footer</footer> */}
     </>

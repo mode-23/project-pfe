@@ -3,12 +3,16 @@ import Image from "next/image";
 import React from "react";
 import * as XLSX from "xlsx/xlsx.mjs";
 import styles from "./projecttable.module.css";
+import { useRouter } from "next/router";
 const UnderTable = ({
   data,
   fetchProject,
   selectedItems,
   setSelectedItems,
+  formatDate,
 }) => {
+  const { query } = useRouter();
+
   const handleUpdateStatus = async () => {
     try {
       const res = await apiCall("updateMany", {
@@ -23,11 +27,17 @@ const UnderTable = ({
       console.log(error);
     }
   };
-  const handleExport = () => {
-    let wb = XLSX.utils.book_new(),
-      ws = XLSX.utils.json_to_sheet(data);
-    XLSX.utils.book_append_sheet(wb, ws, "filetest");
-    XLSX.writeFile(wb, "exceltest.xlsx");
+  console.log(formatDate(Date.now()), query?.name);
+  const handleExportXLSX = () => {
+    if (query?.name) {
+      let wb = XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(data);
+      XLSX.utils.book_append_sheet(wb, ws, `${query?.name}`);
+      XLSX.writeFile(
+        wb,
+        `${query?.name?.toLocaleUpperCase()}-${formatDate(Date.now())}.xlsx`
+      );
+    }
   };
   return (
     <div className={styles.underHolder}>
@@ -44,7 +54,7 @@ const UnderTable = ({
           <button className={styles.underBtn}>
             <Image src="/pdf.png" alt="Picture of pdf" width={25} height={25} />
           </button>
-          <button onClick={handleExport} className={styles.underBtn}>
+          <button onClick={handleExportXLSX} className={styles.underBtn}>
             <Image
               src="/xls.png"
               alt="Picture of excel"
