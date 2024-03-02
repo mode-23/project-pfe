@@ -27,7 +27,6 @@ const UnderTable = ({
       console.log(error);
     }
   };
-  console.log(formatDate(Date.now()), query?.name);
   const handleExportXLSX = () => {
     if (query?.name) {
       let wb = XLSX.utils.book_new(),

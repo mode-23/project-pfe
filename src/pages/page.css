@@ -63,7 +63,7 @@ body {
   max-height: calc(100svh - 85px);
   display: grid;
   /* grid-template-columns: 1.4fr 3.5fr 2fr; */
-  grid-template-columns: 1.4fr 6fr;
+  grid-template-columns: 1.6fr 6fr;
 }
 ul {
   list-style: none;

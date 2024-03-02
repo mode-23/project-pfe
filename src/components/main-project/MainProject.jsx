@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
@@ -9,6 +9,8 @@ import { IoChevronDownSharp } from "react-icons/io5";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useSearchParams } from "next/navigation";
 import styles from "./mainproject.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MainProject = () => {
   const [data, setData] = useState([]);
@@ -22,8 +24,37 @@ const MainProject = () => {
   const [dateError, setDateError] = useState(true);
   const [openFilter, setOpenFilter] = useState(true);
   const { query, push } = useRouter();
-
+  let maxDaysRange = 5;
+  let diff = new Date(selectedEndDate) - new Date(selectedStartDate);
+  let diffInDays = diff / (24 * 60 * 60 * 1000);
+  const date1 = useRef();
+  const date2 = useRef();
+  const handleErrornotify = (message) => {
+    toast.error(message, {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
   const handleSearch = () => {
+    if (date1?.current?.value && date2?.current?.value) {
+      if (!(diffInDays > 0)) {
+        handleErrornotify("End date should be more than start date");
+        return;
+      } else if (!(diffInDays <= maxDaysRange)) {
+        handleErrornotify("Date range should be maximum of 5 days");
+        return;
+      }
+      // if (dateError) {
+      //   handleErrornotify("Incorrect date");
+      //   return;
+      // }
+    }
     push(
       `${query.name}?name=${selectedName}&id=${selectedId}&startDate=${selectedStartDate}&endDate=${selectedEndDate}`
     );
@@ -82,16 +113,12 @@ const MainProject = () => {
     }
   }, [query.name]);
 
-  let diff = Math.abs(new Date(selectedStartDate) - new Date(selectedEndDate));
-  // new Date(selectedEndDate) >= new Date(selectedStartDate);
-  let diffInDays = diff / (24 * 60 * 60 * 1000);
+  console.log(diffInDays);
   useEffect(() => {
-    if (diffInDays > 0 && diffInDays <= 5) {
+    if (diffInDays > 0 && diffInDays <= maxDaysRange) {
       setDateError(false);
-      console.log("correct");
     } else {
       setDateError(true);
-      console.log("wrong");
     }
   }, [selectedStartDate, selectedEndDate]);
 
@@ -105,6 +132,7 @@ const MainProject = () => {
         transition={{ duration: 0.5 }}
         key={query.name}
       >
+        <ToastContainer />
         <div className={styles.projectHolder}>
           <div className={styles.projectHeader}>
             <button
@@ -140,6 +168,7 @@ const MainProject = () => {
                     start date
                   </label>
                   <input
+                    ref={date1}
                     type="date"
                     id="dateStart"
                     className={styles.calendar_tab}
@@ -152,6 +181,7 @@ const MainProject = () => {
                     end date
                   </label>
                   <input
+                    ref={date2}
                     type="date"
                     id="dateEnd"
                     className={styles.calendar_tab}
