@@ -57,11 +57,16 @@
   overflow: visible;
   accent-color: var(--style-color);
   height: 37.6px;
+  transition: 250ms ease-in;
+}
+.calendar_tab:focus,
+.calendar_tab:hover,
+.calendar_tab.active {
+  background-color: var(--soft-color);
 }
 .calendar_tab small {
   cursor: pointer;
   display: block;
-  width: 150px;
   height: 100%;
   background-color: transparent;
 }

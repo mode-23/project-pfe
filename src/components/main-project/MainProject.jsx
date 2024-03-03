@@ -22,7 +22,6 @@ const MainProject = () => {
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dateError, setDateError] = useState(true);
   const [openFilter, setOpenFilter] = useState(true);
   const { query, push } = useRouter();
   let maxDaysRange = 5;
@@ -51,10 +50,10 @@ const MainProject = () => {
         handleErrornotify("Date range should be maximum of 5 days");
         return;
       }
-      // if (dateError) {
-      //   handleErrornotify("Incorrect date");
-      //   return;
-      // }
+    }
+    if (isNaN(+selectedId)) {
+      handleErrornotify("id must be a number");
+      return;
     }
     push(
       `${query.name}?name=${selectedName}&id=${selectedId}&startDate=${selectedStartDate}&endDate=${selectedEndDate}`
@@ -114,15 +113,6 @@ const MainProject = () => {
       fetchSingleProject();
     }
   }, [query.name]);
-
-  console.log(diffInDays);
-  useEffect(() => {
-    if (diffInDays > 0 && diffInDays <= maxDaysRange) {
-      setDateError(false);
-    } else {
-      setDateError(true);
-    }
-  }, [selectedStartDate, selectedEndDate]);
 
   return (
     <ProtectedRoute>
@@ -206,8 +196,13 @@ const MainProject = () => {
                 <div className={styles.dropDownHolder}>
                   <div className={styles.filter_tab}>
                     <span className={styles.label}>process name</span>
-                    <div className={styles.calendar_tab}>
-                      <small onClick={() => setOpen((prev) => !prev)}>
+                    <div
+                      className={`${styles.calendar_tab} ${
+                        open ? styles.active : null
+                      }`}
+                      onClick={() => setOpen((prev) => !prev)}
+                    >
+                      <small>
                         {selectedName ? selectedName : "Select a name"}
                       </small>
                       <IoChevronDownSharp />
