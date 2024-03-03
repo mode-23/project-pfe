@@ -1,9 +1,13 @@
 import { apiCall } from "@/utils/apiCall";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import * as XLSX from "xlsx/xlsx.mjs";
 import styles from "./projecttable.module.css";
 import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import PopOut from "./PopOut";
+
 const UnderTable = ({
   data,
   fetchProject,
@@ -12,19 +16,27 @@ const UnderTable = ({
   formatDate,
 }) => {
   const { query } = useRouter();
+  const [open, setOpen] = useState(false);
 
   const handleUpdateStatus = async () => {
-    try {
-      const res = await apiCall("updateMany", {
-        method: "POST",
-        body: JSON.stringify({
-          array: selectedItems,
-        }),
-      });
-      setSelectedItems([]);
-      fetchProject();
-    } catch (error) {
-      console.log(error);
+    if (selectedItems.length) {
+      try {
+        const res = await apiCall("updateMany", {
+          method: "POST",
+          body: JSON.stringify({
+            array: selectedItems,
+          }),
+        });
+        setSelectedItems([]);
+        console.log(res);
+        if (res) {
+          setOpen(false);
+        }
+
+        fetchProject();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const handleExportXLSX = () => {
@@ -38,32 +50,45 @@ const UnderTable = ({
       );
     }
   };
+
   return (
-    <div className={styles.underHolder}>
-      <button
-        className={styles.recycleBtn}
-        disabled={!selectedItems.length}
-        onClick={handleUpdateStatus}
-      >
-        Recycle
-      </button>
-      <div className={styles.exportHolder}>
-        <h4>export data</h4>
-        <div className={styles.underHolderBtn}>
-          <button className={styles.underBtn}>
-            <Image src="/pdf.png" alt="Picture of pdf" width={25} height={25} />
-          </button>
-          <button onClick={handleExportXLSX} className={styles.underBtn}>
-            <Image
-              src="/xls.png"
-              alt="Picture of excel"
-              width={25}
-              height={25}
-            />
-          </button>
+    <>
+      {open && (
+        <PopOut handleUpdateStatus={handleUpdateStatus} setOpen={setOpen} />
+      )}
+
+      <ToastContainer />
+      <div className={styles.underHolder}>
+        <button
+          className={styles.recycleBtn}
+          disabled={!selectedItems.length}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          Recycle
+        </button>
+        <div className={styles.exportHolder}>
+          <h4>export data</h4>
+          <div className={styles.underHolderBtn}>
+            <button className={styles.underBtn}>
+              <Image
+                src="/pdf.png"
+                alt="Picture of pdf"
+                width={25}
+                height={25}
+              />
+            </button>
+            <button onClick={handleExportXLSX} className={styles.underBtn}>
+              <Image
+                src="/xls.png"
+                alt="Picture of excel"
+                width={25}
+                height={25}
+              />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

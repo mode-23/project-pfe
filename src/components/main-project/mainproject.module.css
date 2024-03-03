@@ -1,5 +1,5 @@
 .project {
-  padding: var(--padding);
+  /* padding: var(--padding); */
   height: calc(100svh - 85px);
   max-height: calc(100svh - 85px);
   overflow-y: auto;
@@ -16,6 +16,8 @@
   /* justify-content: center; */
   flex-direction: column;
   gap: var(--padding);
+  position: relative;
+  padding: var(--padding);
 }
 .filter {
   display: grid;

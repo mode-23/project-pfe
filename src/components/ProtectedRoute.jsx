@@ -1,6 +1,7 @@
 import { useMeStore } from "@/store/useMeStore";
 import React from "react";
 import { useRouter } from "next/router";
+import MainSkeletonLoading from "./loading/MainSkeletonLoading";
 const ProtectedRoute = ({ children }) => {
   const isLoading = useMeStore((state) => state.isLoading);
   const me = useMeStore((state) => ({
@@ -11,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
   }));
   const router = useRouter();
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <MainSkeletonLoading />;
 
   if (!me.id) {
     router.replace("/");
