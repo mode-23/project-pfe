@@ -26,13 +26,7 @@ const PopOut = ({ handleUpdateStatus, setOpen }) => {
         </p>
         <div className={styles.popUpBtns}>
           <button onClick={() => setOpen((prev) => !prev)}>cancel</button>
-          <button
-            className={styles.confirm}
-            onClick={() => {
-              handleUpdateStatus();
-              handleNotify();
-            }}
-          >
+          <button className={styles.confirm} onClick={handleUpdateStatus}>
             confirm
           </button>
         </div>

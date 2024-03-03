@@ -33,6 +33,9 @@
 .tableTab:nth-child(odd) {
   background-color: var(--soft-color);
 }
+.tableTab.active {
+  background-color: #94949482;
+}
 .tableTab span {
   display: flex;
   align-items: center;

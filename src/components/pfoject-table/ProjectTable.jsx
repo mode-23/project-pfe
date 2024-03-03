@@ -84,7 +84,12 @@ const ProjectTable = ({
                   initial={{ opacity: 0 }}
                   exit={{ opacity: 0 }}
                   layout
-                  className={`${styles.tableTab} ${styles.grid}`}
+                  className={
+                    selectedItems.includes(+item.id) ||
+                    selectedItems.includes("selectAll")
+                      ? `${styles.tableTab} ${styles.grid} ${styles.active}`
+                      : `${styles.tableTab} ${styles.grid}`
+                  }
                   key={item.id}
                 >
                   <span className={styles.checkBox}>
