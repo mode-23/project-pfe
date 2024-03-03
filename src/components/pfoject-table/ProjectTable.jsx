@@ -4,7 +4,13 @@ import UnderTable from "./UnderTable";
 import Pagination from "./Pagination";
 import EmptyTable from "./EmptyTable";
 import { motion } from "framer-motion";
-const ProjectTable = ({ data, loading, fetchProject }) => {
+const ProjectTable = ({
+  data,
+  loading,
+  fetchProject,
+  currentPage,
+  setCurrentPage,
+}) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
     const { name } = e.target;
@@ -41,7 +47,7 @@ const ProjectTable = ({ data, loading, fetchProject }) => {
     return format;
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexofFirsRow = indexOfLastRow - rowsPerPage;

@@ -13,6 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MainProject = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [projectData, setProjectData] = useState([]);
   const [selectedName, setName] = useState("");
@@ -84,6 +85,7 @@ const MainProject = () => {
     try {
       const res = await apiCall("getProject?" + paramsStr);
       setData(res);
+      setCurrentPage(1);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -236,6 +238,8 @@ const MainProject = () => {
             )}
           </AnimatePresence>
           <ProjectTable
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
             data={data}
             loading={loading}
             fetchProject={fetchProject}
