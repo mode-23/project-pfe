@@ -9,8 +9,9 @@ import { IoChevronDownSharp } from "react-icons/io5";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useSearchParams } from "next/navigation";
 import styles from "./mainproject.module.css";
-import { toast, ToastContainer } from "react-toastify";
+// import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Toaster, toast } from "react-hot-toast";
 
 const MainProject = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,24 +31,36 @@ const MainProject = () => {
   const date1 = useRef();
   const date2 = useRef();
   const handleErrornotify = (message) => {
+    // toast.error(message, {
+    //   position: "bottom-right",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    // });
     toast.error(message, {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
+      style: {
+        padding: "8px 14px",
+        color: "#e4002b",
+        background: "#161616",
+        fontWeight: 700,
+      },
+      iconTheme: {
+        primary: "#e4002b",
+        secondary: "#FFFAEE",
+      },
     });
   };
   const handleSearch = () => {
     if (date1?.current?.value && date2?.current?.value) {
       if (!(diffInDays > 0)) {
-        handleErrornotify("End date should be more than start date");
+        handleErrornotify("End date must be more than start date");
         return;
       } else if (!(diffInDays <= maxDaysRange)) {
-        handleErrornotify("Date range should be maximum of 5 days");
+        handleErrornotify("Date range must be maximum of 5 days");
         return;
       }
     }
@@ -124,7 +137,8 @@ const MainProject = () => {
         transition={{ duration: 0.5 }}
         key={query.name}
       >
-        <ToastContainer />
+        <Toaster position="bottom-right" reverseOrder={false} />
+        {/* <ToastContainer /> */}
         <div className={styles.projectHolder}>
           <div className={styles.projectHeader}>
             <button

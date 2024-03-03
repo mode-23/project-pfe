@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx/xlsx.mjs";
 import styles from "./projecttable.module.css";
 import { useRouter } from "next/router";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PopOut from "./PopOut";
+import { Toaster, toast } from "react-hot-toast";
 
 const UnderTable = ({
   data,
@@ -17,7 +18,20 @@ const UnderTable = ({
 }) => {
   const { query } = useRouter();
   const [open, setOpen] = useState(false);
-
+  const handleSuccessNotify = (message) => {
+    toast.success(message, {
+      style: {
+        padding: "8px 14px",
+        color: "#279b37",
+        background: "#161616",
+        fontWeight: 700,
+      },
+      iconTheme: {
+        primary: "#279b37",
+        secondary: "#FFFAEE",
+      },
+    });
+  };
   const handleUpdateStatus = async () => {
     if (selectedItems.length) {
       try {
@@ -28,6 +42,7 @@ const UnderTable = ({
           }),
         });
         setSelectedItems([]);
+        handleSuccessNotify("Successfully updated");
         console.log(res);
         if (res) {
           setOpen(false);
@@ -56,8 +71,8 @@ const UnderTable = ({
       {open && (
         <PopOut handleUpdateStatus={handleUpdateStatus} setOpen={setOpen} />
       )}
-
-      <ToastContainer />
+      <Toaster />
+      {/* <ToastContainer /> */}
       <div className={styles.underHolder}>
         <button
           className={styles.recycleBtn}
