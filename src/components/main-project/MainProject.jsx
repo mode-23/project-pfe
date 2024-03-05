@@ -197,7 +197,7 @@ const MainProject = () => {
                 </div>
                 <div className={styles.filter_tab}>
                   <label className={styles.label} htmlFor="processId">
-                    task id
+                    process id
                   </label>
                   <input
                     type="text"

@@ -19,6 +19,9 @@ const handler = async (req, res) => {
         gte: startDate ? new Date(startDate) : undefined,
         lte: endDate ? new Date(endDate) : undefined,
       },
+      taskprocess: {
+        status: "encours",
+      },
     },
     orderBy: {
       date: "desc",

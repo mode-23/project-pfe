@@ -9,7 +9,7 @@ const Project = ({ currentProject }) => {
     if (currentProject && query.name) {
       push(`/recyclage/${currentProject}`);
     }
-  }, [currentProject]);
+  }, [currentProject, query.name]);
 
   return <MainProject />;
 };

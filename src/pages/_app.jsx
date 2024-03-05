@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { IoHomeSharp, IoLockOpen } from "react-icons/io5";
 import Link from "next/link";
 import { AUTH_TOKEN } from "@/constants/localstorage";
+import { PrimeReactProvider } from "primereact/api";
+
 const App = ({ Component, pageProps }) => {
   const [currentProject, setCurrentProjects] = useState("");
 
@@ -85,7 +87,9 @@ const App = ({ Component, pageProps }) => {
             setCurrentProjects={setCurrentProjects}
           />
         )}
-        <Component {...pageProps} currentProject={currentProject} />
+        <PrimeReactProvider>
+          <Component {...pageProps} currentProject={currentProject} />
+        </PrimeReactProvider>
         {/* {me.id && <SidebarRight />} */}
       </div>
       {/* <footer className="footer">footer</footer> */}
