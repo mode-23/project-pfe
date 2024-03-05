@@ -55,6 +55,7 @@ const ProjectTable = ({
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <div className={`${styles.table}`}>
       <div className={`${styles.tableHeader} ${styles.grid}`}>
@@ -67,8 +68,10 @@ const ProjectTable = ({
             checked={selectedItems.length === data?.length && data?.length > 0}
           />
         </span>
-        <span>process id</span>
-        <span>process name</span>
+        {/* <span>process id</span> */}
+        <span>task id</span>
+        <span>task name</span>
+        {/* <span>process name</span> */}
         <span>failure date</span>
         <span>status</span>
       </div>

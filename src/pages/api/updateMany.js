@@ -1,14 +1,14 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
   const { array } = JSON.parse(req.body);
-  const process = await prisma.process.updateMany({
+  const process = await prisma.task.updateMany({
     where: {
       id: {
         in: array,
       },
     },
     data: {
-      status: "in progress",
+      status: "completed",
     },
   });
   res.status(200).json(process);

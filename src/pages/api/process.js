@@ -3,7 +3,7 @@ const handler = async (req, res) => {
   const { project, startDate, endDate, name, id, status } = JSON.parse(
     req.body
   );
-  const process = await prisma.process.findMany({
+  const process = await prisma.task.findMany({
     where: {
       status,
       project,

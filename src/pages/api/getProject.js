@@ -1,7 +1,7 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
   const { name, id, project, startDate, endDate } = req.query;
-  const user = await prisma.process.findMany({
+  const task = await prisma.task.findMany({
     where: {
       status: "ready",
       project,
@@ -22,9 +22,12 @@ const handler = async (req, res) => {
     orderBy: {
       date: "desc",
     },
+    include: {
+      taskprocess: true,
+    },
   });
-
-  res.status(200).json(user);
+  console.log(task);
+  res.status(200).json(task);
 };
 
 export default handler;
