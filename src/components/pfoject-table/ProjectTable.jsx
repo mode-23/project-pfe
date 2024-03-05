@@ -11,6 +11,7 @@ const ProjectTable = ({
   currentPage,
   setCurrentPage,
 }) => {
+  console.log(data);
   const [selectedItems, setSelectedItems] = useState([]);
   const checkBoxSelected = (e, data) => {
     const { name } = e.target;
@@ -68,10 +69,10 @@ const ProjectTable = ({
             checked={selectedItems.length === data?.length && data?.length > 0}
           />
         </span>
-        {/* <span>process id</span> */}
+        <span>process id</span>
         <span>task id</span>
         <span>task name</span>
-        {/* <span>process name</span> */}
+        <span>process name</span>
         <span>failure date</span>
         <span>status</span>
       </div>
@@ -107,6 +108,7 @@ const ProjectTable = ({
                       }
                     />
                   </span>
+                  <span>{item.taskprocess.id}</span>
                   <span>{item.id}</span>
                   <span>
                     <input
@@ -114,6 +116,14 @@ const ProjectTable = ({
                       readOnly
                       className={styles.input}
                       value={item.name}
+                    />
+                  </span>
+                  <span>
+                    <input
+                      type="text"
+                      readOnly
+                      className={styles.input}
+                      value={item.taskprocess.name}
                     />
                   </span>
                   <span>{formatDate(item.date)}</span>

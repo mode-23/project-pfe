@@ -197,7 +197,7 @@ const MainProject = () => {
                 </div>
                 <div className={styles.filter_tab}>
                   <label className={styles.label} htmlFor="processId">
-                    process id
+                    task id
                   </label>
                   <input
                     type="text"
@@ -209,7 +209,7 @@ const MainProject = () => {
                 </div>
                 <div className={styles.dropDownHolder}>
                   <div className={styles.filter_tab}>
-                    <span className={styles.label}>process name</span>
+                    <span className={styles.label}>task name</span>
                     <div
                       className={`${styles.calendar_tab} ${
                         open ? styles.active : null

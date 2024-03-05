@@ -13,7 +13,8 @@ const handler = async (req, res) => {
         },
         { name: name || undefined },
       ],
-      id: +id || undefined,
+      processId: +id || undefined,
+      // id: +id || undefined,
       date: {
         gte: startDate ? new Date(startDate) : undefined,
         lte: endDate ? new Date(endDate) : undefined,
