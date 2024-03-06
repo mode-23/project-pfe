@@ -21,9 +21,11 @@ const UnderTable = ({
   const handleSuccessNotify = (message) => {
     toast.success(message, {
       style: {
+        marginTop: "120px",
+        marginLeft: "1270px",
         padding: "8px 14px",
         color: "#279b37",
-        background: "#161616",
+        background: "#a6ffb2",
         fontWeight: 700,
       },
       iconTheme: {
@@ -71,7 +73,7 @@ const UnderTable = ({
       {open && (
         <PopOut handleUpdateStatus={handleUpdateStatus} setOpen={setOpen} />
       )}
-      <Toaster />
+      {/* <Toaster /> */}
       {/* <ToastContainer /> */}
       <div className={styles.underHolder}>
         <button

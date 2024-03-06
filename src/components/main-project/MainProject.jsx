@@ -42,10 +42,13 @@ const MainProject = () => {
     //   theme: "dark",
     // });
     toast.error(message, {
+      id: selectedId,
       style: {
         padding: "8px 14px",
+        marginTop: "80px",
+        marginLeft: "1270px",
         color: "#e4002b",
-        background: "#161616",
+        background: "#ff9cae",
         fontWeight: 700,
       },
       iconTheme: {
@@ -137,7 +140,7 @@ const MainProject = () => {
         transition={{ duration: 0.5 }}
         key={query.name}
       >
-        <Toaster position="bottom-right" reverseOrder={false} />
+        <Toaster position="top-right" reverseOrder={false} />
         {/* <ToastContainer /> */}
         <div className={styles.projectHolder}>
           <div className={styles.projectHeader}>
