@@ -6,12 +6,12 @@ const EmptyTable = () => {
     <div className={styles.emptyTable}>
       <Image
         src={"/no-data.png"}
-        width={80}
-        height={80}
+        width={100}
+        height={100}
         alt="picture of default user"
       />
       <h3>
-        No data found. <br /> Please adjust filters.
+        No data available <br /> Please try another search.
       </h3>
     </div>
   );

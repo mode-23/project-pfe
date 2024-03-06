@@ -4,6 +4,7 @@ import UnderTable from "./UnderTable";
 import Pagination from "./Pagination";
 import EmptyTable from "./EmptyTable";
 import { motion } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
 const ProjectTable = ({
   data,
   loading,
@@ -13,6 +14,7 @@ const ProjectTable = ({
 }) => {
   console.log(data);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedTasks, setSelectedTasks] = useState([]);
   const checkBoxSelected = (e, data) => {
     const { name } = e.target;
     if (name !== "selectAll") {
@@ -34,6 +36,31 @@ const ProjectTable = ({
       }
     }
   };
+  const handleTasks = (e, type, content) => {
+    if (type !== "all") {
+      if (e.target.checked) {
+        setSelectedTasks([...selectedTasks, +content.taskprocess.id]);
+      } else {
+        if (selectedTasks.includes(+e.target.id)) {
+          setSelectedTasks(
+            selectedTasks.filter((item) => +item !== +content.taskprocess.id)
+          );
+        }
+      }
+    } else {
+      setSelectedTasks([]);
+      if (selectedTasks.length !== data?.length) {
+        const list = [];
+        data?.forEach((item) => {
+          list.push(item?.taskprocess.id);
+          setSelectedTasks(list);
+        });
+      } else {
+        setSelectedTasks([]);
+      }
+    }
+  };
+  console.log(selectedTasks);
   const formatDate = (value) => {
     const formattedValue = new Date(value);
     let format = `${formattedValue.getFullYear()}-${
@@ -65,7 +92,10 @@ const ProjectTable = ({
             type="checkbox"
             name={"selectAll"}
             id={"selectAll"}
-            onChange={(e) => checkBoxSelected(e, data)}
+            onChange={(e) => {
+              checkBoxSelected(e, data);
+              handleTasks(e, "all", data);
+            }}
             checked={selectedItems.length === data?.length && data?.length > 0}
           />
         </span>
@@ -75,6 +105,7 @@ const ProjectTable = ({
         <span>process name</span>
         <span>failure date</span>
         <span>status</span>
+        {/* <span></span> */}
       </div>
       {loading ? (
         <div className={styles.emptyTable}>loading...</div>
@@ -94,14 +125,17 @@ const ProjectTable = ({
                       ? `${styles.tableTab} ${styles.grid} ${styles.active}`
                       : `${styles.tableTab} ${styles.grid}`
                   }
-                  key={item.id}
+                  key={"item" + item.id}
                 >
                   <span className={styles.checkBox}>
                     <input
                       type="checkbox"
-                      id={+item.id}
+                      id={+item.taskprocess.id}
                       name={+item.id}
-                      onChange={(e) => checkBoxSelected(e, data)}
+                      onChange={(e) => {
+                        checkBoxSelected(e, data);
+                        handleTasks(e, "processId", item);
+                      }}
                       checked={
                         selectedItems.includes(+item.id) ||
                         selectedItems.includes("selectAll")
@@ -138,6 +172,11 @@ const ProjectTable = ({
                       {item.status}
                     </p>
                   </span>
+                  {/* <span>
+                    <button className={styles.searchBtn}>
+                      <FaSearch />
+                    </button>
+                  </span> */}
                 </motion.div>
               ))}
             </>
