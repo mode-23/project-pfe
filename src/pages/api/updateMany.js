@@ -1,7 +1,7 @@
 import { prisma } from "../../prisma_setup";
 
 const handler = async (req, res) => {
-  const { array } = JSON.parse(req.body);
+  const { array, tasksArray } = JSON.parse(req.body);
   // const tasks = await prisma.task.updateMany({
   //   where: {
   //     id: {
@@ -24,7 +24,9 @@ const handler = async (req, res) => {
   });
   const process = prisma.ProcessInstanceLog.updateMany({
     where: {
-      id: 6,
+      id: {
+        in: tasksArray,
+      },
     },
     data: {
       status: "completed",

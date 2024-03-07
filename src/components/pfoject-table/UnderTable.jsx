@@ -14,6 +14,8 @@ const UnderTable = ({
   fetchProject,
   selectedItems,
   setSelectedItems,
+  selectedTasks,
+  setSelectedTasks,
   formatDate,
 }) => {
   const { query } = useRouter();
@@ -41,9 +43,11 @@ const UnderTable = ({
           method: "POST",
           body: JSON.stringify({
             array: selectedItems,
+            tasksArray: selectedTasks,
           }),
         });
         setSelectedItems([]);
+        setSelectedTasks([]);
         handleSuccessNotify("Successfully updated");
         console.log(res);
         if (res) {

@@ -15,51 +15,59 @@ const ProjectTable = ({
   console.log(data);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedTasks, setSelectedTasks] = useState([]);
-  const checkBoxSelected = (e, data) => {
-    const { name } = e.target;
-    if (name !== "selectAll") {
-      if (!selectedItems.includes(+name)) {
-        setSelectedItems([...selectedItems, +name]);
-      } else {
-        setSelectedItems(selectedItems.filter((item) => +item !== +name));
-      }
+  // const checkBoxSelected = (e, data) => {
+  //   const { name } = e.target;
+  //   if (name !== "selectAll") {
+  //     if (!selectedItems.includes(+name)) {
+  //       setSelectedItems([...selectedItems, +name]);
+  //     } else {
+  //       setSelectedItems(selectedItems.filter((item) => +item !== +name));
+  //     }
+  //   } else {
+  //     setSelectedItems([]);
+  //     if (selectedItems.length !== data?.length) {
+  //       const list = [];
+  //       data?.forEach((item) => {
+  //         list.push(item?.id);
+  //         setSelectedItems(list);
+  //       });
+  //     } else {
+  //       setSelectedItems([]);
+  //     }
+  //   }
+  // };
+  const handleTasks = (e, type, content) => {
+    console.log(content);
+    if (type !== "all") {
+      const updatedRows = selectedItems.includes(+content?.id)
+        ? selectedItems.filter((rowId) => rowId !== +content?.id)
+        : [...selectedItems, +content?.id];
+      setSelectedItems(updatedRows);
+      const updatedSharedIds = updatedRows.map(
+        (rowId) => data.find((item) => +item.id === +rowId).taskprocess.id
+      );
+      setSelectedTasks([...new Set(updatedSharedIds)]);
     } else {
       setSelectedItems([]);
+      setSelectedTasks([]);
       if (selectedItems.length !== data?.length) {
         const list = [];
+        const list2 = [];
         data?.forEach((item) => {
-          list.push(item?.id);
+          list.push(item.id);
+          list2.push(item.taskprocess.id);
           setSelectedItems(list);
+          setSelectedTasks(list2);
+          // const updateShared = list.push(item.taskprocess.id);
+          // setSelectedTasks([...new Set(updateShared)]);
         });
       } else {
         setSelectedItems([]);
-      }
-    }
-  };
-  const handleTasks = (e, type, content) => {
-    if (type !== "all") {
-      if (e.target.checked) {
-        setSelectedTasks([...selectedTasks, +content.taskprocess.id]);
-      } else {
-        if (selectedTasks.includes(+e.target.id)) {
-          setSelectedTasks(
-            selectedTasks.filter((item) => +item !== +content.taskprocess.id)
-          );
-        }
-      }
-    } else {
-      setSelectedTasks([]);
-      if (selectedTasks.length !== data?.length) {
-        const list = [];
-        data?.forEach((item) => {
-          list.push(item?.taskprocess.id);
-          setSelectedTasks(list);
-        });
-      } else {
         setSelectedTasks([]);
       }
     }
   };
+  console.log(selectedItems);
   console.log(selectedTasks);
   const formatDate = (value) => {
     const formattedValue = new Date(value);
@@ -93,7 +101,7 @@ const ProjectTable = ({
             name={"selectAll"}
             id={"selectAll"}
             onChange={(e) => {
-              checkBoxSelected(e, data);
+              // checkBoxSelected(e, data);
               handleTasks(e, "all", data);
             }}
             checked={selectedItems.length === data?.length && data?.length > 0}
@@ -133,7 +141,7 @@ const ProjectTable = ({
                       id={+item.taskprocess.id}
                       name={+item.id}
                       onChange={(e) => {
-                        checkBoxSelected(e, data);
+                        // checkBoxSelected(e, data);
                         handleTasks(e, "processId", item);
                       }}
                       checked={
@@ -200,6 +208,8 @@ const ProjectTable = ({
             data={data}
             selectedItems={selectedItems}
             setSelectedItems={setSelectedItems}
+            selectedTasks={selectedTasks}
+            setSelectedTasks={setSelectedTasks}
           />
         </>
       )}
