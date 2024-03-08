@@ -134,12 +134,16 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
                 <Link
                   href={`/history/${currentProject}`}
                   className={
-                    pathname === "/history"
+                    pathname.includes("history")
                       ? `${styles.active} ${styles.link}`
                       : ` ${styles.link}`
                   }
                 >
-                  {pathname === "/history" ? <IoTime /> : <IoTimeOutline />}
+                  {pathname.includes("history") ? (
+                    <IoTime />
+                  ) : (
+                    <IoTimeOutline />
+                  )}
                   history
                 </Link>
               </li>
@@ -147,12 +151,12 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
                 <Link
                   href={`/failed/${currentProject}`}
                   className={
-                    pathname === "/failed"
+                    pathname.includes("failed")
                       ? `${styles.active} ${styles.link}`
                       : ` ${styles.link}`
                   }
                 >
-                  {pathname === "/failed" ? (
+                  {pathname.includes("failed") ? (
                     <TiWarning />
                   ) : (
                     <TiWarningOutline />

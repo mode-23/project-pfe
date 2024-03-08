@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import { IoHomeSharp, IoLockOpen } from "react-icons/io5";
 import Link from "next/link";
 import { AUTH_TOKEN } from "@/constants/localstorage";
-import { PrimeReactProvider } from "primereact/api";
 
 const App = ({ Component, pageProps }) => {
   const [currentProject, setCurrentProjects] = useState("");
@@ -22,6 +21,7 @@ const App = ({ Component, pageProps }) => {
     email: state.email,
     createdAt: state.createdAt,
     deletedAt: state.deletedAt,
+    role: state.role,
   }));
   const finishLoading = useMeStore((state) => state.finishLoading);
   useEffect(() => {
@@ -43,7 +43,7 @@ const App = ({ Component, pageProps }) => {
     };
   }, []);
   const { query } = useRouter();
-
+  console.log(me);
   return (
     <>
       <Head>
@@ -87,9 +87,7 @@ const App = ({ Component, pageProps }) => {
             setCurrentProjects={setCurrentProjects}
           />
         )}
-        <PrimeReactProvider>
-          <Component {...pageProps} currentProject={currentProject} />
-        </PrimeReactProvider>
+        <Component {...pageProps} currentProject={currentProject} />
         {/* {me.id && <SidebarRight />} */}
       </div>
       {/* <footer className="footer">footer</footer> */}

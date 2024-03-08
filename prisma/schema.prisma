@@ -14,6 +14,7 @@ model User {
   id        String    @id @default(cuid())
   email     String    @unique
   password  String
+  role      String
   createdAt DateTime  @default(now())
   deletedAt DateTime?
 }
@@ -49,7 +50,7 @@ model Task {
   date        DateTime            @default(now())
   status      String
   deletedAt   DateTime?
-  updatedAt   DateTime?
+  updatedAt   DateTime?           @updatedAt
   project     String
   processName String
   taskprocess ProcessInstanceLog? @relation(fields: [processId], references: [id])
@@ -57,9 +58,10 @@ model Task {
 }
 
 model ProcessInstanceLog {
-  id     Int      @id @default(autoincrement())
-  name   String
-  status String
-  date   DateTime @default(now())
-  task   Task[]
+  id        Int       @id @default(autoincrement())
+  name      String
+  status    String
+  date      DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  task      Task[]
 }

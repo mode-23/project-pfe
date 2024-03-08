@@ -5,8 +5,9 @@ export const useMeStore = create((set) => ({
   id: null,
   deletedAt: null,
   createdAt: null,
+  role: null,
   isLoading: true,
-  setMe: ({ id, email, deletedAt, createdAt }) =>
-    set({ id, email, deletedAt, createdAt }),
+  setMe: ({ id, email, deletedAt, createdAt, role }) =>
+    set({ id, email, deletedAt, createdAt, role }),
   finishLoading: () => set({ isLoading: false }),
 }));

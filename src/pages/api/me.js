@@ -25,6 +25,7 @@ const handler = async (req, res) => {
     id: user.id,
     createdAt: user.createdAt,
     deletedAt: user.deletedAt,
+    role: user.role,
   });
 };
 
