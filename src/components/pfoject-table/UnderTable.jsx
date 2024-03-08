@@ -43,7 +43,7 @@ const UnderTable = ({
           method: "POST",
           body: JSON.stringify({
             array: selectedItems,
-            tasksArray: selectedTasks,
+            // tasksArray: selectedTasks,
           }),
         });
         setSelectedItems([]);

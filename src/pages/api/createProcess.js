@@ -2,15 +2,18 @@ import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
   const result = await prisma.task.create({
     data: {
-      name: "prepareMigrationfailure",
+      name: "changeRatePlanfailure",
       status: "ready",
       project: "apc",
       processName: "testings",
       taskprocess: {
-        create: {
-          name: "test5",
-          status: "encours",
+        connect: {
+          id: 7,
         },
+        // create: {
+        //   name: "com.migrationOrderWorkflow",
+        //   status: "encours",
+        // },
       },
     },
     include: {
