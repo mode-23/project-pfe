@@ -7,14 +7,14 @@
   scrollbar-width: none !important;
 }
 body {
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   color: var(--bg-color);
   font-family: "Montserrat", sans-serif;
   font-family: "Epilogue", sans-serif;
 }
 ::selection {
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--txt-color);
 }
 :root {
   scrollbar-color: rgb(210, 210, 210) rgb(46, 54, 69);
@@ -23,7 +23,7 @@ body {
   --main-color: #161616;
   --second-color: #333;
   --soft-color: #dedede;
-  --text-color: #fff;
+  --txt-color: #fff;
   --style-color: #ff7900;
   --error-color: #e4002b;
   --padding: 25px;
@@ -31,7 +31,7 @@ body {
 .light {
   --bg-color: #f9f9f9;
   --main-color: #e9eff5;
-  --text-color: #1b1d21;
+  --txt-color: #1b1d21;
   --second-color: #ced6de;
 }
 .light img {
@@ -53,7 +53,7 @@ body {
   height: calc(100svh);
   overflow: hidden;
   max-height: calc(100svh);
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   position: relative;
   z-index: 12;
   overflow: hidden;
@@ -69,12 +69,12 @@ ul {
   list-style: none;
 }
 a {
-  color: var(--text-color);
+  color: var(--txt-color);
   text-decoration: none;
 }
 .custom-tooltip {
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--txt-color);
   padding: 15px;
   /* border-radius: 4px; */
   display: flex;
@@ -88,7 +88,7 @@ a {
   margin-bottom: 15px;
 }
 .label span {
-  color: var(--text-color);
+  color: var(--txt-color);
   padding: 5px;
   border-radius: 4px;
 }
@@ -100,7 +100,7 @@ a {
 
 .react-calendar {
   background-color: var(--bg-color) !important;
-  color: var(--text-color);
+  color: var(--txt-color);
   border-color: transparent !important;
   position: relative !important;
 }
@@ -120,14 +120,14 @@ a {
   border-color: transparent !important;
 }
 .react-calendar__navigation > * {
-  color: var(--text-color) !important;
+  color: var(--txt-color) !important;
 }
 .react-calendar button:hover,
 .react-calendar__navigation button:hover {
   background-color: var(--main-color) !important;
 }
 .react-calendar button {
-  color: var(--text-color) !important;
+  color: var(--txt-color) !important;
 }
 .react-calendar__month-view__days__day--weekend {
   color: var(--error-color) !important;
@@ -182,7 +182,7 @@ a {
   align-self: flex-end;
 }
 .header_ul li svg {
-  color: var(--text-color);
+  color: var(--txt-color);
   align-self: flex-start;
 }
 .header_logo {

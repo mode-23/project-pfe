@@ -4,7 +4,6 @@ const handler = async (req, res) => {
   const task = await prisma.task.findMany({
     where: {
       status: "ready",
-      project,
       AND: [
         {
           name: {
@@ -21,6 +20,7 @@ const handler = async (req, res) => {
       },
       taskprocess: {
         status: "encours",
+        project,
       },
     },
     orderBy: {

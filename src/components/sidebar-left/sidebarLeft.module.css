@@ -57,13 +57,13 @@
   color: var(--style-color);
 }
 .link.active {
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   color: var(--bg-color);
 }
 .dropDown .underLink.active,
 .dropDown .underLink:hover,
 .link:hover {
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   color: var(--bg-color);
 }
 .logoutBtn {

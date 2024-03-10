@@ -27,7 +27,7 @@
   text-transform: uppercase;
 }
 .filter button {
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   color: var(--bg-color);
   outline: 0;
   border: 1px solid var(--bg-color);
@@ -39,7 +39,7 @@
 }
 .filter button:hover {
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--txt-color);
 }
 .filter_tab {
   display: flex;
@@ -51,7 +51,7 @@
   padding: 10px;
   border: 1px solid var(--bg-color);
   outline: 0;
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   position: relative;
   overflow: visible;
   accent-color: var(--style-color);
@@ -82,7 +82,7 @@
   top: calc(100% + 5px);
   left: 0;
   border: 1px solid var(--bg-color);
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
 }
 .dropDown ul {
   display: flex;
@@ -114,7 +114,7 @@
   padding: 15px 30px;
   font-weight: 500;
   text-transform: uppercase;
-  background-color: var(--text-color);
+  background-color: var(--txt-color);
   color: var(--bg-color);
   border: 1px solid var(--bg-color);
   outline: 0;
@@ -148,7 +148,7 @@
 }
 .orangeBtn:not(:disabled):hover {
   background-color: var(--main-color);
-  color: var(--text-color);
+  color: var(--txt-color);
 }
 .orangeBtn:not(:disabled):hover::after {
   background-color: var(--soft-color);
