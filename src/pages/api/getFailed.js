@@ -1,10 +1,18 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  const failed = await prisma.ProcessInstanceLog.findMany({
+  const { id, project, startDate, endDate } = req.query;
+
+  const annul = await prisma.ProcessInstanceLog.findMany({
     where: {
       status: "encours",
+      project,
+      id: +id || undefined,
+      date: {
+        gte: startDate ? new Date(startDate) : undefined,
+        lte: endDate ? new Date(endDate) : undefined,
+      },
     },
   });
-  res.status(200).json(failed);
+  res.status(200).json(annul);
 };
 export default handler;

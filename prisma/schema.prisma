@@ -61,6 +61,7 @@ model ProcessInstanceLog {
   id        Int       @id @default(autoincrement())
   name      String
   status    String
+  project   String?
   date      DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   task      Task[]
