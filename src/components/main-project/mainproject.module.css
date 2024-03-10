@@ -82,6 +82,7 @@
 }
 .dropDownHolder {
   position: relative;
+  z-index: 999999;
 }
 .dropDown {
   position: absolute;

@@ -197,3 +197,9 @@ a {
   background-color: #000;
   color: white;
 }
+.p-dropdown-item {
+  padding: 10px;
+}
+.p-calendar .p-inputtext {
+  padding: 10px 15px !important;
+}

@@ -18,6 +18,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 const MainProcess = () => {
   const [data, setData] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
   const [selectedId, setSelectedId] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
@@ -136,7 +137,6 @@ const MainProcess = () => {
       fetchFailed();
     }
   }, [query?.name, searchId, searchStartDate, searchEndDate]);
-  const [selectedItems, setSelectedItems] = useState([]);
   let array = selectedItems.map((item) => item.id);
   const handleUpdateStatus = async () => {
     if (selectedItems.length) {
@@ -253,6 +253,7 @@ const MainProcess = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
         <DataTable
           value={formattedData}
           selection={selectedItems}
@@ -304,6 +305,7 @@ const MainProcess = () => {
           severity="secondary"
           style={{ width: "fit-content", padding: "10px 15px" }}
           onClick={handleUpdateStatus}
+          disabled={!selectedItems.length}
         />
       </div>
     </ProtectedRoute>
