@@ -44,10 +44,10 @@
   color: #374151;
 }
 .filter button {
-  background-color: var(--txt-color);
-  color: var(--bg-color);
+  background-color: var(--soft-color);
+  color: var(--second-color);
   outline: 0;
-  border: 1px solid var(--bg-color);
+  border: 1px solid #33333350;
   width: fit-content;
   padding: 10px 35px;
   cursor: pointer;
@@ -55,7 +55,7 @@
   text-transform: capitalize;
 }
 .filter button:hover {
-  background-color: var(--bg-color);
+  background-color: var(--second-color);
   color: var(--txt-color);
 }
 .filter_tab {

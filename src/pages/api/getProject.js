@@ -19,7 +19,7 @@ const handler = async (req, res) => {
         lte: endDate ? new Date(endDate) : undefined,
       },
       taskprocess: {
-        status: "encours",
+        status: "inprogress",
         project,
       },
     },

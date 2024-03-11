@@ -22,11 +22,11 @@ body {
   --bg-color: #000;
   --main-color: #161616;
   --second-color: #333;
-  --soft-color: #dedede;
+  --soft-color: #e5e7eb;
   --txt-color: #fff;
   --style-color: #ff7900;
   --error-color: #e4002b;
-  --padding: 25px;
+  --padding: 20px;
 }
 .light {
   --bg-color: #f9f9f9;

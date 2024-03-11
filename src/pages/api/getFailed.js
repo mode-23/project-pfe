@@ -4,7 +4,7 @@ const handler = async (req, res) => {
 
   const annul = await prisma.ProcessInstanceLog.findMany({
     where: {
-      status: "encours",
+      status: "inprogress",
       project,
       id: +id || undefined,
       date: {

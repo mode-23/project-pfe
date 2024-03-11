@@ -1,9 +1,13 @@
 .leftSideBar {
-  padding: var(--padding);
+  padding: var(--padding) 15px;
   position: relative;
   /* background-color: var(--bg-color); */
   background-color: var(--soft-color);
-  height: calc(100svh - 76px);
+  height: calc(100svh - 85px - 40px);
+  margin: var(--padding);
+  margin-right: 0;
+  border-radius: 12px;
+  border: 1px solid #aeafb060;
 }
 .sideBarLogo {
   max-width: 100%;

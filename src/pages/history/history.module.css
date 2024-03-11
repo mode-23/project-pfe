@@ -1,0 +1,187 @@
+.historyProcess {
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
+  overflow-y: auto;
+  position: relative;
+}
+.process {
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
+  overflow-y: auto;
+  position: relative;
+}
+.mainProcess {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding);
+  position: relative;
+  padding: var(--padding);
+}
+.projectHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.projectFilter {
+  width: 40px;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  outline: 0;
+  background-color: var(--soft-color);
+  font-size: 18px;
+  cursor: pointer;
+}
+.projectFilter:active {
+  scale: 0.99;
+}
+.filter {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--padding);
+}
+.label {
+  width: fit-content;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #374151;
+}
+.filter button {
+  background-color: var(--soft-color);
+  color: var(--second-color);
+  outline: 0;
+  border: 1px solid #33333350;
+  width: fit-content;
+  padding: 10px 35px;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-transform: capitalize;
+}
+.filter button:hover {
+  background-color: var(--second-color);
+  color: var(--txt-color);
+}
+.filter_tab {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.calendar_tab {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--bg-color);
+  outline: 0;
+  background-color: var(--txt-color);
+  position: relative;
+  overflow: visible;
+  accent-color: var(--style-color);
+  height: 37.6px;
+  transition: 250ms ease-in;
+}
+.calendar_tab:focus,
+.calendar_tab:hover,
+.calendar_tab.active {
+  background-color: var(--soft-color);
+}
+.calendar_tab small {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  background-color: transparent;
+}
+.calendar_tab svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  z-index: 2;
+  cursor: pointer;
+}
+.dropDownHolder {
+  position: relative;
+}
+.dropDown {
+  position: absolute;
+  width: 100%;
+  height: fit-content;
+  top: calc(100% + 5px);
+  left: 0;
+  border: 1px solid var(--bg-color);
+  background-color: var(--txt-color);
+}
+.dropDown ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+}
+.dropDown ul li {
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.dropDown ul li.active,
+.dropDown ul li:hover {
+  background-color: var(--soft-color);
+}
+/* .calendar_tab::after {
+           content: "";
+           position: absolute;
+           bottom: -4px;
+           left: 4px;
+           width: 100%;
+           height: 100%;
+           background-color: var(--main-color);
+           z-index: -1;
+         } */
+.orangeBtn {
+  width: fit-content;
+  padding: 15px 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background-color: var(--txt-color);
+  color: var(--bg-color);
+  border: 1px solid var(--bg-color);
+  outline: 0;
+  cursor: pointer;
+  transition: 300ms ease-in;
+  position: relative;
+}
+.orangeBtn::after {
+  content: "";
+  position: absolute;
+  bottom: -3.5px;
+  left: 2px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: 300ms ease-in;
+}
+.orangeBtn:not(:disabled)::after {
+  background-color: var(--main-color);
+  border: 1px solid var(--bg-color);
+}
+.orangeBtn:disabled::after {
+  background-color: #a1a0a0;
+  border: 1px solid #a1a0a0;
+}
+.orangeBtn:disabled {
+  background-color: #a1a0a0;
+  border-color: #fff;
+  color: #fff;
+  cursor: no-drop;
+}
+.orangeBtn:not(:disabled):hover {
+  background-color: var(--main-color);
+  color: var(--txt-color);
+}
+.orangeBtn:not(:disabled):hover::after {
+  background-color: var(--soft-color);
+  border: 1px solid var(--soft-color);
+}
+.projectHolderList {
+  height: 100%;
+}

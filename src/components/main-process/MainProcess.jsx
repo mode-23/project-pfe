@@ -13,10 +13,9 @@ import ProtectedRoute from "../ProtectedRoute";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { Calendar } from "primereact/calendar";
-// import { Toast } from "primereact/toast";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { InputText } from "primereact/inputtext";
+import { Calendar } from "primereact/calendar";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 const MainProcess = () => {
   const [data, setData] = useState([]);
@@ -80,22 +79,6 @@ const MainProcess = () => {
     }`;
     return format;
   };
-  // const showError = (message) => {
-  //   toast.current.show({
-  //     severity: "error",
-  //     summary: "Error",
-  //     detail: message,
-  //     life: 3000,
-  //   });
-  // };
-  // const showSuccess = (message) => {
-  //   toast.current.show({
-  //     severity: "success",
-  //     summary: "Success",
-  //     detail: message,
-  //     life: 3000,
-  //   });
-  // };
   let diff = new Date(selectedEndDate) - new Date(selectedStartDate);
   let diffInDays = diff / (24 * 60 * 60 * 1000);
   const handleSearch = () => {
@@ -180,10 +163,6 @@ const MainProcess = () => {
     <ProtectedRoute>
       <div className={styles.mainProcess}>
         <Toaster position="top-right" reverseOrder={false} />
-        {/* <Toast
-          ref={toast}
-          position="top-right"
-        /> */}
         <div className={styles.projectHeader}>
           <button
             className={styles.projectFilter}
