@@ -1,13 +1,10 @@
 .leftSideBar {
   padding: var(--padding) 15px;
   position: relative;
-  /* background-color: var(--bg-color); */
   background-color: var(--soft-color);
-  height: calc(100svh - 85px - 40px);
-  margin: var(--padding);
+  height: calc(100svh - 85px);
   margin-right: 0;
-  border-radius: 12px;
-  border: 1px solid #aeafb060;
+  border-right: 1px solid #aeafb060;
 }
 .sideBarLogo {
   max-width: 100%;
@@ -60,12 +57,9 @@
   font-size: 20px;
   color: var(--style-color);
 }
-.link.active {
-  background-color: var(--txt-color);
-  color: var(--bg-color);
-}
 .dropDown .underLink.active,
 .dropDown .underLink:hover,
+.link.active,
 .link:hover {
   background-color: var(--txt-color);
   color: var(--bg-color);
