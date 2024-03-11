@@ -13,8 +13,10 @@ import ProtectedRoute from "../ProtectedRoute";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
 // import { Toast } from "primereact/toast";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { InputText } from "primereact/inputtext";
 
 const MainProcess = () => {
   const [data, setData] = useState([]);
@@ -97,9 +99,9 @@ const MainProcess = () => {
   let diff = new Date(selectedEndDate) - new Date(selectedStartDate);
   let diffInDays = diff / (24 * 60 * 60 * 1000);
   const handleSearch = () => {
-    if (date1?.current?.value && date2?.current?.value) {
+    if (selectedStartDate && selectedEndDate) {
       if (!(diffInDays > 0)) {
-        handleErrorNotify("Date start > Date end");
+        handleErrorNotify("End date must be more than start date");
         return;
       }
     }
@@ -108,7 +110,9 @@ const MainProcess = () => {
       return;
     }
     push(
-      `${query.name}?id=${selectedId}&startDate=${selectedStartDate}&endDate=${selectedEndDate}`
+      `${query.name}?id=${selectedId}&startDate=${
+        selectedStartDate ? formatDate(selectedStartDate) : ""
+      }&endDate=${selectedEndDate ? formatDate(selectedEndDate) : ""}`
     );
   };
   const params = [
@@ -149,7 +153,6 @@ const MainProcess = () => {
         });
         setSelectedItems([]);
         handleSuccessNotify("Successfully updated");
-        console.log(res);
         fetchFailed();
       } catch (error) {
         console.log(error);
@@ -209,7 +212,7 @@ const MainProcess = () => {
               transition={{ duration: 1 }}
               className={styles.filter}
             >
-              <div className={styles.filter_tab}>
+              {/* <div className={styles.filter_tab}>
                 <label className={styles.label} htmlFor="dateStart">
                   start date
                 </label>
@@ -246,10 +249,52 @@ const MainProcess = () => {
                   value={selectedId}
                   onChange={(e) => setSelectedId(e.target.value)}
                 />
+              </div> */}
+              <div className={styles.filter_tab}>
+                <label htmlFor="startDate" className={styles.label}>
+                  Start Date
+                </label>
+                <Calendar
+                  value={selectedStartDate}
+                  onChange={(e) => setSelectedStartDate(e.value)}
+                  id="startDate"
+                  showIcon
+                  ref={date1}
+                />
               </div>
-              <button className={styles.orangeBtn} onClick={handleSearch}>
+              <div className={styles.filter_tab}>
+                <label htmlFor="endtDate" className={styles.label}>
+                  Start Date
+                </label>
+                <Calendar
+                  value={selectedEndDate}
+                  onChange={(e) => setSelectedEndDate(e.value)}
+                  id="endDate"
+                  showIcon
+                  ref={date2}
+                />
+              </div>
+              <div className={styles.filter_tab}>
+                <label htmlFor="inputId" className={styles.label}>
+                  Process Id
+                </label>
+                <InputText
+                  id="inputId"
+                  aria-describedby="id-help"
+                  style={{ padding: "10px 15px" }}
+                  value={selectedId}
+                  onChange={(e) => setSelectedId(e.target.value)}
+                />
+              </div>
+              <Button
+                label="Search"
+                severity="secondary"
+                style={{ width: "fit-content", padding: "10px 15px" }}
+                onClick={handleSearch}
+              />
+              {/* <button className={styles.orangeBtn} onClick={handleSearch}>
                 search
-              </button>
+              </button> */}
             </motion.div>
           )}
         </AnimatePresence>
@@ -303,7 +348,11 @@ const MainProcess = () => {
         <Button
           label="Abort"
           severity="secondary"
-          style={{ width: "fit-content", padding: "10px 15px" }}
+          style={{
+            width: "fit-content",
+            padding: "10px 15px",
+            minHeight: "40px",
+          }}
           onClick={handleUpdateStatus}
           disabled={!selectedItems.length}
         />

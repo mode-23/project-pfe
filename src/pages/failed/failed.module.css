@@ -1,0 +1,6 @@
+.failedProcess {
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
+  overflow-y: auto;
+  position: relative;
+}

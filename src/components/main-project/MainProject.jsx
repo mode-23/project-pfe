@@ -37,7 +37,6 @@ const MainProject = () => {
   let maxDaysRange = 5;
   let diff = new Date(selectedEndDate) - new Date(selectedStartDate);
   let diffInDays = diff / (24 * 60 * 60 * 1000);
-  console.log(diffInDays);
   const date1 = useRef();
   const date2 = useRef();
   const handleErrornotify = (message) => {
@@ -60,7 +59,6 @@ const MainProject = () => {
   const handleSearch = () => {
     // if (date1?.current?.value && date2?.current?.value) {
     if (selectedStartDate && selectedEndDate) {
-      console.log("test");
       if (!(diffInDays > 0)) {
         handleErrornotify("End date must be more than start date");
         return;
@@ -182,7 +180,6 @@ const MainProject = () => {
         });
         setSelectedItems([]);
         handleSuccessNotify("Successfully updated");
-        console.log(res);
         if (res) {
           setOpen(false);
         }
@@ -205,7 +202,6 @@ const MainProject = () => {
       name: obj,
     };
   });
-  console.log(formatProcessArray);
 
   const buttonSearch = (item) => {
     return (
@@ -402,9 +398,15 @@ const MainProject = () => {
                     id="dropDown"
                   />
                 </div>
-                <button onClick={handleSearch} className={styles.orangeBtn}>
+                {/* <button onClick={handleSearch} className={styles.orangeBtn}>
                   search
-                </button>
+                </button> */}
+                <Button
+                  label="Search"
+                  severity="secondary"
+                  style={{ width: "fit-content", padding: "10px 15px" }}
+                  onClick={handleSearch}
+                />
               </motion.div>
             )}
           </AnimatePresence>

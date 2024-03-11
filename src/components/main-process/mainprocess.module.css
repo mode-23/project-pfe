@@ -1,5 +1,11 @@
+.process {
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
+  overflow-y: auto;
+  position: relative;
+}
 .mainProcess {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--padding);
@@ -35,6 +41,7 @@
   width: fit-content;
   font-weight: 500;
   text-transform: uppercase;
+  color: #374151;
 }
 .filter button {
   background-color: var(--txt-color);
