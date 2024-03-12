@@ -17,6 +17,8 @@ import { FaSearch } from "react-icons/fa";
 import { LuRefreshCcw } from "react-icons/lu";
 import { AnimatePresence, motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
+import * as XLSX from "xlsx/xlsx.mjs";
+import Image from "next/image";
 
 const History = ({ currentProject }) => {
   const [data, setData] = useState([]);
@@ -96,7 +98,7 @@ const History = ({ currentProject }) => {
   const statusArray = [
     {
       id: 0,
-      name: "ready",
+      name: "completed",
     },
     {
       id: 1,
@@ -127,13 +129,28 @@ const History = ({ currentProject }) => {
     }
   };
   const formattedData = data.map((obj) => {
-    return { ...obj, date: formatDate(obj.date) };
+    return {
+      ...obj,
+      date: formatDate(obj.date),
+      updatedAt: formatDate(obj.updatedAt),
+    };
   });
   useEffect(() => {
     if (query.name) {
       fetchHistory();
     }
   }, [query?.name, searchId, searchStartDate, searchEndDate, searchStatus]);
+  const handleExportXLSX = () => {
+    if (query?.name) {
+      let wb = XLSX.utils.book_new(),
+        ws = XLSX.utils.json_to_sheet(data);
+      XLSX.utils.book_append_sheet(wb, ws, `${query?.name}`);
+      XLSX.writeFile(
+        wb,
+        `${query?.name?.toLocaleUpperCase()}-${formatDate(Date.now())}.xlsx`
+      );
+    }
+  };
   const buttonSearch = (item) => {
     return (
       <Button
@@ -204,7 +221,7 @@ const History = ({ currentProject }) => {
                 </div>
                 <div className={styles.filter_tab}>
                   <label htmlFor="endtDate" className={styles.label}>
-                    Start Date
+                    End Date
                   </label>
                   <Calendar
                     value={selectedEndDate}
@@ -260,6 +277,8 @@ const History = ({ currentProject }) => {
             paginator
             rows={5}
             loading={loading}
+            size={"large"}
+            removableSort
           >
             <Column
               field="id"
@@ -281,7 +300,13 @@ const History = ({ currentProject }) => {
             <Column
               field="date"
               sortable
-              header="Action Date"
+              header="End Date"
+              style={{ padding: "15px" }}
+            ></Column>
+            <Column
+              field="updatedAt"
+              sortable
+              header="Updated At"
               style={{ padding: "15px" }}
             ></Column>
             <Column
@@ -291,6 +316,43 @@ const History = ({ currentProject }) => {
               body={buttonSearch}
             ></Column>
           </DataTable>
+          <div className={styles.tableFunctions}>
+            <Button
+              severity="danger"
+              disabled={!data?.length}
+              style={{
+                width: "fit-content",
+                padding: "10px 15px",
+                position: "relative",
+              }}
+            >
+              <Image
+                src="/pdf-file.png"
+                alt="Picture of pdf"
+                width={25}
+                height={25}
+                style={{ filter: "invert(1)" }}
+              />
+            </Button>
+            <Button
+              onClick={handleExportXLSX}
+              severity="success"
+              disabled={!data?.length}
+              style={{
+                width: "fit-content",
+                padding: "10px 15px",
+                position: "relative",
+              }}
+            >
+              <Image
+                src="/excel-file.png"
+                alt="Picture of xls"
+                width={25}
+                height={25}
+                style={{ filter: "invert(1)" }}
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </ProtectedRoute>

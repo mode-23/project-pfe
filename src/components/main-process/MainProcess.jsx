@@ -243,7 +243,7 @@ const MainProcess = () => {
               </div>
               <div className={styles.filter_tab}>
                 <label htmlFor="endtDate" className={styles.label}>
-                  Start Date
+                  End Date
                 </label>
                 <Calendar
                   value={selectedEndDate}
@@ -288,6 +288,7 @@ const MainProcess = () => {
           paginator
           rows={5}
           loading={loading}
+          removableSort
           // rowsPerPageOptions={[5, 10, 25, 50]}
         >
           <Column

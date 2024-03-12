@@ -421,6 +421,9 @@ const MainProject = () => {
             paginator
             rows={5}
             loading={loading}
+            removableSort
+            // currentPageReportTemplate="{first} to {last} of {totalRecords}"
+            // paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             // rowsPerPageOptions={[5, 10, 25, 50]}
           >
             <Column
