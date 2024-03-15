@@ -7,3 +7,11 @@
   max-height: 100svh;
   overflow-y: auto;
 }
+.pieholder {
+  margin: var(--padding) 0;
+  width: 100%;
+  height: calc(100%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--padding);
+}
