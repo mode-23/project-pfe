@@ -5,7 +5,6 @@ const handler = async (req, res) => {
     by: ["name"],
     _count: true,
     where: {
-      //  project: "apc",
       taskprocess: {
         project,
       },

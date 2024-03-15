@@ -99,11 +99,11 @@ const PieChartComponent = ({ data }) => {
   return (
     <ResponsiveContainer
       width="100%"
-      height="60%"
+      height="90%"
       style={{ background: "#ececec", borderRadius: "12px" }}
     >
       {/* <div>test</div> */}
-      <PieChart width={300} height={300}>
+      <PieChart width={200} height={200}>
         <Pie
           activeIndex={activeIndex}
           activeShape={renderActiveShape}

@@ -3,15 +3,17 @@
 }
 .analytics {
   position: relative;
-  height: 100svh;
-  max-height: 100svh;
+  height: calc(100svh - 85px);
+  max-height: calc(100svh - 85px);
   overflow-y: auto;
 }
 .pieholder {
   margin: var(--padding) 0;
   width: 100%;
   height: calc(100%);
+  overflow-y: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 350px;
   gap: var(--padding);
 }
