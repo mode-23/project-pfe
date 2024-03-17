@@ -98,14 +98,10 @@ const History = ({ currentProject }) => {
   const statusArray = [
     {
       id: 0,
-      name: "completed",
-    },
-    {
-      id: 1,
       name: "inprogress",
     },
     {
-      id: 2,
+      id: 1,
       name: "aborted",
     },
   ];
@@ -175,7 +171,14 @@ const History = ({ currentProject }) => {
   }, [currentProject, query.name]);
   return (
     <ProtectedRoute>
-      <div className={styles.historyProcess}>
+      <motion.div
+        className={styles.historyProcess}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        key={query.name}
+      >
         <div className={styles.mainProcess}>
           <Toaster position="top-right" reverseOrder={false} />
           <div className={styles.projectHeader}>
@@ -354,7 +357,7 @@ const History = ({ currentProject }) => {
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </ProtectedRoute>
   );
 };

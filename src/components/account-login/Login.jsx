@@ -123,7 +123,7 @@ const Login = () => {
                     <FiUser />
                     <input
                       required
-                      type="email"
+                      type="text"
                       placeholder="Example@gmail.com"
                       // pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                       value={loginEmail}
@@ -184,7 +184,7 @@ const Login = () => {
                     <FiUser />
                     <input
                       required
-                      type="email"
+                      type="text"
                       placeholder="example@gmail.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}

@@ -46,7 +46,7 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
-          borderColor: "#eee",
+          borderColor: "#f2f4f8",
           borderWidth: 6,
         },
         label: {
@@ -93,9 +93,15 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
   };
   return (
     <div
-      style={{ background: "#ececec", borderRadius: "12px", padding: "10px" }}
+      style={{ background: "#f2f4f8", borderRadius: "12px", padding: "10px" }}
     >
-      <ReactECharts option={option} lazyUpdate={true} />
+      {formattedData.length ? (
+        <>
+          <ReactECharts option={option} lazyUpdate={true} />
+        </>
+      ) : (
+        <>no data</>
+      )}
     </div>
   );
 };

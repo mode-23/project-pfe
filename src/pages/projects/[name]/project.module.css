@@ -1,7 +1,7 @@
 .project {
   padding: var(--padding);
-  height: calc(100svh - 85px);
-  max-height: calc(100svh - 85px);
+  height: calc(100svh - 108px);
+  max-height: calc(100svh - 108px);
   overflow-y: auto;
 }
 .calendarsHolder {

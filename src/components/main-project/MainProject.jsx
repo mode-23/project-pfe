@@ -362,7 +362,7 @@ const MainProject = () => {
                 </div>
                 <div className={styles.filter_tab}>
                   <label htmlFor="endtDate" className={styles.label}>
-                    Start Date
+                    End Date
                   </label>
                   <Calendar
                     value={selectedEndDate}

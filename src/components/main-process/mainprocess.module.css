@@ -1,9 +1,9 @@
-.process {
-  height: calc(100svh - 85px);
-  max-height: calc(100svh - 85px);
+/* .process {
+  height: calc(100svh - 108px);
+  max-height: calc(100svh - 108px);
   overflow-y: auto;
   position: relative;
-}
+} */
 .mainProcess {
   min-height: 100%;
   display: flex;

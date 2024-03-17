@@ -1,10 +1,11 @@
 .leftSideBar {
   padding: var(--padding) 15px;
   position: relative;
-  background-color: var(--soft-color);
-  height: calc(100svh - 85px);
+  background-color: var(--txt-color);
+  height: calc(100svh - 108px - (var(--padding) * 2));
+  margin: var(--padding);
+  border-radius: var(--radius);
   margin-right: 0;
-  /* border-right: 1px solid #aeafb060; */
 }
 .sideBarLogo {
   max-width: 100%;
@@ -62,6 +63,7 @@
 .link.active,
 .link:hover {
   background-color: var(--txt-color);
+  background-color: #ff790032;
   color: var(--bg-color);
 }
 .logoutBtn {

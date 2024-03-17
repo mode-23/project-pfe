@@ -1,7 +1,7 @@
 .rightSideBar {
   padding: var(--padding);
   background-color: var(--txt-color);
-  height: calc(100svh - 85px);
+  height: calc(100svh - 108px);
 }
 .header {
   display: flex;

@@ -6,11 +6,29 @@ import { motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
 import { useRouter } from "next/router";
 import ReactEcharts from "@/components/ReactEcharts";
+import { Calendar } from "primereact/calendar";
+import { Button } from "primereact/button";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 const Analytics = ({ currentProject }) => {
   const { query, push } = useRouter();
   const [statusData, setStatusData] = useState([]);
   const [nameData, setNameData] = useState([]);
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
+  const formatDate = (value) => {
+    const formattedValue = new Date(value);
+    let format = `${formattedValue.getFullYear()}-${
+      formattedValue.getMonth() + 1 > 9
+        ? formattedValue.getMonth() + 1
+        : "0" + (formattedValue.getMonth() + 1)
+    }-${
+      formattedValue.getDate() > 9
+        ? formattedValue.getDate()
+        : "0" + formattedValue.getDate()
+    }`;
+    return format;
+  };
   const fetchStatusChart = async () => {
     try {
       const res = await apiCall(`groupBy?project=${query.name}`);
@@ -50,20 +68,46 @@ const Analytics = ({ currentProject }) => {
         transition={{ duration: 1 }}
         key={query.name}
       >
-        <h3>Analytics</h3>
-        {/* <div className={styles.pieholder}>
-          <PieChart data={statusData} />
-          <PieChart data={nameData} />
-        </div> */}
+        <div className={styles.dateFilter}>
+          <div className={styles.filter_tab}>
+            <label htmlFor="startDate" className={styles.label}>
+              Start Date
+            </label>
+            <Calendar
+              value={selectedStartDate}
+              onChange={(e) => setSelectedStartDate(e.value)}
+              id="startDate"
+              showIcon
+            />
+          </div>
+          <div className={styles.filter_tab}>
+            <label htmlFor="endtDate" className={styles.label}>
+              End Date
+            </label>
+            <Calendar
+              value={selectedEndDate}
+              onChange={(e) => setSelectedEndDate(e.value)}
+              id="endDate"
+              showIcon
+            />
+          </div>
+          <Button
+            label="Search"
+            severity="secondary"
+            style={{ width: "fit-content", padding: "10px 15px" }}
+          />
+        </div>
         <div className={styles.pieholder}>
           <ReactEcharts
             data={statusData}
-            savedName={`${query.name}-process-chart`}
-            chartTitle={`${query?.name?.toLocaleUpperCase()} task's status statistics`}
+            savedName={`${query.name}-process-chart-${formatDate(Date.now())}`}
+            chartTitle={`Statistics of ${query?.name?.toLocaleUpperCase()} processes status`}
           />
           <ReactEcharts
             data={nameData}
-            savedName={`${query.name}-task-chart`}
+            savedName={`${query.name}-failed-task-chart-${formatDate(
+              Date.now()
+            )}`}
             chartTitle={` Statistics of failed ${query?.name?.toLocaleUpperCase()} tasks`}
           />
         </div>

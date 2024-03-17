@@ -1,14 +1,17 @@
 .analytics {
   padding: var(--padding);
-}
-.analytics {
   position: relative;
-  height: calc(100svh - 85px);
-  max-height: calc(100svh - 85px);
+  height: calc(100svh - 108px - (var(--padding) * 2));
+  max-height: calc(100svh - 108px - (var(--padding) * 2));
+  background-color: var(--txt-color);
+  margin: var(--padding);
+  border-radius: var(--radius);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding);
 }
 .pieholder {
-  margin: var(--padding) 0;
   width: 100%;
   height: calc(100%);
   overflow-y: auto;
@@ -16,4 +19,32 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 350px;
   gap: var(--padding);
+}
+.dateFilter {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: var(--padding);
+}
+.dateFilter button {
+  background-color: var(--soft-color);
+  color: var(--second-color);
+  outline: 0;
+  border: 1px solid #33333350;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 35px;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-transform: capitalize;
+  display: flex;
+  align-self: flex-end;
+}
+.dateFilter button:hover {
+  background-color: var(--second-color);
+  color: var(--txt-color);
+}
+.filter_tab {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

@@ -1,8 +1,11 @@
 .dashboard {
   padding: 0;
   position: relative;
-  height: calc(100svh - 85px);
-  max-height: calc(100svh - 85px);
+  height: calc(100svh - 108px - (var(--padding) * 2));
+  max-height: calc(100svh - 108px - (var(--padding) * 2));
+  background-color: var(--txt-color);
+  margin: var(--padding);
+  border-radius: var(--radius);
   overflow-y: auto;
   padding-bottom: var(--padding);
   padding: var(--padding);

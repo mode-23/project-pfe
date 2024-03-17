@@ -161,7 +161,14 @@ const MainProcess = () => {
   };
   return (
     <ProtectedRoute>
-      <div className={styles.mainProcess}>
+      <motion.div
+        className={styles.mainProcess}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        key={query.name}
+      >
         <Toaster position="top-right" reverseOrder={false} />
         <div className={styles.projectHeader}>
           <button
@@ -336,7 +343,7 @@ const MainProcess = () => {
           onClick={handleUpdateStatus}
           disabled={!selectedItems.length}
         />
-      </div>
+      </motion.div>
     </ProtectedRoute>
   );
 };
