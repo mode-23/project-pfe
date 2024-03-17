@@ -36,7 +36,7 @@ const MainProcess = () => {
   const handleSuccessNotify = (message) => {
     toast.success(message, {
       style: {
-        marginTop: "120px",
+        marginTop: "140px",
         marginLeft: "1270px",
         padding: "8px 14px",
         color: "#279b37",
@@ -54,7 +54,7 @@ const MainProcess = () => {
       id: selectedId,
       style: {
         padding: "8px 14px",
-        marginTop: "80px",
+        marginTop: "140px",
         marginLeft: "1270px",
         color: "#e4002b",
         background: "#ff9cae",

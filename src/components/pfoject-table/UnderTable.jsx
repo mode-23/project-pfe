@@ -23,7 +23,7 @@ const UnderTable = ({
   const handleSuccessNotify = (message) => {
     toast.success(message, {
       style: {
-        marginTop: "120px",
+        marginTop: "140px",
         marginLeft: "1270px",
         padding: "8px 14px",
         color: "#279b37",

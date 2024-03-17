@@ -1,12 +1,10 @@
-.dashboard {
+.manage {
+  overflow-y: auto;
   position: relative;
   height: calc(100svh - 108px - (var(--padding) * 2));
   max-height: calc(100svh - 108px - (var(--padding) * 2));
   background-color: var(--txt-color);
   margin: var(--padding);
   border-radius: var(--radius);
-  overflow-y: auto;
-  padding-bottom: var(--padding);
   padding: var(--padding);
-  background-color: var(--txt-color);
 }

@@ -41,7 +41,7 @@ const History = ({ currentProject }) => {
       id: selectedId,
       style: {
         padding: "8px 14px",
-        marginTop: "80px",
+        marginTop: "140px",
         marginLeft: "1270px",
         color: "#e4002b",
         background: "#ff9cae",

@@ -16,6 +16,7 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
     }
   });
   const option = {
+    backgroundColor: "#f2f4f8",
     title: {
       text: chartTitle,
       textStyle: {

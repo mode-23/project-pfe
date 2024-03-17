@@ -75,10 +75,10 @@ a {
   text-decoration: none;
 }
 .custom-tooltip {
-  background-color: var(--bg-color);
+  background-color: var(--second-color);
   color: var(--txt-color);
   padding: 15px;
-  /* border-radius: 4px; */
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 15px;
