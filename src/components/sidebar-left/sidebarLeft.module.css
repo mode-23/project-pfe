@@ -25,6 +25,13 @@
   flex-direction: column;
   gap: 2px;
 }
+.leftSideBar ul span {
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 14px;
+}
 .dropDown .underLink,
 .link {
   display: flex;

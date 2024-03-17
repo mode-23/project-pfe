@@ -25,8 +25,9 @@ import { TiWarningOutline, TiWarning } from "react-icons/ti";
 import ProtectedRoute from "../ProtectedRoute";
 import { apiCall } from "@/utils/apiCall";
 import { useRouter } from "next/router";
+import { RiAdminFill, RiAdminLine } from "react-icons/ri";
 
-const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
+const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
   const { query } = useRouter();
   const [open, setOpen] = useState(false);
   const [projects, setProjects] = useState([]);
@@ -51,6 +52,7 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
     <ProtectedRoute>
       <div className={styles.leftSideBar}>
         <ul>
+          <span>home</span>
           <li>
             <Link
               href={"/"}
@@ -64,6 +66,22 @@ const SidebarLeft = ({ currentProject, setCurrentProjects }) => {
               dashboard
             </Link>
           </li>
+          {me.role === "super-admin" && (
+            <li>
+              <Link
+                href={"/manage"}
+                className={
+                  pathname === "/manage"
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
+                }
+              >
+                {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
+                Manage
+              </Link>
+            </li>
+          )}
+          <span>Projects</span>
           <li>
             <div
               onClick={() => setOpen((prev) => !prev)}

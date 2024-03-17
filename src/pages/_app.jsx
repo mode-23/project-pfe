@@ -9,6 +9,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { IoHomeSharp, IoLockOpen } from "react-icons/io5";
+import { FaSignOutAlt } from "react-icons/fa";
 import Link from "next/link";
 import { AUTH_TOKEN } from "@/constants/localstorage";
 
@@ -60,7 +61,28 @@ const App = ({ Component, pageProps }) => {
             </div>
             <h2>{query?.name}</h2>
           </div>
-          <ul className="df header_ul">
+          <div className="header_pannel df">
+            <button
+              className="logoutBtn"
+              onClick={() => {
+                localStorage.removeItem(AUTH_TOKEN);
+                window.location.reload();
+              }}
+            >
+              <FaSignOutAlt />
+              log out
+            </button>
+            <div className="header_setting">
+              <div className="imgContent">
+                <Image src={"/user.jpg"} fill={true} alt="user icon" />
+              </div>
+              <div className="header_info">
+                <h4>{me.email}</h4>
+                <span>{me.role}</span>
+              </div>
+            </div>
+          </div>
+          {/* <ul className="df header_ul">
             <li>
               <Link href={"/"} className="header_a">
                 <IoHomeSharp />
@@ -77,7 +99,7 @@ const App = ({ Component, pageProps }) => {
               <IoLockOpen />
               <p>Log out: {me.email}</p>
             </li>
-          </ul>
+          </ul> */}
         </header>
       )}
       <div className={me.id ? "app_wrapper loggedin" : "app_wrapper"}>
@@ -85,6 +107,7 @@ const App = ({ Component, pageProps }) => {
           <SidebarLeft
             currentProject={currentProject}
             setCurrentProjects={setCurrentProjects}
+            me={me}
           />
         )}
         <Component {...pageProps} currentProject={currentProject} />
