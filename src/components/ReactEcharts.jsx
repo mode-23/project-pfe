@@ -1,7 +1,7 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-const ReactEcharts = ({ data, savedName, chartTitle }) => {
+const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
   const formattedData = data.map((obj) => {
     if (obj.status) {
       return {
@@ -16,7 +16,7 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
     }
   });
   const option = {
-    backgroundColor: "#f2f4f8",
+    backgroundColor: bgColor,
     title: {
       text: chartTitle,
       textStyle: {
@@ -27,8 +27,8 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
       trigger: "item",
     },
     legend: {
-      //  bottom: "0%",
-      //  left: "0px",
+      // bottom: "0%",
+      // left: "0px",
       orient: "vertical",
       x: "left",
       y: "bottom",
@@ -45,9 +45,10 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
         type: "pie",
         radius: ["55%", "80%"],
         avoidLabelOverlap: false,
+        padAngle: 5,
         itemStyle: {
           borderRadius: 10,
-          borderColor: "#f2f4f8",
+          borderColor: bgColor,
           borderWidth: 6,
         },
         label: {
@@ -93,9 +94,7 @@ const ReactEcharts = ({ data, savedName, chartTitle }) => {
     ],
   };
   return (
-    <div
-      style={{ background: "#f2f4f8", borderRadius: "12px", padding: "10px" }}
-    >
+    <div style={{ background: bgColor, borderRadius: "12px", padding: "10px" }}>
       {formattedData.length ? (
         <>
           <ReactECharts option={option} lazyUpdate={true} />

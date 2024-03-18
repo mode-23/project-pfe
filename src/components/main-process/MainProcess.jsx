@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./mainprocess.module.css";
 import { LuRefreshCcw } from "react-icons/lu";
-import { IoChevronDownSharp } from "react-icons/io5";
+import {
+  IoChevronDownSharp,
+  IoCloseCircleOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { VscSettings } from "react-icons/vsc";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/router";
@@ -16,6 +20,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const MainProcess = () => {
   const [data, setData] = useState([]);
@@ -158,6 +163,32 @@ const MainProcess = () => {
         <FaSearch />
       </Button>
     );
+  };
+  const progressUI = (item) => {
+    switch (item.status) {
+      case "inprogress":
+        return (
+          <button className="statusBtn inprogressBtn">
+            <IoTimeOutline />
+            In progress
+          </button>
+        );
+      case "aborted":
+        return (
+          <button className="statusBtn failedBtn">
+            <IoCloseCircleOutline />
+            failed
+          </button>
+        );
+      case "ready":
+        return (
+          <button className="statusBtn readyBtn">
+            <IoIosCheckmarkCircleOutline /> ready
+          </button>
+        );
+      default:
+        break;
+    }
   };
   return (
     <ProtectedRoute>
@@ -318,6 +349,7 @@ const MainProcess = () => {
             field="status"
             header="Status"
             style={{ padding: "15px" }}
+            body={progressUI}
           ></Column>
           <Column
             field="date"

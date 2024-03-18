@@ -102,6 +102,7 @@ const Analytics = ({ currentProject }) => {
             data={statusData}
             savedName={`${query.name}-process-chart-${formatDate(Date.now())}`}
             chartTitle={`Statistics of ${query?.name?.toLocaleUpperCase()} processes status`}
+            bgColor="#f2f4f8"
           />
           <ReactEcharts
             data={nameData}
@@ -109,6 +110,7 @@ const Analytics = ({ currentProject }) => {
               Date.now()
             )}`}
             chartTitle={` Statistics of failed ${query?.name?.toLocaleUpperCase()} tasks`}
+            bgColor="#f2f4f8"
           />
         </div>
       </motion.div>

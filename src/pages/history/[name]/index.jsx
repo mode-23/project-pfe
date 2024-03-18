@@ -11,7 +11,11 @@ import { useRouter } from "next/router";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { Toaster, toast } from "react-hot-toast";
-import { IoChevronDownSharp } from "react-icons/io5";
+import {
+  IoChevronDownSharp,
+  IoCloseCircleOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { VscSettings } from "react-icons/vsc";
 import { FaSearch } from "react-icons/fa";
 import { LuRefreshCcw } from "react-icons/lu";
@@ -19,6 +23,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
 import * as XLSX from "xlsx/xlsx.mjs";
 import Image from "next/image";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const History = ({ currentProject }) => {
   const [data, setData] = useState([]);
@@ -164,6 +169,32 @@ const History = ({ currentProject }) => {
       </Button>
     );
   };
+  const progressUI = (item) => {
+    switch (item.status) {
+      case "inprogress":
+        return (
+          <button className="statusBtn inprogressBtn">
+            <IoTimeOutline />
+            In progress
+          </button>
+        );
+      case "aborted":
+        return (
+          <button className="statusBtn failedBtn">
+            <IoCloseCircleOutline />
+            failed
+          </button>
+        );
+      case "ready":
+        return (
+          <button className="statusBtn readyBtn">
+            <IoIosCheckmarkCircleOutline /> ready
+          </button>
+        );
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     if (currentProject && query.name) {
       push(`/history/${currentProject}`);
@@ -299,6 +330,7 @@ const History = ({ currentProject }) => {
               field="status"
               header="Status"
               style={{ padding: "15px" }}
+              body={progressUI}
             ></Column>
             <Column
               field="date"

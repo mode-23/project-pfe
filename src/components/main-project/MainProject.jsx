@@ -5,7 +5,11 @@ import { apiCall } from "@/utils/apiCall";
 import ProjectTable from "@/components/pfoject-table/ProjectTable";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { VscSettings } from "react-icons/vsc";
-import { IoChevronDownSharp } from "react-icons/io5";
+import {
+  IoChevronDownSharp,
+  IoCloseCircleOutline,
+  IoTimeOutline,
+} from "react-icons/io5";
 import { LuRefreshCcw } from "react-icons/lu";
 import { useSearchParams } from "next/navigation";
 import styles from "./mainproject.module.css";
@@ -20,6 +24,7 @@ import { InputText } from "primereact/inputtext";
 // import { Toast } from "primereact/toast";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { FaSearch } from "react-icons/fa";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 const MainProject = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -219,6 +224,32 @@ const MainProject = () => {
         <FaSearch />
       </Button>
     );
+  };
+  const progressUI = (item) => {
+    switch (item.status) {
+      case "inprogress":
+        return (
+          <button className="statusBtn inprogressBtn">
+            <IoTimeOutline />
+            In progress
+          </button>
+        );
+      case "aborted":
+        return (
+          <button className="statusBtn failedBtn">
+            <IoCloseCircleOutline />
+            failed
+          </button>
+        );
+      case "ready":
+        return (
+          <button className="statusBtn readyBtn">
+            <IoIosCheckmarkCircleOutline /> ready
+          </button>
+        );
+      default:
+        break;
+    }
   };
   return (
     <ProtectedRoute>
@@ -458,6 +489,7 @@ const MainProject = () => {
               field="status"
               header="Status"
               style={{ padding: "15px" }}
+              body={progressUI}
             ></Column>
             <Column
               field="date"

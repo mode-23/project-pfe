@@ -77,7 +77,7 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
                 }
               >
                 {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
-                Manage
+                Manage Accounts
               </Link>
             </li>
           )}

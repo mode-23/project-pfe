@@ -258,3 +258,29 @@ a {
 .logoutBtn:hover {
   background-color: #e4002b43;
 }
+.statusBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  outline: 0;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.statusBtn svg {
+  font-size: 17px;
+}
+.statusBtn.inprogressBtn {
+  color: #706300;
+  background-color: #ffff0066;
+}
+.statusBtn.failedBtn {
+  color: #e4002b;
+  background-color: #e4002b20;
+}
+.statusBtn.readyBtn {
+  color: #237901;
+  background-color: #41e40020;
+}
