@@ -5,6 +5,9 @@
   max-height: calc(100svh - 108px - (var(--padding) * 2));
   background-color: var(--soft-color);
   margin: var(--padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding);
 }
 .boxHolder {
   display: grid;
@@ -14,7 +17,7 @@
 .box {
   background-color: var(--txt-color);
   border-radius: var(--radius);
-  padding: var(--padding);
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: var(--padding);
@@ -60,7 +63,7 @@
 .boxFooter {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 4px;
 }
 .boxFooter button {
   display: flex;
