@@ -77,7 +77,7 @@
 .boxFooter {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px;
+  gap: 10px;
 }
 .boxFooter button {
   display: flex;
@@ -92,4 +92,12 @@
   position: absolute;
   top: var(--padding);
   right: var(--padding);
+}
+.addBtnHolder button {
+  background-color: var(--soft-color);
+  border-color: transparent;
+  color: #696969;
+}
+.addBtnHolder button:hover {
+  background-color: #d7d7d7;
 }

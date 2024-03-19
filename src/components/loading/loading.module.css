@@ -1,3 +1,7 @@
 .loading {
   background-color: var(--txt-color);
+  height: calc(100svh - 108px - (var(--padding) * 2));
+  margin-top: var(--padding);
+  border-radius: var(--radius);
+  padding: var(--padding);
 }

@@ -42,7 +42,6 @@ const Manage = () => {
       >
         <div className={styles.addBtnHolder}>
           <Button
-            severity="warning"
             style={{
               padding: "10px",
               display: "flex",
