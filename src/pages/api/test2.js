@@ -9,7 +9,7 @@ const handler = async (req, res) => {
       data: {
         email,
         password: hashedPassword,
-        role: "user",
+        role: "admin",
       },
     });
     res.status(200).json(user);

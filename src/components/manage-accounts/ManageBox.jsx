@@ -2,8 +2,30 @@ import React from "react";
 import styles from "../../pages/manage/manage.module.css";
 import Image from "next/image";
 import { Button } from "primereact/button";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { FaCalendarDays } from "react-icons/fa6";
+
 const ManageBox = ({ item }) => {
+  let month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const formatDate = (date) => {
+    let formattedDate = new Date(date);
+    let res = `${formattedDate.getDate()} ${
+      month[formattedDate.getMonth()]
+    } , ${formattedDate.getFullYear()}`;
+    return res;
+  };
   return (
     <div className={styles.box}>
       <div className={styles.boxHeader}>
@@ -15,22 +37,16 @@ const ManageBox = ({ item }) => {
         <button>active</button>
       </div>
       <div className={styles.boxBody}>
-        <p>{item.createdAt}</p>
+        <p>
+          <FaCalendarDays /> {formatDate(item.createdAt)}
+        </p>
       </div>
       <div className={styles.boxFooter}>
-        <Button
-          severity="secondary"
-          rounded
-          disabled={item.role === "super-admin"}
-        >
-          Admin Up
+        <Button severity="secondary" disabled={item.role === "super-admin"}>
+          Rank Up
         </Button>
-        <Button
-          severity="danger"
-          rounded
-          disabled={item.role === "super-admin"}
-        >
-          Disable
+        <Button severity="danger" disabled={item.role === "super-admin"}>
+          Delete
         </Button>
       </div>
     </div>

@@ -49,159 +49,153 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
   }, []);
 
   return (
-    <ProtectedRoute>
-      <div className={styles.leftSideBar}>
-        <ul>
-          <span>home</span>
+    // <ProtectedRoute>
+    <div className={styles.leftSideBar}>
+      <ul>
+        <span>home</span>
+        <li>
+          <Link
+            href={"/"}
+            className={
+              pathname === "/"
+                ? `${styles.active} ${styles.link}`
+                : ` ${styles.link}`
+            }
+          >
+            {pathname === "/" ? <IoGrid /> : <IoGridOutline />}
+            dashboard
+          </Link>
+        </li>
+        {me.role === "super-admin" && (
           <li>
             <Link
-              href={"/"}
+              href={"/manage"}
               className={
-                pathname === "/"
+                pathname === "/manage"
                   ? `${styles.active} ${styles.link}`
                   : ` ${styles.link}`
               }
             >
-              {pathname === "/" ? <IoGrid /> : <IoGridOutline />}
-              dashboard
+              {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
+              Manage Accounts
             </Link>
           </li>
-          {me.role === "super-admin" && (
+        )}
+        <span>Projects</span>
+        <li>
+          <div
+            onClick={() => setOpen((prev) => !prev)}
+            className={
+              open ? `${styles.active} ${styles.link}` : `${styles.link}`
+            }
+          >
+            {open ? <BsSdCardFill /> : <BsSdCard />}
+            {currentProject ? `project: ${currentProject}` : "Select a Project"}
+            <IoChevronDownSharp
+              className={
+                open
+                  ? `${styles.chevron} ${styles.active}`
+                  : `${styles.chevron}`
+              }
+            />
+          </div>
+          <ul
+            className={
+              open
+                ? `${styles.dropDown} ${styles.active}`
+                : `${styles.dropDown}`
+            }
+          >
+            {projects?.map((item) => (
+              <li key={item.id}>
+                <div
+                  onClick={() => setCurrentProjects(item.name)}
+                  className={
+                    currentProject === item.name
+                      ? `${styles.active} ${styles.underLink}`
+                      : `${styles.underLink}`
+                  }
+                >
+                  {currentProject === item.name ? (
+                    <PiCaretDoubleRightFill className={styles.smallSvg} />
+                  ) : (
+                    <PiCaretDoubleRightDuotone className={styles.smallSvg} />
+                  )}
+                  {item.name}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </li>
+        {currentProject && (
+          <>
             <li>
               <Link
-                href={"/manage"}
+                href={`/recyclage/${currentProject}`}
                 className={
-                  pathname === "/manage"
+                  pathname.includes("recyclage")
                     ? `${styles.active} ${styles.link}`
                     : ` ${styles.link}`
                 }
               >
-                {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
-                Manage Accounts
+                {pathname.includes("recyclage") ? (
+                  <PiRecycleDuotone />
+                ) : (
+                  <PiRecycleLight />
+                )}
+                recycle
               </Link>
             </li>
-          )}
-          <span>Projects</span>
-          <li>
-            <div
-              onClick={() => setOpen((prev) => !prev)}
-              className={
-                open ? `${styles.active} ${styles.link}` : `${styles.link}`
-              }
-            >
-              {open ? <BsSdCardFill /> : <BsSdCard />}
-              {currentProject
-                ? `project: ${currentProject}`
-                : "Select a Project"}
-              <IoChevronDownSharp
+            <li>
+              <Link
+                href={`/history/${currentProject}`}
                 className={
-                  open
-                    ? `${styles.chevron} ${styles.active}`
-                    : `${styles.chevron}`
+                  pathname.includes("history")
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
                 }
-              />
-            </div>
-            <ul
-              className={
-                open
-                  ? `${styles.dropDown} ${styles.active}`
-                  : `${styles.dropDown}`
-              }
-            >
-              {projects?.map((item) => (
-                <li key={item.id}>
-                  <div
-                    onClick={() => setCurrentProjects(item.name)}
-                    className={
-                      currentProject === item.name
-                        ? `${styles.active} ${styles.underLink}`
-                        : `${styles.underLink}`
-                    }
-                  >
-                    {currentProject === item.name ? (
-                      <PiCaretDoubleRightFill className={styles.smallSvg} />
-                    ) : (
-                      <PiCaretDoubleRightDuotone className={styles.smallSvg} />
-                    )}
-                    {item.name}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </li>
-          {currentProject && (
-            <>
-              <li>
-                <Link
-                  href={`/recyclage/${currentProject}`}
-                  className={
-                    pathname.includes("recyclage")
-                      ? `${styles.active} ${styles.link}`
-                      : ` ${styles.link}`
-                  }
-                >
-                  {pathname.includes("recyclage") ? (
-                    <PiRecycleDuotone />
-                  ) : (
-                    <PiRecycleLight />
-                  )}
-                  recycle
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/history/${currentProject}`}
-                  className={
-                    pathname.includes("history")
-                      ? `${styles.active} ${styles.link}`
-                      : ` ${styles.link}`
-                  }
-                >
-                  {pathname.includes("history") ? (
-                    <IoTime />
-                  ) : (
-                    <IoTimeOutline />
-                  )}
-                  history
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/failed/${currentProject}`}
-                  className={
-                    pathname.includes("failed")
-                      ? `${styles.active} ${styles.link}`
-                      : ` ${styles.link}`
-                  }
-                >
-                  {pathname.includes("failed") ? (
-                    <TiWarning />
-                  ) : (
-                    <TiWarningOutline />
-                  )}
-                  failed
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/analytics/${currentProject}`}
-                  className={
-                    pathname.includes("analytics")
-                      ? `${styles.active} ${styles.link}`
-                      : ` ${styles.link}`
-                  }
-                >
-                  {pathname.includes("analytics") ? (
-                    <BsBarChartFill />
-                  ) : (
-                    <BsBarChart />
-                  )}
-                  analytics
-                </Link>
-              </li>
-            </>
-          )}
-          {/* <li>
+              >
+                {pathname.includes("history") ? <IoTime /> : <IoTimeOutline />}
+                history
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`/failed/${currentProject}`}
+                className={
+                  pathname.includes("failed")
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
+                }
+              >
+                {pathname.includes("failed") ? (
+                  <TiWarning />
+                ) : (
+                  <TiWarningOutline />
+                )}
+                failed
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`/analytics/${currentProject}`}
+                className={
+                  pathname.includes("analytics")
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
+                }
+              >
+                {pathname.includes("analytics") ? (
+                  <BsBarChartFill />
+                ) : (
+                  <BsBarChart />
+                )}
+                analytics
+              </Link>
+            </li>
+          </>
+        )}
+        {/* <li>
           <Link
             href={"/analytics"}
             className={
@@ -227,8 +221,8 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
             settings
           </Link>
         </li> */}
-        </ul>
-        {/* <button
+      </ul>
+      {/* <button
         type="button"
         onClick={() => {
           localStorage.removeItem(AUTH_TOKEN);
@@ -239,8 +233,8 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
         <IoLogOut />
         log out
       </button> */}
-      </div>
-    </ProtectedRoute>
+    </div>
+    // </ProtectedRoute>
   );
 };
 

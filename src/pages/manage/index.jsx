@@ -4,6 +4,10 @@ import ProtectetAdmin from "@/components/ProtectetAdmin";
 import ManageBox from "@/components/manage-accounts/ManageBox";
 import { motion } from "framer-motion";
 import { apiCall } from "@/utils/apiCall";
+import { Button } from "primereact/button";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import { FaPlus } from "react-icons/fa";
+
 const Manage = () => {
   const [admins, setAdmins] = useState([]);
   const [data, setData] = useState([]);
@@ -36,6 +40,21 @@ const Manage = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
+        <div className={styles.addBtnHolder}>
+          <Button
+            severity="warning"
+            style={{
+              padding: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <FaPlus />
+            Add Admin
+          </Button>
+        </div>
+
         <h2>Super Admins</h2>
         <div className={styles.boxHolder}>
           {admins?.map((item) => (
