@@ -19,3 +19,53 @@
   grid-template-rows: 350px;
   gap: var(--padding);
 }
+.barChartHolder {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 350px;
+  gap: var(--padding);
+}
+.dashBoxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--padding);
+}
+.dashBoxes .box {
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: var(--padding);
+}
+.dashBoxes .box span {
+  background-color: #ff790032;
+  color: var(--style-color);
+  font-size: 20px;
+  width: 40px;
+  aspect-ratio: 1/1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.boxHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.boxHeader h4 {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.dashBoxes .box h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
+  font-size: 64px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.8);
+}
