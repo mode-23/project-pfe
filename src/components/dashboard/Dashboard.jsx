@@ -89,7 +89,7 @@ const Dashboard = () => {
             data={tasksData}
           />
           <div className={styles.dashBoxes}>
-            <div className={styles.box}>
+            <div className={`${styles.box} ${styles.dark}`}>
               <div className={styles.boxHeader}>
                 <span>
                   <FaUser />
@@ -116,7 +116,7 @@ const Dashboard = () => {
               </div>
               <h2>{inprogressdata?.length}</h2>
             </div>
-            <div className={styles.box}>
+            <div className={`${styles.box} ${styles.dark}`}>
               <div className={styles.boxHeader}>
                 <span>
                   <IoCloseCircle />

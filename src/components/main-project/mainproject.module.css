@@ -20,7 +20,7 @@
   display: flex;
   /* justify-content: center; */
   flex-direction: column;
-  gap: var(--padding);
+  /* gap: var(--padding); */
   position: relative;
   padding: var(--padding);
 }
@@ -28,6 +28,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--padding);
+  position: sticky;
+  top: var(--padding);
+  z-index: 999;
+  background-color: var(--txt-color);
+  padding: var(--padding) 0;
 }
 .label {
   width: fit-content;
@@ -203,4 +208,7 @@
 }
 .projectFilter:active {
   scale: 0.99;
+}
+.tableFunc {
+  padding: var(--padding) 0;
 }

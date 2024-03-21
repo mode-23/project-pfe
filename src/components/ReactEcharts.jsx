@@ -25,6 +25,18 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
     },
     tooltip: {
       trigger: "item",
+      backgroundColor: "#333",
+      textStyle: {
+        color: "#fff",
+        fontSize: 14,
+        fontWeight: "bold",
+      },
+      formatter: function (params) {
+        const borderColor = params.color;
+        const circleHtml = `<span style="display:inline-block;margin-right:5px;border-radius:50%;width:10px;height:10px;background-color:${borderColor};"></span>`;
+        return `${circleHtml}<span style="color: ${borderColor};">${params.name}</span>: ${params.value}`;
+      },
+      extraCssText: "border: none;",
     },
     legend: {
       // bottom: "0%",
@@ -55,11 +67,16 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
           show: false,
           position: "center",
         },
+        // emphasis: {
+        //   label: {
+        //     show: true,
+        //     fontSize: 14,
+        //     fontWeight: "bold",
+        //   },
+        // },
         emphasis: {
           label: {
-            show: true,
-            fontSize: 14,
-            fontWeight: "bold",
+            show: false, // Set to false to hide the label when hovering
           },
         },
         labelLine: {

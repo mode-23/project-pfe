@@ -238,7 +238,7 @@ const MainProject = () => {
         return (
           <button className="statusBtn failedBtn">
             <IoCloseCircleOutline />
-            failed
+            aborted
           </button>
         );
       case "ready":
@@ -284,92 +284,6 @@ const MainProject = () => {
               <LuRefreshCcw />
             </button>
           </div>
-          {/* <AnimatePresence mode="wait">
-            {openFilter && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                className={styles.filter}
-              >
-                <div className={styles.filter_tab}>
-                  <label className={styles.label} htmlFor="dateStart">
-                    start date
-                  </label>
-                  <input
-                    ref={date1}
-                    type="date"
-                    id="dateStart"
-                    className={styles.calendar_tab}
-                    onChange={(e) => setSelectedStartDate(e.target.value)}
-                    value={selectedStartDate}
-                  />
-                </div>
-                <div className={styles.filter_tab}>
-                  <label className={styles.label} htmlFor="dateEnd">
-                    end date
-                  </label>
-                  <input
-                    ref={date2}
-                    type="date"
-                    id="dateEnd"
-                    className={styles.calendar_tab}
-                    onChange={(e) => setSelectedEndDate(e.target.value)}
-                    value={selectedEndDate}
-                  />
-                </div>
-                <div className={styles.filter_tab}>
-                  <label className={styles.label} htmlFor="processId">
-                    process id
-                  </label>
-                  <input
-                    type="text"
-                    id="processId"
-                    className={styles.calendar_tab}
-                    value={selectedId}
-                    onChange={(e) => setSelectedId(e.target.value)}
-                  />
-                </div>
-                <div className={styles.dropDownHolder}>
-                  <div className={styles.filter_tab}>
-                    <span className={styles.label}>task name</span>
-                    <div
-                      className={`${styles.calendar_tab} ${
-                        open ? styles.active : null
-                      }`}
-                      onClick={() => setOpen((prev) => !prev)}
-                    >
-                      <small>
-                        {selectedName ? selectedName : "Select a name"}
-                      </small>
-                      <IoChevronDownSharp />
-                    </div>
-                  </div>
-                  {open && (
-                    <div className={styles.dropDown}>
-                      <ul>
-                        {projectData?.[0]?.processList?.map((item, index) => (
-                          <li
-                            key={index}
-                            onClick={() => setName(item)}
-                            className={
-                              item === selectedName ? styles.active : null
-                            }
-                          >
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-                <button onClick={handleSearch} className={styles.orangeBtn}>
-                  search
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence> */}
           <AnimatePresence mode="wait">
             {openFilter && (
               <motion.div
@@ -441,7 +355,6 @@ const MainProject = () => {
               </motion.div>
             )}
           </AnimatePresence>
-
           <DataTable
             value={formattedData}
             selection={selectedItems}
@@ -504,24 +417,19 @@ const MainProject = () => {
               body={buttonSearch}
             ></Column>
           </DataTable>
-          <Button
-            label="Recycle"
-            severity="secondary"
-            disabled={!selectedItems.length}
-            style={{
-              width: "fit-content",
-              minHeight: "40px",
-              padding: "10px 15px",
-            }}
-            onClick={handleUpdateStatus}
-          />
-          {/* <ProjectTable
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            data={data}
-            loading={loading}
-            fetchProject={fetchProject}
-          /> */}
+          <div className={styles.tableFunc}>
+            <Button
+              label="Recycle"
+              severity="secondary"
+              disabled={!selectedItems.length}
+              style={{
+                width: "fit-content",
+                minHeight: "40px",
+                padding: "10px 15px",
+              }}
+              onClick={handleUpdateStatus}
+            />
+          </div>
         </div>
       </motion.div>
     </ProtectedRoute>

@@ -177,7 +177,7 @@ const MainProcess = () => {
         return (
           <button className="statusBtn failedBtn">
             <IoCloseCircleOutline />
-            failed
+            aborted
           </button>
         );
       case "ready":
@@ -364,17 +364,19 @@ const MainProcess = () => {
             body={buttonSearch}
           ></Column>
         </DataTable>
-        <Button
-          label="Abort"
-          severity="secondary"
-          style={{
-            width: "fit-content",
-            padding: "10px 15px",
-            minHeight: "40px",
-          }}
-          onClick={handleUpdateStatus}
-          disabled={!selectedItems.length}
-        />
+        <div className={styles.tableFunc}>
+          <Button
+            label="Abort"
+            severity="secondary"
+            style={{
+              width: "fit-content",
+              padding: "10px 15px",
+              minHeight: "40px",
+            }}
+            onClick={handleUpdateStatus}
+            disabled={!selectedItems.length}
+          />
+        </div>
       </motion.div>
     </ProtectedRoute>
   );

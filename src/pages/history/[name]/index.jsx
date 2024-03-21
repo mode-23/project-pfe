@@ -182,7 +182,7 @@ const History = ({ currentProject }) => {
         return (
           <button className="statusBtn failedBtn">
             <IoCloseCircleOutline />
-            failed
+            aborted
           </button>
         );
       case "ready":

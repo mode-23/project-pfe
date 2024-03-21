@@ -173,7 +173,7 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
                 ) : (
                   <TiWarningOutline />
                 )}
-                failed
+                abort
               </Link>
             </li>
             <li>
@@ -195,44 +195,7 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
             </li>
           </>
         )}
-        {/* <li>
-          <Link
-            href={"/analytics"}
-            className={
-              pathname === "/analytics"
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname === "/analytics" ? <BsBarChartFill /> : <BsBarChart />}
-            analytics
-          </Link>
-        </li>
-        <li>
-          <Link
-            href={"/settings"}
-            className={
-              pathname === "/settings"
-                ? `${styles.active} ${styles.link}`
-                : ` ${styles.link}`
-            }
-          >
-            {pathname === "/settings" ? <IoSettings /> : <IoSettingsOutline />}
-            settings
-          </Link>
-        </li> */}
       </ul>
-      {/* <button
-        type="button"
-        onClick={() => {
-          localStorage.removeItem(AUTH_TOKEN);
-          window.location.reload();
-        }}
-        className={styles.logoutBtn}
-      >
-        <IoLogOut />
-        log out
-      </button> */}
     </div>
     // </ProtectedRoute>
   );

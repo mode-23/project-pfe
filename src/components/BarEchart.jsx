@@ -28,6 +28,24 @@ const BarEchart = ({ bgColor, data, savedName, chartTitle }) => {
       axisPointer: {
         type: "shadow",
       },
+      backgroundColor: "#333",
+      textStyle: {
+        color: "#fff",
+        fontSize: 14,
+        fontWeight: "bold",
+      },
+      formatter: function (params) {
+        const borderColor = params[0]?.color;
+        const circleIndicator =
+          '<span style="display:inline-block;margin-right:5px;border-radius:50%;width:10px;height:10px;background-color:' +
+          borderColor +
+          '"></span>';
+        return (
+          circleIndicator +
+          `<span style="color: ${borderColor};">${params[0]?.name}</span>: ${params[0]?.value}`
+        );
+      },
+      extraCssText: "border: none;",
     },
     grid: {
       left: "3%",
