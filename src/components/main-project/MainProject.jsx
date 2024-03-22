@@ -26,7 +26,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { FaSearch } from "react-icons/fa";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
-const MainProject = () => {
+const MainProject = ({ currentProject }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -251,6 +251,10 @@ const MainProject = () => {
         break;
     }
   };
+  useEffect(() => {
+    setSelectedItems([]);
+  }, [currentProject, query.name]);
+  console.log(selectedItems);
   return (
     <ProtectedRoute>
       <motion.div

@@ -22,7 +22,7 @@ import { Calendar } from "primereact/calendar";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
-const MainProcess = () => {
+const MainProcess = ({ currentProject }) => {
   const [data, setData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedId, setSelectedId] = useState("");
@@ -190,6 +190,9 @@ const MainProcess = () => {
         break;
     }
   };
+  useEffect(() => {
+    setSelectedItems([]);
+  }, [currentProject, query.name]);
   return (
     <ProtectedRoute>
       <motion.div

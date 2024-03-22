@@ -12,7 +12,7 @@ const Failed = ({ currentProject }) => {
   }, [currentProject, query.name]);
   return (
     <div className={styles.failedProcess}>
-      <MainProcess />
+      <MainProcess currentProject={currentProject} />
     </div>
   );
 };

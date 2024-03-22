@@ -11,7 +11,7 @@ const Project = ({ currentProject }) => {
     }
   }, [currentProject, query.name]);
 
-  return <MainProject />;
+  return <MainProject currentProject={currentProject} />;
 };
 
 export default Project;
