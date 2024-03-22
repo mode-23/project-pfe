@@ -48,3 +48,34 @@
   flex-direction: column;
   gap: 5px;
 }
+.statTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.statTitle svg {
+  font-size: 28px;
+  color: var(--style-color);
+  display: flex;
+  gap: 6px;
+  align-self: flex-end;
+}
+.statTitle h2 {
+  display: flex;
+  gap: 6px;
+  align-self: flex-end;
+  color: var(--second-color);
+}
+.statTitle h2 span {
+  color: var(--style-color);
+}
+.statHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding);
+}
+.statHeader p {
+  font-size: 18px;
+  text-transform: capitalize;
+  color: #666;
+}

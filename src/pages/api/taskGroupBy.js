@@ -1,6 +1,6 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  const { project } = req.query;
+  const { project, startDate, endDate } = req.query;
   const statusGroup = await prisma.task.groupBy({
     by: ["name"],
     _count: true,
@@ -10,6 +10,10 @@ const handler = async (req, res) => {
       },
       name: {
         endsWith: "failure",
+      },
+      date: {
+        gte: startDate ? new Date(startDate) : undefined,
+        lte: endDate ? new Date(endDate) : undefined,
       },
     },
   });

@@ -39,11 +39,20 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
       extraCssText: "border: none;",
     },
     legend: {
-      // bottom: "0%",
-      // left: "0px",
       orient: "vertical",
       x: "left",
       y: "bottom",
+      formatter: function (name) {
+        let data = option.series[0].data;
+        let total = 0;
+        for (let i = 0; i < data.length; i++) {
+          total += data[i].value;
+          if (data[i].name === name) {
+            return `${name} : ${data[i].value}`;
+          }
+        }
+        return `${name} : 0`;
+      },
     },
     toolbox: {
       feature: {
