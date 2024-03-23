@@ -284,6 +284,24 @@ a {
   color: #237901;
   background-color: #41e40020;
 }
+.no_chart_data {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.no_chart_data h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.no_chart_data svg {
+  font-size: 12vw;
+  color: #7777778f;
+}
 /* .p-datatable .p-datatable-thead > tr > th {bgcolor} */
 /* .p-datatable .p-datatable-tbody > tr{} */
 /* .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{} */

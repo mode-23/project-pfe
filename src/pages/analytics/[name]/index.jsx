@@ -90,7 +90,6 @@ const Analytics = ({ currentProject }) => {
     { key: "endDate", value: searchEndDate || "" },
   ];
   const paramsStr = params.map((item) => `${item.key}=${item.value}`).join("&");
-  console.log(paramsStr);
   const fetchStatusChart = async () => {
     try {
       const res = await apiCall("groupBy?" + paramsStr);
@@ -111,7 +110,7 @@ const Analytics = ({ currentProject }) => {
   useEffect(() => {
     fetchStatusChart();
     fetchNameTaskChart();
-  }, [query.name, currentProject, searchStartDate, searchStartDate]);
+  }, [query.name, currentProject, searchStartDate, searchEndDate]);
   useEffect(() => {
     if (currentProject && query.name) {
       push(`/analytics/${currentProject}`);

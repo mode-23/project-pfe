@@ -7,6 +7,8 @@ import {
   BsSdCard,
   BsBarChartFill,
   BsBarChart,
+  BsClipboardPlus,
+  BsClipboardPlusFill,
 } from "react-icons/bs";
 import {
   IoTimeOutline,
@@ -67,19 +69,38 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
           </Link>
         </li>
         {me.role === "super-admin" && (
-          <li>
-            <Link
-              href={"/manage"}
-              className={
-                pathname === "/manage"
-                  ? `${styles.active} ${styles.link}`
-                  : ` ${styles.link}`
-              }
-            >
-              {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
-              Manage Accounts
-            </Link>
-          </li>
+          <>
+            <li>
+              <Link
+                href={"/manage"}
+                className={
+                  pathname === "/manage"
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
+                }
+              >
+                {pathname === "/manage" ? <RiAdminFill /> : <RiAdminLine />}
+                Manage Accounts
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"/process"}
+                className={
+                  pathname.includes("process")
+                    ? `${styles.active} ${styles.link}`
+                    : ` ${styles.link}`
+                }
+              >
+                {pathname.includes("process") ? (
+                  <BsClipboardPlusFill />
+                ) : (
+                  <BsClipboardPlus />
+                )}
+                Manage Processes
+              </Link>
+            </li>
+          </>
         )}
         <span>Projects</span>
         <li>

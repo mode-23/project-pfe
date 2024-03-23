@@ -1,8 +1,9 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
+import { PiChartDonutFill } from "react-icons/pi";
 
 const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
-  const formattedData = data.map((obj) => {
+  const formattedData = data?.map((obj) => {
     if (obj.status) {
       return {
         name: obj.status,
@@ -126,7 +127,10 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
           <ReactECharts option={option} lazyUpdate={true} />
         </>
       ) : (
-        <>no data</>
+        <div className="no_chart_data">
+          <PiChartDonutFill />
+          <h3>No data</h3>
+        </div>
       )}
     </div>
   );

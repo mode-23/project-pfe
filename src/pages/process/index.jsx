@@ -1,13 +1,13 @@
-import ProtectedRoute from "@/components/ProtectedRoute";
 import React from "react";
 import styles from "./process.module.css";
+import ProtectetAdmin from "@/components/ProtectetAdmin";
 const Process = () => {
   return (
-    <ProtectedRoute>
+    <ProtectetAdmin>
       <div className={styles.process}>
         <h4>Process List</h4>
       </div>
-    </ProtectedRoute>
+    </ProtectetAdmin>
   );
 };
 

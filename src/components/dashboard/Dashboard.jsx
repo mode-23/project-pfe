@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [inprogressdata, setinprogressData] = useState([]);
   const [abortedData, setAbortedData] = useState([]);
   const [tasksData, setTasksData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
   const formatDate = (value) => {
     const formattedValue = new Date(value);
     let format = `${formattedValue.getFullYear()}-${
@@ -24,6 +25,14 @@ const Dashboard = () => {
         : "0" + formattedValue.getDate()
     }`;
     return format;
+  };
+  const handleFetchUsers = async () => {
+    try {
+      const res = await apiCall("getUsers");
+      setUsersData(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const fetchInProgressChart = async () => {
     try {
@@ -56,6 +65,7 @@ const Dashboard = () => {
     fetchInProgressChart();
     fetchAbortedChart();
     fetchAllFailedTasks();
+    handleFetchUsers();
   }, []);
   return (
     <ProtectedRoute>
@@ -96,7 +106,7 @@ const Dashboard = () => {
                 </span>
                 <h4>Total admins</h4>
               </div>
-              <h2>4</h2>
+              <h2>{usersData?.length}</h2>
             </div>
             <div className={styles.box}>
               <div className={styles.boxHeader}>
