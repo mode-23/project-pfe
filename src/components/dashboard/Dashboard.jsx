@@ -100,40 +100,60 @@ const Dashboard = () => {
           />
           <div className={styles.dashBoxes}>
             <div className={`${styles.box} ${styles.dark}`}>
-              <div className={styles.boxHeader}>
-                <span>
-                  <FaUser />
-                </span>
-                <h4>Total admins</h4>
+              <div className={styles.inner_box}>
+                <div className={styles.front_box}>
+                  <div className={styles.boxHeader}>
+                    <span>
+                      <FaUser />
+                    </span>
+                    <h4>Total admins</h4>
+                  </div>
+                  <h2>{usersData?.length}</h2>
+                </div>
+                <div className={styles.back_box}>back</div>
               </div>
-              <h2>{usersData?.length}</h2>
             </div>
-            <div className={styles.box}>
-              <div className={styles.boxHeader}>
-                <span>
-                  <FaSdCard />
-                </span>
-                <h4>Total projects</h4>
+            <div className={`${styles.box}`}>
+              <div className={styles.inner_box}>
+                <div className={styles.front_box}>
+                  <div className={styles.boxHeader}>
+                    <span>
+                      <FaSdCard />
+                    </span>
+                    <h4>Total Projects</h4>
+                  </div>
+                  <h2>3</h2>
+                </div>
+                <div className={styles.back_box}>back</div>
               </div>
-              <h2>3</h2>
             </div>
-            <div className={styles.box}>
-              <div className={styles.boxHeader}>
-                <span>
-                  <IoTimeSharp />
-                </span>
-                <h4>In progress process</h4>
+            <div className={`${styles.box}`}>
+              <div className={styles.inner_box}>
+                <div className={styles.front_box}>
+                  <div className={styles.boxHeader}>
+                    <span>
+                      <IoTimeSharp />
+                    </span>
+                    <h4>total process</h4>
+                  </div>
+                  <h2>{inprogressdata?.length}</h2>
+                </div>
+                <div className={styles.back_box}>back</div>
               </div>
-              <h2>{inprogressdata?.length}</h2>
             </div>
             <div className={`${styles.box} ${styles.dark}`}>
-              <div className={styles.boxHeader}>
-                <span>
-                  <IoCloseCircle />
-                </span>
-                <h4>Aborted process</h4>
+              <div className={styles.inner_box}>
+                <div className={styles.front_box}>
+                  <div className={styles.boxHeader}>
+                    <span>
+                      <IoCloseCircle />
+                    </span>
+                    <h4>total tasks</h4>
+                  </div>
+                  <h2>{abortedData?.length}</h2>
+                </div>
+                <div className={styles.back_box}>back</div>
               </div>
-              <h2>{abortedData?.length}</h2>
             </div>
           </div>
         </div>
