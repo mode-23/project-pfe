@@ -121,7 +121,7 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
     ],
   };
   return (
-    <div style={{ background: bgColor, borderRadius: "12px", padding: "10px" }}>
+    <div style={{ background: bgColor, borderRadius: "25px", padding: "10px" }}>
       {formattedData.length ? (
         <>
           <ReactECharts option={option} lazyUpdate={true} />

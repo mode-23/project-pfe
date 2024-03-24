@@ -5,8 +5,10 @@ import ProtectedRoute from "../ProtectedRoute";
 import { apiCall } from "@/utils/apiCall";
 import ReactEcharts from "../ReactEcharts";
 import BarEchart from "../BarEchart";
-import { FaSdCard, FaUser } from "react-icons/fa";
+import { FaDatabase, FaRegUser, FaSdCard } from "react-icons/fa";
 import { IoCloseCircle, IoTimeSharp } from "react-icons/io5";
+import { BsBox } from "react-icons/bs";
+import DashboardBox from "./DashboardBox";
 
 const Dashboard = () => {
   const [inprogressdata, setinprogressData] = useState([]);
@@ -99,62 +101,30 @@ const Dashboard = () => {
             data={tasksData}
           />
           <div className={styles.dashBoxes}>
-            <div className={`${styles.box} ${styles.dark}`}>
-              <div className={styles.inner_box}>
-                <div className={styles.front_box}>
-                  <div className={styles.boxHeader}>
-                    <span>
-                      <FaUser />
-                    </span>
-                    <h4>Total admins</h4>
-                  </div>
-                  <h2>{usersData?.length}</h2>
-                </div>
-                <div className={styles.back_box}>back</div>
-              </div>
-            </div>
-            <div className={`${styles.box}`}>
-              <div className={styles.inner_box}>
-                <div className={styles.front_box}>
-                  <div className={styles.boxHeader}>
-                    <span>
-                      <FaSdCard />
-                    </span>
-                    <h4>Total Projects</h4>
-                  </div>
-                  <h2>3</h2>
-                </div>
-                <div className={styles.back_box}>back</div>
-              </div>
-            </div>
-            <div className={`${styles.box}`}>
-              <div className={styles.inner_box}>
-                <div className={styles.front_box}>
-                  <div className={styles.boxHeader}>
-                    <span>
-                      <IoTimeSharp />
-                    </span>
-                    <h4>total process</h4>
-                  </div>
-                  <h2>{inprogressdata?.length}</h2>
-                </div>
-                <div className={styles.back_box}>back</div>
-              </div>
-            </div>
-            <div className={`${styles.box} ${styles.dark}`}>
-              <div className={styles.inner_box}>
-                <div className={styles.front_box}>
-                  <div className={styles.boxHeader}>
-                    <span>
-                      <IoCloseCircle />
-                    </span>
-                    <h4>total tasks</h4>
-                  </div>
-                  <h2>{abortedData?.length}</h2>
-                </div>
-                <div className={styles.back_box}>back</div>
-              </div>
-            </div>
+            <DashboardBox
+              title={"Total admins"}
+              icon={<FaRegUser />}
+              dark={true}
+              number={usersData?.length}
+            />
+            <DashboardBox
+              title={"Total Projects"}
+              icon={<FaSdCard />}
+              dark={false}
+              number={3}
+            />
+            <DashboardBox
+              title={"Total Process"}
+              icon={<FaDatabase />}
+              dark={false}
+              number={inprogressdata?.length}
+            />
+            <DashboardBox
+              title={"Total tasks"}
+              icon={<BsBox />}
+              dark={true}
+              number={abortedData?.length}
+            />
           </div>
         </div>
       </motion.div>

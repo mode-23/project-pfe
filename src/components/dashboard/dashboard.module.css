@@ -68,7 +68,21 @@
 .back_box {
   transform: rotateY(180deg);
 }
-.dashBoxes .box span {
+.back_box .boxbackInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.back_box .boxbackInfo h3 {
+  display: flex;
+  align-self: flex-end;
+  font-weight: 400;
+  font-size: 14px;
+}
+.back_box .boxbackInfo svg {
+  font-size: 18px;
+}
+.dashBoxes .box .iconHolder {
   background-color: #ff790032;
   color: var(--style-color);
   font-size: 20px;

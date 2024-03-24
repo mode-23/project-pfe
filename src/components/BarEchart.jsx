@@ -117,7 +117,7 @@ const BarEchart = ({ bgColor, data, savedName, chartTitle }) => {
     <div
       style={{
         background: bgColor,
-        borderRadius: "12px",
+        borderRadius: "25px",
         padding: "10px",
       }}
     >
