@@ -22,6 +22,9 @@ const Dashboard = () => {
   const [abortedData, setAbortedData] = useState([]);
   const [tasksData, setTasksData] = useState([]);
   const [usersData, setUsersData] = useState([]);
+  const [totalProcess, setTotalProcess] = useState([]);
+  const [totalTasks, setTotalTasks] = useState([]);
+  const [totalProjects, setTotalProjects] = useState([]);
   const formatDate = (value) => {
     const formattedValue = new Date(value);
     let format = `${formattedValue.getFullYear()}-${
@@ -37,8 +40,16 @@ const Dashboard = () => {
   };
   const handleFetchUsers = async () => {
     try {
-      const res = await apiCall("getUsers");
+      const res = await apiCall("dashboardUsers");
       setUsersData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchTotalProcessChart = async () => {
+    try {
+      const res = await apiCall(`dashboardProcess`);
+      setTotalProcess(res);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +57,6 @@ const Dashboard = () => {
   const fetchInProgressChart = async () => {
     try {
       const res = await apiCall(`groupByProcess?status=inprogress`);
-      console.log(res);
       setinprogressData(res);
     } catch (error) {
       console.log(error);
@@ -55,7 +65,6 @@ const Dashboard = () => {
   const fetchAbortedChart = async () => {
     try {
       const res = await apiCall(`groupByProcess?status=aborted`);
-      console.log(res);
       setAbortedData(res);
     } catch (error) {
       console.log(error);
@@ -64,8 +73,23 @@ const Dashboard = () => {
   const fetchAllFailedTasks = async () => {
     try {
       const res = await apiCall(`getAllFailedTasks`);
-      console.log(res);
       setTasksData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchAllTotalTasks = async () => {
+    try {
+      const res = await apiCall(`dashboardFailedTasks`);
+      setTotalTasks(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchTotalProjects = async () => {
+    try {
+      const res = await apiCall(`dashboardProjects`);
+      setTotalProjects(res);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +99,9 @@ const Dashboard = () => {
     fetchAbortedChart();
     fetchAllFailedTasks();
     handleFetchUsers();
+    fetchTotalProcessChart();
+    fetchAllTotalTasks();
+    fetchTotalProjects();
   }, []);
   const [startdate, setstartDate] = useState(null);
   const [enddate, setendDate] = useState(null);
@@ -183,25 +210,32 @@ const Dashboard = () => {
               title={"Total admins"}
               icon={<FaRegUser />}
               dark={true}
-              number={usersData?.length}
+              number={usersData?.reduce((acc, curr) => acc + curr._count, 0)}
+              data={usersData}
             />
             <DashboardBox
               title={"Total Projects"}
               icon={<FaSdCard />}
               dark={false}
-              number={3}
+              number={totalProjects?.reduce(
+                (acc, curr) => acc + curr._count,
+                0
+              )}
+              data={totalProjects}
             />
             <DashboardBox
               title={"Total Process"}
               icon={<FaDatabase />}
               dark={false}
-              number={inprogressdata?.length}
+              number={totalProcess?.reduce((acc, curr) => acc + curr._count, 0)}
+              data={totalProcess}
             />
             <DashboardBox
-              title={"Total tasks"}
+              title={"Total failed tasks"}
               icon={<BsBox />}
               dark={true}
-              number={abortedData?.length}
+              number={totalTasks?.reduce((acc, curr) => acc + curr._count, 0)}
+              data={totalTasks}
             />
           </div>
         </div>

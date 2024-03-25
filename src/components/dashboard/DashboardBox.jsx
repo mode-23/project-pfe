@@ -3,7 +3,25 @@ import styles from "./dashboard.module.css";
 import ReactECharts from "echarts-for-react";
 import { FcInfo } from "react-icons/fc";
 
-const DashboardBox = ({ icon, title, number, dark }) => {
+const DashboardBox = ({ icon, title, number, dark, data }) => {
+  const formattedData = data?.map((obj) => {
+    if (obj.status) {
+      return {
+        name: obj.status,
+        value: obj._count,
+      };
+    } else if (obj.name) {
+      return {
+        name: obj.name,
+        value: obj._count,
+      };
+    } else if (obj.role) {
+      return {
+        name: obj.role,
+        value: obj._count,
+      };
+    }
+  });
   const option = {
     tooltip: {
       trigger: "item",
@@ -35,7 +53,7 @@ const DashboardBox = ({ icon, title, number, dark }) => {
           borderColor: dark ? "#333" : "#fff",
           borderWidth: 6,
           opacity: 0.5,
-          color: "#ff7900",
+          // color: "#ff7900",
           emphasis: {
             opacity: 1,
           },
@@ -53,11 +71,7 @@ const DashboardBox = ({ icon, title, number, dark }) => {
             show: false,
           },
         },
-        data: [
-          { value: 1, name: "Direct" },
-          { value: 1, name: "Union Ads" },
-          { value: 1, name: "Video Ads" },
-        ],
+        data: formattedData,
       },
     ],
     aria: {
