@@ -70,6 +70,7 @@ const SidebarLeft = ({ currentProject, setCurrentProjects, me }) => {
         </li>
         {me.role === "super-admin" && (
           <>
+            <span>admin panel</span>
             <li>
               <Link
                 href={"/manage"}

@@ -28,12 +28,17 @@ const DashboardBox = ({ icon, title, number, dark }) => {
     series: [
       {
         type: "pie",
-        radius: ["60%", "90%"],
+        radius: ["30%", "90%"],
         center: ["50%", "40%"],
         itemStyle: {
           borderRadius: 5,
           borderColor: dark ? "#333" : "#fff",
           borderWidth: 6,
+          opacity: 0.5,
+          color: "#ff7900",
+          emphasis: {
+            opacity: 1,
+          },
         },
         startAngle: 180,
         endAngle: 360,
@@ -49,12 +54,18 @@ const DashboardBox = ({ icon, title, number, dark }) => {
           },
         },
         data: [
-          { value: 735, name: "Direct", itemStyle: { color: "#91cc75" } }, // Custom color for 'Direct'
-          { value: 484, name: "Union Ads", itemStyle: { color: "#ee6666" } }, // Custom color for 'Union Ads'
-          { value: 300, name: "Video Ads", itemStyle: { color: "#73c0de" } }, // Custom color for 'Video Ads'
+          { value: 1, name: "Direct" },
+          { value: 1, name: "Union Ads" },
+          { value: 1, name: "Video Ads" },
         ],
       },
     ],
+    aria: {
+      enabled: true,
+      decal: {
+        show: true,
+      },
+    },
   };
   return (
     <div className={`${styles.box} ${dark ? styles.dark : null}`}>

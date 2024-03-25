@@ -3,6 +3,8 @@
   position: relative;
   background-color: var(--txt-color);
   height: calc(100svh - 108px - (var(--padding) * 2));
+  max-height: calc(100svh - 108px - (var(--padding) * 2));
+  overflow-y: auto;
   margin: var(--padding);
   border-radius: var(--radius);
   margin-right: 0;

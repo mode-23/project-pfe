@@ -35,6 +35,7 @@
   perspective: 1000px;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
 }
 .dashBoxes .box .back_box,
 .dashBoxes .box .front_box {
@@ -117,4 +118,49 @@
 }
 .dashBoxes .box.dark h2 {
   color: rgba(255, 255, 255, 0.8);
+}
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customCalendar {
+  position: relative;
+}
+.calendarHolder {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  gap: var(--padding);
+  padding: var(--padding);
+  background-color: var(--txt-color);
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 1px 2px 0px;
+  border-radius: var(--radius);
+}
+.calendarValue {
+  background-color: var(--txt-color);
+  padding: 12px 15px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.calendarValue h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+.calendarBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.calendarBox h3 {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--second-color);
 }

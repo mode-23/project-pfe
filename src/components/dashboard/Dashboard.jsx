@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styles from "./dashboard.module.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ProtectedRoute from "../ProtectedRoute";
 import { apiCall } from "@/utils/apiCall";
 import ReactEcharts from "../ReactEcharts";
 import BarEchart from "../BarEchart";
 import { FaDatabase, FaRegUser, FaSdCard } from "react-icons/fa";
-import { IoCloseCircle, IoTimeSharp } from "react-icons/io5";
+import {
+  IoCloseCircle,
+  IoCalendarClearOutline,
+  IoTimeSharp,
+  IoChevronDownOutline,
+} from "react-icons/io5";
 import { BsBox } from "react-icons/bs";
 import DashboardBox from "./DashboardBox";
+import { Calendar } from "primereact/calendar";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 const Dashboard = () => {
   const [inprogressdata, setinprogressData] = useState([]);
@@ -69,6 +76,30 @@ const Dashboard = () => {
     fetchAllFailedTasks();
     handleFetchUsers();
   }, []);
+  const [startdate, setstartDate] = useState(null);
+  const [enddate, setendDate] = useState(null);
+  const [open, setOpen] = useState(false);
+  let month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const formatDateV2 = (date) => {
+    let formattedDate = new Date(date);
+    let res = `${formattedDate.getDate()} ${
+      month[formattedDate.getMonth()]
+    } , ${formattedDate.getFullYear()}`;
+    return res;
+  };
   return (
     <ProtectedRoute>
       <motion.div
@@ -78,7 +109,54 @@ const Dashboard = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        <h1>Overview</h1>
+        <div className={styles.dashboardHeader}>
+          <h1>Overview</h1>
+          <div className={styles.customCalendar}>
+            <div
+              className={styles.calendarValue}
+              onClick={() => setOpen((prev) => !prev)}
+            >
+              <IoCalendarClearOutline />
+              <h4>
+                {startdate ? formatDateV2(startdate) : "Select date"}
+                {" / "}
+                {enddate ? formatDateV2(enddate) : "Select date"}
+              </h4>
+
+              <IoChevronDownOutline />
+            </div>
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  className={styles.calendarHolder}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className={styles.calendarBox}>
+                    <h3>start date</h3>
+                    <Calendar
+                      value={startdate}
+                      onChange={(e) => setstartDate(e.value)}
+                      inline
+                      showWeek
+                    />
+                  </div>
+                  <div className={styles.calendarBox}>
+                    <h3>end date</h3>
+                    <Calendar
+                      value={enddate}
+                      onChange={(e) => setendDate(e.value)}
+                      inline
+                      showWeek
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
         <div className={styles.chartHolder}>
           <ReactEcharts
             data={inprogressdata}
