@@ -20,6 +20,11 @@ const DashboardBox = ({ icon, title, number, dark, data }) => {
         name: obj.role,
         value: obj._count,
       };
+    } else if (obj.project) {
+      return {
+        name: obj.project,
+        value: obj._count,
+      };
     }
   });
   const option = {

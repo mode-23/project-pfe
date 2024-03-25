@@ -214,13 +214,10 @@ const Dashboard = () => {
               data={usersData}
             />
             <DashboardBox
-              title={"Total Projects"}
+              title={"Projects overview"}
               icon={<FaSdCard />}
               dark={false}
-              number={totalProjects?.reduce(
-                (acc, curr) => acc + curr._count,
-                0
-              )}
+              number={totalProjects?.length}
               data={totalProjects}
             />
             <DashboardBox

@@ -1,7 +1,7 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  const statusGroup = await prisma.projects.groupBy({
-    by: ["name"],
+  const statusGroup = await prisma.ProcessInstanceLog.groupBy({
+    by: ["project"],
     _count: true,
   });
 

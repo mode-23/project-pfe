@@ -228,6 +228,7 @@
   transition: 300ms ease;
   text-transform: capitalize;
   cursor: pointer;
+  color: var(--txt-color);
 }
 .registerBtn:hover {
   color: var(--style-color);
@@ -242,6 +243,7 @@
   text-transform: capitalize;
   margin-bottom: 20px;
   font-weight: 100;
+  color: var(--txt-color);
 }
 .submitBtn,
 .inputHolder {
@@ -254,6 +256,7 @@
   text-transform: capitalize;
   font-weight: 400;
   font-size: 15px;
+  color: var(--txt-color);
 }
 .input {
   padding: 15px;
