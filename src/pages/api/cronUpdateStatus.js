@@ -12,28 +12,6 @@ const handler = async (req, res) => {
       status: "completed",
     },
   });
-  //   where: {
-  //     id: {
-  //       in: array,
-  //     },
-  //   },
-  //   data: {
-  //     status: "completed",
-  //   },
-  // });
-  // const process = prisma.ProcessInstanceLog.updateMany({
-  //   where: {
-  //     id: {
-  //       in: tasksArray,
-  //     },
-  //   },
-  //   data: {
-  //     status: "completed",
-  //   },
-  // });
-  // const updateProcess = await prisma.$transaction([tasks, process]);
-
-  // res.status(200).json(updateProcess);
   res.status(200).json(updateCron);
 };
 export default handler;

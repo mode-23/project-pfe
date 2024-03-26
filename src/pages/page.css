@@ -281,6 +281,10 @@ a {
   background-color: #e4002b20;
 }
 .statusBtn.readyBtn {
+  color: #026054;
+  background-color: #20f9dc3f;
+}
+.statusBtn.completedBtn {
   color: #237901;
   background-color: #41e40020;
 }

@@ -185,6 +185,13 @@ const History = ({ currentProject }) => {
             aborted
           </button>
         );
+      case "completed":
+        return (
+          <button className="statusBtn completedBtn">
+            <IoIosCheckmarkCircleOutline />
+            completed
+          </button>
+        );
       case "ready":
         return (
           <button className="statusBtn readyBtn">
@@ -335,7 +342,7 @@ const History = ({ currentProject }) => {
             <Column
               field="date"
               sortable
-              header="Date"
+              header="End Date"
               style={{ padding: "15px" }}
             ></Column>
             <Column
