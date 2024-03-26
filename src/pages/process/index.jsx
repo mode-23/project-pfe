@@ -5,7 +5,7 @@ const Process = () => {
   return (
     <ProtectetAdmin>
       <div className={styles.process}>
-        <h4>Process List</h4>
+        <h4>Add Process</h4>
       </div>
     </ProtectetAdmin>
   );

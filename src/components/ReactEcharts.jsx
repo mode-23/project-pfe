@@ -65,9 +65,9 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
     series: [
       {
         type: "pie",
-        radius: ["55%", "80%"],
+        radius: ["60%", "80%"],
         avoidLabelOverlap: false,
-        padAngle: 5,
+        // padAngle: 5,
         itemStyle: {
           borderRadius: 10,
           borderColor: bgColor,
@@ -86,7 +86,36 @@ const ReactEcharts = ({ data, savedName, chartTitle, bgColor }) => {
         // },
         emphasis: {
           label: {
-            show: false, // Set to false to hide the label when hovering
+            show: true,
+            fontSize: 16,
+            formatter: function (params) {
+              return [
+                // "{b|" + params.name + "}",
+                "{per|" + Math.round(params.percent) + "%}",
+                // "{val|" + params.value + "}",
+              ].join("\n");
+            },
+            rich: {
+              // b: {
+              //   fontSize: 16,
+              //   lineHeight: 20,
+              //   color: function (params) {
+              //     return params.color;
+              //   },
+              // },
+              per: {
+                fontSize: 54,
+                lineHeight: 40,
+                color: "#666",
+                fontWeight: "300",
+                fontFamily: "Montserrat",
+              },
+              // val: {
+              //   fontSize: 14,
+              //   lineHeight: 20,
+              //   color: "#666",
+              // },
+            },
           },
         },
         labelLine: {

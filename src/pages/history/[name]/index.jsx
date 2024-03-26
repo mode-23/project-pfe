@@ -335,7 +335,7 @@ const History = ({ currentProject }) => {
             <Column
               field="date"
               sortable
-              header="End Date"
+              header="Date"
               style={{ padding: "15px" }}
             ></Column>
             <Column
