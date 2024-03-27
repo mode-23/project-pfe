@@ -64,5 +64,6 @@ model ProcessInstanceLog {
   project   String?
   date      DateTime  @default(now())
   updatedAt DateTime? @updatedAt
+  endDate   DateTime?
   task      Task[]
 }

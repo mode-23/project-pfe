@@ -132,7 +132,7 @@ const History = ({ currentProject }) => {
   const formattedData = data.map((obj) => {
     return {
       ...obj,
-      date: formatDate(obj.date),
+      endDate: formatDate(obj.endDate),
       updatedAt: formatDate(obj.updatedAt),
     };
   });
@@ -207,6 +207,7 @@ const History = ({ currentProject }) => {
       push(`/history/${currentProject}`);
     }
   }, [currentProject, query.name]);
+
   return (
     <ProtectedRoute>
       <motion.div
@@ -340,7 +341,7 @@ const History = ({ currentProject }) => {
               body={progressUI}
             ></Column>
             <Column
-              field="date"
+              field="endDate"
               sortable
               header="End Date"
               style={{ padding: "15px" }}

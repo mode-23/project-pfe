@@ -45,6 +45,20 @@ const App = ({ Component, pageProps }) => {
   }, []);
   const { query } = useRouter();
   console.log(me);
+  const handleUpdateStatus = async () => {
+    try {
+      const res = await apiCall("cronUpdateStatus", {
+        method: "POST",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (me.id) {
+      handleUpdateStatus();
+    }
+  }, [me.id]);
   return (
     <>
       <Head>

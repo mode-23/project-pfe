@@ -137,7 +137,7 @@ const Dashboard = () => {
         transition={{ duration: 1 }}
       >
         <div className={styles.dashboardHeader}>
-          <h1>Overview</h1>
+          <h1>Statistics on all Projects</h1>
           <div className={styles.customCalendar}>
             <div
               className={styles.calendarValue}

@@ -4,7 +4,7 @@ const currentDate = new Date();
 const handler = async (req, res) => {
   const updateCron = await prisma.ProcessInstanceLog.updateMany({
     where: {
-      date: {
+      endDate: {
         lte: currentDate,
       },
     },

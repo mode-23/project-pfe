@@ -1,26 +1,33 @@
 import { prisma } from "../../prisma_setup";
 const handler = async (req, res) => {
-  const result = await prisma.task.create({
+  const result = await prisma.ProcessInstanceLog.create({
     data: {
-      name: "prepareMigrationfailure",
-      status: "ready",
+      name: "migrationOrder",
+      status: "inprogress",
       project: "apc",
-      processName: "testings",
-      taskprocess: {
-        connect: {
-          id: 5,
+      task: {
+        createMany: {
+          data: [
+            {
+              name: "changeRatePlanfailure",
+              status: "ready",
+              project: "apc",
+              processName: "test",
+            },
+            {
+              name: "changeRatePlanfailure",
+              status: "ready",
+              project: "apc",
+              processName: "test2",
+            },
+          ],
         },
-        // create: {
-        //   name: "com.migrationOrderWorkflow",
-        //   status: "inprogress",
-        // },
       },
     },
     include: {
-      taskprocess: true,
+      task: true,
     },
   });
-  console.log(result);
   res.status(200).json(result);
 };
 export default handler;
