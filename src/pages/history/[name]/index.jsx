@@ -109,6 +109,10 @@ const History = ({ currentProject }) => {
       id: 1,
       name: "aborted",
     },
+    {
+      id: 2,
+      name: "completed",
+    },
   ];
   const params = [
     { key: "project", value: query?.name },

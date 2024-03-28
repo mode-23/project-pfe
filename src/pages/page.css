@@ -306,6 +306,10 @@ a {
   font-size: 12vw;
   color: #7777778f;
 }
+.p-dropdown-item-group {
+  padding: 10px;
+}
+
 /* .p-datatable .p-datatable-thead > tr > th {bgcolor} */
 /* .p-datatable .p-datatable-tbody > tr{} */
 /* .p-datatable.p-datatable-striped .p-datatable-tbody > tr.p-row-odd{} */

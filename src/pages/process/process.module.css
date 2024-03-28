@@ -12,3 +12,49 @@
   flex-direction: column;
   gap: var(--padding);
 }
+.processHolder {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--padding);
+}
+.dialog {
+  width: 50%;
+  height: 60%;
+}
+.steps {
+  /* bottom: var(--padding); */
+  background-color: var(--txt-color);
+  padding-bottom: var(--padding);
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.dialogHeader {
+  padding: var(--padding);
+}
+.addProcessHolder {
+  position: relative;
+  padding: var(--padding);
+  height: 100%;
+}
+.addProcessHolder button {
+  background-color: var(--soft-color);
+  color: var(--second-color);
+  outline: 0;
+  border: 1px solid #33333350;
+  width: fit-content;
+  padding: 10px 35px;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  text-transform: capitalize;
+}
+.addProcessHolder button:hover {
+  background-color: var(--second-color);
+  color: var(--txt-color);
+}
+.processBox {
+  position: relative;
+}
+.processBox input {
+  width: 100%;
+  max-width: 100%;
+}
